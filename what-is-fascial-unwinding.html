@@ -61,14 +61,8 @@ footer a{color:rgba(250,248,244,.4);text-decoration:none;margin:0 .8rem;}
 footer a:hover{color:var(--clay);}
 @media(max-width:680px){.nav-links{display:none;}.blog-hero,.blog-body{padding:3rem 5vw;}}
 </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5ZW5PGE2YG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5ZW5PGE2YG');
-</script><link rel="stylesheet" href="/assets/newsletter.css">
+<!-- GA4 loads only after cookie consent is granted — see assets/consent.js --><link rel="stylesheet" href="/assets/newsletter.css">
+<link rel="stylesheet" href="/assets/consent.css">
 </head>
 <body>
 <nav>
@@ -173,13 +167,15 @@ footer a:hover{color:var(--clay);}
   &copy; <span id="yr"></span> Craniosacral Therapy London · Craniosacral Therapy London · CSTA Registered
 </footer>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
-<!-- Pre-warm the booking assistant so it's ready when visitors navigate to the contact page.
-     This is why the booking app (cstlfalcrum.vercel.app) must never carry its own GA
-     pageview tag: it loads here, hidden, on every single page visit, so a tag in that
-     app would fabricate a phantom /book pageview for every one of those visitors. Its GA
+<!-- Pre-warm the booking assistant so it's ready when visitors navigate to the contact
+     page. It's a performance nicety, not something the visitor asked for on this page,
+     so it loads only after cookie consent is granted — see assets/consent.js. This is
+     why the booking app (cstlfalcrum.vercel.app) must never carry its own GA pageview
+     tag: it loads here, hidden, on every consenting page visit, so a tag in that app
+     would fabricate a phantom /book pageview for every one of those visitors. Its GA
      signal comes only from the postMessage bridge in assets/track.js, fired on a real
      confirmed booking. -->
-<iframe src="https://cstlfalcrum.vercel.app/book" style="display:none;width:0;height:0;border:none;position:absolute;" title="" aria-hidden="true" tabindex="-1" loading="eager"></iframe>
+<script defer src="/assets/consent.js"></script>
 <script defer src="/assets/track.js"></script>
 </body>
 </html>

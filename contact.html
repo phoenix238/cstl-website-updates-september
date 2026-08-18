@@ -114,14 +114,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
   html{scroll-behavior:auto;}
 }
 </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5ZW5PGE2YG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5ZW5PGE2YG');
-</script><script type="application/ld+json">
+<!-- GA4 loads only after cookie consent is granted — see assets/consent.js --><script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -129,6 +122,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
 }
 </script>
 <link rel="stylesheet" href="/assets/newsletter.css">
+<link rel="stylesheet" href="/assets/consent.css">
 </head>
 <body>
 <a href="https://wa.me/447501827069?text=Hello%20Phoenix" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp Phoenix">
@@ -268,6 +262,7 @@ links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.cla
 const io=new IntersectionObserver(e=>{e.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('v'),i*70);io.unobserve(en.target);}});},{threshold:0.08});
 document.querySelectorAll('.fi').forEach(el=>io.observe(el));
 </script>
+<script defer src="/assets/consent.js"></script>
 <script defer src="/assets/track.js"></script>
 </body>
 </html>

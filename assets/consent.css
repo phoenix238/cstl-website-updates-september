@@ -1,0 +1,64 @@
+/* Cookie consent banner — shared across all 9 pages, injected by consent.js.
+   Namespaced .consent-* so it never collides with page-specific styles.
+   Uses the site's existing design tokens (:root vars are defined identically
+   on every page). */
+
+.consent-banner{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:9999;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:1rem 1.5rem;
+  background:var(--deep,#1e1a15);
+  color:var(--cream,#faf8f4);
+  padding:1.1rem 1.5rem;
+  box-shadow:0 -4px 18px rgba(0,0,0,.18);
+}
+.consent-banner p{
+  flex:1 1 320px;
+  margin:0;
+  font-family:'Jost',sans-serif;
+  font-weight:300;
+  font-size:.84rem;
+  line-height:1.6;
+  color:rgba(250,248,244,.85);
+  max-width:640px;
+}
+.consent-actions{
+  flex:0 0 auto;
+  display:flex;
+  gap:.6rem;
+}
+.consent-actions button{
+  font-family:'Jost',sans-serif;
+  font-size:.76rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  border-radius:2px;
+  padding:.65rem 1.3rem;
+  cursor:pointer;
+  transition:background .25s,opacity .25s;
+}
+.consent-decline{
+  background:transparent;
+  color:var(--cream,#faf8f4);
+  border:1px solid rgba(250,248,244,.35);
+}
+.consent-decline:hover{background:rgba(250,248,244,.08);}
+.consent-accept{
+  background:var(--clay);
+  color:#fff;
+  border:none;
+}
+.consent-accept:hover{background:var(--terra);}
+
+@media(max-width:600px){
+  .consent-banner{justify-content:flex-start;padding:1rem;}
+  .consent-actions{width:100%;}
+  .consent-actions button{flex:1;}
+}

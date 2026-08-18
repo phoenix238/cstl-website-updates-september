@@ -1,7 +1,7 @@
 /**
  * Shared across all 8 pages. GA4 event tracking for the click paths that lead
- * to an enquiry or a booking, plus the enquiry form's submit handling and the
- * postMessage bridge that hears back from the booking widget iframe.
+ * to an enquiry or a booking, plus the newsletter form's submit handling and
+ * the postMessage bridge that hears back from the booking widget iframe.
  *
  * Delegated at the document level (not per-link) so this one file covers
  * every page without each page needing to know which links exist. Reads
@@ -10,7 +10,6 @@
  */
 (function () {
   var BOOKING_ORIGIN = "https://cstlfalcrum.vercel.app";
-  var ENQUIRY_ENDPOINT = BOOKING_ORIGIN + "/api/public/enquiry";
   var SUBSCRIBE_ENDPOINT = BOOKING_ORIGIN + "/api/public/subscribe";
 
   function send(name, params) {
@@ -33,6 +32,8 @@
         send("contact_whatsapp", { method: "whatsapp", placement: "inline_link", page_path: here });
       } else if (href.indexOf("tel:") === 0) {
         send("contact_phone", { page_path: here });
+      } else if (href.indexOf("mailto:") === 0) {
+        send("contact_email", { page_path: here });
       } else if (href.indexOf("instagram.com") !== -1) {
         send("click_instagram", { page_path: here });
       } else if (!onContactPage && (href === "/contact" || href.indexOf("/contact") === 0 || href.indexOf("/contact.html") === 0)) {
@@ -80,83 +81,9 @@
     });
   }
 
-  // Enquiry form — the tracked, on-site replacement for the mailto dead end.
-  var form = document.getElementById("enquiryForm");
-  if (form) {
-    var started = false;
-    form.addEventListener(
-      "focusin",
-      function () {
-        if (started) return;
-        started = true;
-        send("enquiry_start", { page_path: here });
-      },
-      { once: true },
-    );
-
-    form.addEventListener("submit", function (ev) {
-      ev.preventDefault();
-      var statusEl = document.getElementById("enquiryStatus");
-      var btn = form.querySelector('button[type="submit"]');
-
-      if (form.company.value) return; // honeypot — bots fill hidden fields, real visitors never see this one
-
-      var name = form.name.value.trim();
-      var email = form.email.value.trim();
-      var message = form.message.value.trim();
-
-      if (!name || !email || !message) {
-        statusEl.textContent = "Please fill in your name, email and message.";
-        statusEl.className = "enquiry-status err";
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = "Sending…";
-      statusEl.textContent = "";
-      statusEl.className = "enquiry-status";
-
-      // Same-origin navigation set this on page load — it's how the form knows
-      // which page actually sent someone here, since a full page load (not a
-      // popover) is what happens when an email link on another page is clicked.
-      var referringPage = sessionStorage.getItem("cstl_enquiry_source") || "";
-
-      fetch(ENQUIRY_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          phone: form.phone.value.trim(),
-          message: message,
-          company: form.company.value,
-          page: referringPage || here,
-        }),
-      })
-        .then(function (res) {
-          if (!res.ok) throw new Error("request failed");
-          return res.json();
-        })
-        .then(function () {
-          send("enquiry_submitted", { page_path: here });
-          form.hidden = true;
-          statusEl.textContent = "Thanks — I've got your message and will reply within 24 hours.";
-          statusEl.className = "enquiry-status ok";
-        })
-        .catch(function () {
-          statusEl.textContent = "Something went wrong sending that — please WhatsApp instead, or email phoenix@tanner.me directly.";
-          statusEl.className = "enquiry-status err";
-          btn.disabled = false;
-          btn.textContent = "Send message";
-        });
-    });
-  }
-
   // Newsletter signup — lives in the footer on every page (see newsletter.css).
-  // Posts the email to the booking app's /api/public/subscribe, the same
-  // cross-origin path the enquiry form uses; the app adds the person to its
-  // marketing (mail-merge) list. Namespaced apart from the enquiry form
-  // because both render together on /contact.
+  // Posts the email to the booking app's /api/public/subscribe; the app adds
+  // the person to its marketing (mail-merge) list.
   var nlForm = document.getElementById("newsletterForm");
   if (nlForm) {
     nlForm.addEventListener("submit", function (ev) {
@@ -164,7 +91,7 @@
       var st = document.getElementById("newsletterStatus");
       var btn = nlForm.querySelector('button[type="submit"]');
 
-      if (nlForm.website.value) return; // honeypot — distinct name from the enquiry form's
+      if (nlForm.website.value) return; // honeypot
 
       var email = nlForm.email.value.trim();
       if (!email || email.indexOf("@") < 1 || email.indexOf(".") === -1) {
@@ -200,18 +127,5 @@
           btn.textContent = "Subscribe";
         });
     });
-  }
-
-  // Records which page a visitor arrived from, for the enquiry form's hidden
-  // referring-page field. Only meaningful on first landing on /contact — once
-  // there, further in-page interaction shouldn't overwrite it.
-  if (onContactPage) {
-    var ref = document.referrer;
-    if (ref && ref.indexOf(location.origin) === 0) {
-      var path = ref.slice(location.origin.length).replace(/\/$/, "") || "/";
-      if (path !== "/contact" && path !== "/contact.html") {
-        sessionStorage.setItem("cstl_enquiry_source", path);
-      }
-    }
   }
 })();

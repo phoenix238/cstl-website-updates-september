@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /photos/
 
 Sitemap: https://craniosacraltherapylondon.com/sitemap.xml

@@ -62,14 +62,8 @@ footer a{color:rgba(250,248,244,.4);text-decoration:none;margin:0 .8rem;}
 footer a:hover{color:var(--clay);}
 @media(max-width:680px){.nav-links{display:none;}.blog-hero,.blog-body{padding:3rem 5vw;}}
 </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5ZW5PGE2YG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5ZW5PGE2YG');
-</script><link rel="stylesheet" href="/assets/newsletter.css">
+<!-- GA4 loads only after cookie consent is granted — see assets/consent.js --><link rel="stylesheet" href="/assets/newsletter.css">
+<link rel="stylesheet" href="/assets/consent.css">
 </head>
 <body>
 <nav>
@@ -118,8 +112,8 @@ footer a:hover{color:var(--clay);}
   </ul>
   <p>None of this is unusual. All of it is welcome.</p>
 
-  <h2>What conditions can it help with?</h2>
-  <p>CST is used to support a wide range of physical, emotional, and neurological conditions. The most commonly reported benefits include relief from:</p>
+  <h2>Who tends to come to craniosacral therapy?</h2>
+  <p>People come to craniosacral therapy for a wide range of physical, emotional, and neurological reasons, including:</p>
   <ul>
     <li>Migraines and chronic headaches</li>
     <li>Anxiety, stress, and burnout</li>
@@ -135,7 +129,7 @@ footer a:hover{color:var(--clay);}
 
   <h2>Is craniosacral therapy safe?</h2>
   <p>Yes. Because CST uses such light touch and works entirely with the body's own movement rather than imposing anything on it, it is one of the gentlest forms of bodywork available. It is safe for people of all ages, including babies, children, pregnant women, and the elderly.</p>
-  <p>It is important to work with a qualified, registered practitioner. In the UK, the <strong>Craniosacral Therapy Association (CSTA)</strong> is the leading regulatory body, and its members have completed at minimum two years of specialist training and are subject to a professional code of practice.</p>
+  <p>It is important to work with a qualified, registered practitioner. In the UK, the <strong>Craniosacral Therapy Association (CSTA)</strong> is the leading professional association for craniosacral therapists, and its members have completed at minimum two years of specialist training and are subject to a professional code of practice.</p>
 
   <h2>How many sessions will I need?</h2>
   <p>This is genuinely variable. Some people notice significant shifts after a single session; others find the work deepens over multiple visits. As a general guide, three sessions gives your system time to begin integrating the changes, which often continue for days after the session itself.</p>
@@ -150,8 +144,7 @@ footer a:hover{color:var(--clay);}
   <p>It's worth giving yourself time after a session. Where possible, avoid rushing back to a busy environment. A slow walk, a gentle meal, or an early night can all support the integration process.</p>
 
   <h2>A note on the evidence</h2>
-  <p>CST sits at an interesting intersection between scientific research and experiential evidence. While high-quality clinical trials are still limited, there is a substantial body of published research supporting its use, particularly for pain, anxiety, and headaches. More importantly, thousands of practitioners and clients across the world report significant and lasting benefits.</p>
-  <p>CST is increasingly offered alongside conventional medical care, in palliative settings, pain clinics, and as part of post-surgical recovery, reflecting a growing recognition of its value.</p>
+  <p>CST sits at an interesting intersection between scientific research and experiential evidence. High-quality clinical trials are still limited, and research into craniosacral therapy is an ongoing, developing field. You can read the CSTA's own summary of the current research base <a href="https://www.craniosacral.co.uk/promoting-cst/csta-research/" target="_blank" rel="noopener">here</a>. Alongside the research, many practitioners and clients report positive, lasting experiences from the work.</p>
 
   <div class="blog-cta">
     <h3>Ready to try it?</h3>
@@ -187,13 +180,15 @@ footer a:hover{color:var(--clay);}
   &copy; <span id="yr"></span> Craniosacral Therapy London · Craniosacral Therapy London · CSTA Registered
 </footer>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
-<!-- Pre-warm the booking assistant so it's ready when visitors navigate to the contact page.
-     This is why the booking app (cstlfalcrum.vercel.app) must never carry its own GA
-     pageview tag: it loads here, hidden, on every single page visit, so a tag in that
-     app would fabricate a phantom /book pageview for every one of those visitors. Its GA
+<!-- Pre-warm the booking assistant so it's ready when visitors navigate to the contact
+     page. It's a performance nicety, not something the visitor asked for on this page,
+     so it loads only after cookie consent is granted — see assets/consent.js. This is
+     why the booking app (cstlfalcrum.vercel.app) must never carry its own GA pageview
+     tag: it loads here, hidden, on every consenting page visit, so a tag in that app
+     would fabricate a phantom /book pageview for every one of those visitors. Its GA
      signal comes only from the postMessage bridge in assets/track.js, fired on a real
      confirmed booking. -->
-<iframe src="https://cstlfalcrum.vercel.app/book" style="display:none;width:0;height:0;border:none;position:absolute;" title="" aria-hidden="true" tabindex="-1" loading="eager"></iframe>
+<script defer src="/assets/consent.js"></script>
 <script defer src="/assets/track.js"></script>
 </body>
 </html>

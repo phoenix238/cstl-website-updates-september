@@ -109,14 +109,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
   .tiers{grid-template-columns:1fr;}
 }
 </style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5ZW5PGE2YG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5ZW5PGE2YG');
-</script><script type="application/ld+json">
+<!-- GA4 loads only after cookie consent is granted — see assets/consent.js --><script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -124,6 +117,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
 }
 </script>
 <link rel="stylesheet" href="/assets/newsletter.css">
+<link rel="stylesheet" href="/assets/consent.css">
 </head>
 <body>
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -182,7 +176,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
       <p class="bt">For most people that softens into the background once we begin. But if you're sensitive to sound, or would simply prefer more quiet, I keep earplugs on hand, just ask, and we'll make sure you're settled before we start.</p>
     </div>
     <div class="fi">
-      <img class="r" src="photos/craniosacral-therapy-community-clinic-london.jpg" alt="Community craniosacral therapy clinic Bethnal Green London" width="600" height="800" loading="lazy">
+      <img class="r" src="/.netlify/images?url=/photos/craniosacral-therapy-community-clinic-london.jpg&amp;w=1200&amp;q=75" srcset="/.netlify/images?url=/photos/craniosacral-therapy-community-clinic-london.jpg&amp;w=600&amp;q=75 1x, /.netlify/images?url=/photos/craniosacral-therapy-community-clinic-london.jpg&amp;w=1200&amp;q=75 2x" alt="Community craniosacral therapy clinic Bethnal Green London" width="600" height="800" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/craniosacral-therapy-community-clinic-london.jpg'">
     </div>
   </div>
 </section>
@@ -278,13 +272,15 @@ links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.cla
 const io=new IntersectionObserver(e=>{e.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('v'),i*70);io.unobserve(en.target);}});},{threshold:0.08});
 document.querySelectorAll('.fi').forEach(el=>io.observe(el));
 </script>
-<!-- Pre-warm the booking assistant so it's ready when visitors navigate to the contact page.
-     This is why the booking app (cstlfalcrum.vercel.app) must never carry its own GA
-     pageview tag: it loads here, hidden, on every single page visit, so a tag in that
-     app would fabricate a phantom /book pageview for every one of those visitors. Its GA
+<!-- Pre-warm the booking assistant so it's ready when visitors navigate to the contact
+     page. It's a performance nicety, not something the visitor asked for on this page,
+     so it loads only after cookie consent is granted — see assets/consent.js. This is
+     why the booking app (cstlfalcrum.vercel.app) must never carry its own GA pageview
+     tag: it loads here, hidden, on every consenting page visit, so a tag in that app
+     would fabricate a phantom /book pageview for every one of those visitors. Its GA
      signal comes only from the postMessage bridge in assets/track.js, fired on a real
      confirmed booking. -->
-<iframe src="https://cstlfalcrum.vercel.app/book" style="display:none;width:0;height:0;border:none;position:absolute;" title="" aria-hidden="true" tabindex="-1" loading="eager"></iframe>
+<script defer src="/assets/consent.js"></script>
 <script defer src="/assets/track.js"></script>
 </body>
 </html>
