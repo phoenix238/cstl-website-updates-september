@@ -76,6 +76,7 @@ footer a:hover{color:var(--clay);}
     <a class='nav-logo' href='/'>Craniosacral Therapy London</a>
     <ul class="nav-links" id="navLinks">
       <li><a href='/'>Home</a></li>
+      <li><a href='/waterloo'>Waterloo</a></li>
       <li><a href='/community-clinic'>Low Cost CST</a></li>
       <li><a href='/journal'>Journal</a></li>
       <li><a href='/faq'>FAQ</a></li>
@@ -140,7 +141,7 @@ footer a:hover{color:var(--clay);}
 
   <div class="blog-cta">
     <h3>Experience fascial unwinding in London</h3>
-    <p>Sessions in Bethnal Green from £30 and Waterloo at £80. The same quality of work at every price point.</p>
+    <p>Sessions in <a href="/community-clinic">Bethnal Green from £30</a> and <a href="/waterloo">Waterloo at £80</a>. The same quality of work at every price point.</p>
     <a class='btn' href='/contact'>Book a Session</a>
   </div>
 </article>
@@ -152,6 +153,7 @@ footer a:hover{color:var(--clay);}
 </div>
 <footer>
   <a href='/'>Home</a>
+  <a href='/waterloo'>Waterloo</a>
   <a href='/community-clinic'>Low Cost CST</a>
   <a href='/contact'>Contact / Book</a>
   <div class="nl-signup">
@@ -171,6 +173,13 @@ footer a:hover{color:var(--clay);}
   &copy; <span id="yr"></span> Craniosacral Therapy London · Craniosacral Therapy London · CSTA Registered
 </footer>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<!-- Pre-warm the booking assistant so it's ready when visitors navigate to the contact page.
+     This is why the booking app (cstlfalcrum.vercel.app) must never carry its own GA
+     pageview tag: it loads here, hidden, on every single page visit, so a tag in that
+     app would fabricate a phantom /book pageview for every one of those visitors. Its GA
+     signal comes only from the postMessage bridge in assets/track.js, fired on a real
+     confirmed booking. -->
+<iframe src="https://cstlfalcrum.vercel.app/book" style="display:none;width:0;height:0;border:none;position:absolute;" title="" aria-hidden="true" tabindex="-1" loading="eager"></iframe>
 <script defer src="/assets/track.js"></script>
 </body>
 </html>

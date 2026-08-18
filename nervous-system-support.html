@@ -77,6 +77,7 @@ footer a:hover{color:var(--clay);}
     <a class='nav-logo' href='/'>Craniosacral Therapy London</a>
     <ul class="nav-links" id="navLinks">
       <li><a href='/'>Home</a></li>
+      <li><a href='/waterloo'>Waterloo</a></li>
       <li><a href='/community-clinic'>Low Cost CST</a></li>
       <li><a href='/journal'>Journal</a></li>
       <li><a href='/faq'>FAQ</a></li>
@@ -133,7 +134,7 @@ footer a:hover{color:var(--clay);}
 
   <div class="blog-cta">
     <h3>Ready to support your nervous system?</h3>
-    <p>Low cost community clinic sessions in Bethnal Green from £30. Waterloo sessions at £80. All 60 minutes, same care.</p>
+    <p>Low cost <a href="/community-clinic">community clinic sessions in Bethnal Green</a> from £30. <a href="/waterloo">Waterloo sessions</a> at £80. All 60 minutes, same care.</p>
     <a class='btn' href='/contact'>Book a Session</a>
   </div>
 </article>
@@ -145,6 +146,7 @@ footer a:hover{color:var(--clay);}
 </div>
 <footer>
   <a href='/'>Home</a>
+  <a href='/waterloo'>Waterloo</a>
   <a href='/community-clinic'>Low Cost CST</a>
   <a href='/contact'>Contact / Book</a>
   <div class="nl-signup">
@@ -164,6 +166,13 @@ footer a:hover{color:var(--clay);}
   &copy; <span id="yr"></span> Craniosacral Therapy London · Craniosacral Therapy London · CSTA Registered
 </footer>
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<!-- Pre-warm the booking assistant so it's ready when visitors navigate to the contact page.
+     This is why the booking app (cstlfalcrum.vercel.app) must never carry its own GA
+     pageview tag: it loads here, hidden, on every single page visit, so a tag in that
+     app would fabricate a phantom /book pageview for every one of those visitors. Its GA
+     signal comes only from the postMessage bridge in assets/track.js, fired on a real
+     confirmed booking. -->
+<iframe src="https://cstlfalcrum.vercel.app/book" style="display:none;width:0;height:0;border:none;position:absolute;" title="" aria-hidden="true" tabindex="-1" loading="eager"></iframe>
 <script defer src="/assets/track.js"></script>
 </body>
 </html>

@@ -128,6 +128,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
     <a class='nav-logo' href='/'>Craniosacral Therapy London</a>
     <ul class="nav-links" id="navLinks">
       <li><a href='/'>Home</a></li>
+      <li><a href='/waterloo'>Waterloo</a></li>
       <li><a href='/community-clinic'>Low Cost CST</a></li>
       <li><a href='/journal'>Journal</a></li>
       <li><a class='active' href='/faq'>FAQ</a></li>
@@ -163,14 +164,14 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
 
     <div class="faq-group fi">
       <h2 class="faq-group-title">Pricing &amp; Booking</h2>
-      <details><summary>How much does craniosacral therapy cost in London?</summary><p class="faq-answer">Individual sessions at the Waterloo location cost £80 for 60 minutes. The Bethnal Green community clinic offers low cost craniosacral therapy on a sliding scale from £30 to £60, based on your financial circumstances. No proof of income is required, just honest self-assessment. The same quality of care is offered at all price points.</p></details>
-      <details><summary>How do I book a session?</summary><p class="faq-answer">Email phoenix@tanner.me or send a WhatsApp message to +44 7501 827069. Phoenix will reply with current availability and answer any questions. Sessions are offered on a flexible schedule across Waterloo and Bethnal Green, just reach out and we'll find a time that works.</p></details>
-      <details><summary>Where are sessions held?</summary><p class="faq-answer">Sessions are offered at two London locations. Waterloo: Breathe London Wellbeing, 34 Colombo St, SE1 8DP (2 minutes from Waterloo station). Bethnal Green: Low Cost Community Clinic at 279 Cambridge Heath Rd, E2 0EL (near Bethnal Green station).</p></details>
+      <details><summary>How much does craniosacral therapy cost in London?</summary><p class="faq-answer">Individual sessions at the <a href="/waterloo">Waterloo location</a> cost £80 for 60 minutes. The <a href="/community-clinic">Bethnal Green community clinic</a> offers low cost craniosacral therapy on a sliding scale from £30 to £60, based on your financial circumstances. No proof of income is required, just honest self-assessment. The same quality of care is offered at all price points.</p></details>
+      <details><summary>How do I book a session?</summary><p class="faq-answer">Email phoenix@tanner.me or send a WhatsApp message to +44 7501 827069. Phoenix will reply with current availability and answer any questions. Sessions are offered on a flexible schedule across <a href="/waterloo">Waterloo</a> and <a href="/community-clinic">Bethnal Green</a>, just reach out and we'll find a time that works.</p></details>
+      <details><summary>Where are sessions held?</summary><p class="faq-answer">Sessions are offered at two London locations. <a href="/waterloo">Waterloo</a>: Breathe London Wellbeing, 34 Colombo St, SE1 8DP (2 minutes from Waterloo station). <a href="/community-clinic">Bethnal Green</a>: Low Cost Community Clinic at 279 Cambridge Heath Rd, E2 0EL (near Bethnal Green station).</p></details>
     </div>
 
     <div class="faq-cta fi">
       <h3>Ready to take the next step?</h3>
-      <p>Sessions from £30 in Bethnal Green, £80 in Waterloo. Same care at every price point.</p>
+      <p>Sessions from £30 in <a href="/community-clinic">Bethnal Green</a>, £80 in <a href="/waterloo">Waterloo</a>. Same care at every price point.</p>
       <a class='btn btn-s' href='/contact'>Book a Session</a>
     </div>
 
@@ -182,6 +183,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
   <div class="f-title">Registered Craniosacral Therapist · London</div>
   <div class="f-links">
     <a href='/'>Home</a>
+    <a href='/waterloo'>Waterloo</a>
     <a href='/community-clinic'>Low Cost CST</a>
     <a href='/journal'>Journal</a>
     <a href='/faq'>FAQ</a>
@@ -215,6 +217,13 @@ links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.cla
 const io=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('v'),i*120);io.unobserve(e.target);}});},{threshold:0.08});
 document.querySelectorAll('.fi').forEach(el=>io.observe(el));
 </script>
+<!-- Pre-warm the booking assistant so it's ready when visitors navigate to the contact page.
+     This is why the booking app (cstlfalcrum.vercel.app) must never carry its own GA
+     pageview tag: it loads here, hidden, on every single page visit, so a tag in that
+     app would fabricate a phantom /book pageview for every one of those visitors. Its GA
+     signal comes only from the postMessage bridge in assets/track.js, fired on a real
+     confirmed booking. -->
+<iframe src="https://cstlfalcrum.vercel.app/book" style="display:none;width:0;height:0;border:none;position:absolute;" title="" aria-hidden="true" tabindex="-1" loading="eager"></iframe>
 <script defer src="/assets/track.js"></script>
 </body>
 </html>

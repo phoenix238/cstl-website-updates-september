@@ -98,6 +98,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
     <a class='nav-logo' href='/'>Craniosacral Therapy London</a>
     <ul class="nav-links" id="navLinks">
       <li><a href='/'>Home</a></li>
+      <li><a href='/waterloo'>Waterloo</a></li>
       <li><a href='/community-clinic'>Low Cost CST</a></li>
       <li><a class='active' href='/journal'>Journal</a></li>
       <li><a href='/faq'>FAQ</a></li>
@@ -161,6 +162,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
   <div class="f-title">Registered Craniosacral Therapist · London</div>
   <div class="f-links">
     <a href='/'>Home</a>
+    <a href='/waterloo'>Waterloo</a>
     <a href='/community-clinic'>Low Cost CST</a>
     <a href='/journal'>Journal</a>
     <a href='/faq'>FAQ</a>
@@ -194,6 +196,13 @@ links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.cla
 const io=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('v'),i*120);io.unobserve(e.target);}});},{threshold:0.08});
 document.querySelectorAll('.fi').forEach(el=>io.observe(el));
 </script>
+<!-- Pre-warm the booking assistant so it's ready when visitors navigate to the contact page.
+     This is why the booking app (cstlfalcrum.vercel.app) must never carry its own GA
+     pageview tag: it loads here, hidden, on every single page visit, so a tag in that
+     app would fabricate a phantom /book pageview for every one of those visitors. Its GA
+     signal comes only from the postMessage bridge in assets/track.js, fired on a real
+     confirmed booking. -->
+<iframe src="https://cstlfalcrum.vercel.app/book" style="display:none;width:0;height:0;border:none;position:absolute;" title="" aria-hidden="true" tabindex="-1" loading="eager"></iframe>
 <script defer src="/assets/track.js"></script>
 </body>
 </html>

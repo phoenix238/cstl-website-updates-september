@@ -155,7 +155,6 @@ img.r{border-radius:var(--radius);}
 .test-card{background:rgba(250,248,244,.05);border:1px solid rgba(250,248,244,.08);border-radius:var(--radius);padding:2.2rem 2rem 2rem;}
 .test-quote{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;line-height:1.65;color:rgba(250,248,244,.88);margin-bottom:1.5rem;padding-top:1.8rem;position:relative;}
 .test-quote::before{content:'\201C';font-size:3.5rem;color:var(--clay);line-height:1;position:absolute;top:0;left:0;}
-.test-headline{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;font-style:italic;color:var(--cream);margin-bottom:.9rem;line-height:1.35;}
 .test-name{font-size:.73rem;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);}
 /* FAQ */
 .faq-section{background:var(--sand);padding:5rem 8vw;}
@@ -317,6 +316,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
     <a class='nav-logo' href='/'>Craniosacral Therapy London</a>
     <ul class="nav-links" id="navLinks">
       <li><a class='active' href='/'>Home</a></li>
+      <li><a href='/waterloo'>Waterloo</a></li>
       <li><a href='/community-clinic'>Low Cost CST</a></li>
       <li><a href='/journal'>Journal</a></li>
       <li><a href='/faq'>FAQ</a></li>
@@ -484,17 +484,14 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
     </div>
     <div class="test-grid fi">
       <article class="test-card">
-        <p class="test-headline">Phoenix holds space with empathy and compassion.</p>
         <p class="test-quote">The environment feels safe, supportive, and non-judgmental. I felt immediately open to release, move, and feel. A gifted healer, listener, and grounding force. His dance background shines through. I highly recommend his practice.</p>
         <div class="test-name">Gabby</div>
       </article>
       <article class="test-card">
-        <p class="test-headline">Phoenix created a calm, easy atmosphere and gently encouraged release and softening.</p>
         <p class="test-quote">I felt so held that the tension I brought in had almost completely gone. I'm new to this kind of treatment, but I made discoveries about myself and left feeling calmer and more present than I have in months.</p>
         <div class="test-name">Geebs</div>
       </article>
       <article class="test-card">
-        <p class="test-headline">An incredible experience.</p>
         <p class="test-quote">From arrival to leaving, I was held with deep warmth and care. Cranio Sacral with Phoenix tapped into an ancient body knowledge through softness and intuitive listening. My body and mind could rest, and the subconscious had space. Sharing before and after revealed where I was holding and releasing and how long I'd been carrying unconscious weight. Phoenix brings warmth, intuition, and deep physical understanding. A magical and deeply relaxing experience.</p>
         <div class="test-name">Phoebe</div>
       </article>
@@ -535,7 +532,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
     </div>
     <div class="p-grid fi">
       <div class="p-card hl">
-        <span class="p-loc">Waterloo, London SE1</span>
+        <span class="p-loc"><a href="/waterloo" style="color:inherit">Waterloo, London SE1</a></span>
         <h3>Individual Session</h3>
         <span class="p-price">£80</span>
         <p class="p-dur">60 minutes · Breathe London Wellbeing</p>
@@ -555,7 +552,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
         <ul class="p-list">
           <li>The same 60 minutes, the same care</li>
           <li>You pick your fee. No proof needed</li>
-          <li>A dance studio on a main road. Earplugs if you want them</li>
+          <li>A warm, creative space, not a clinical one</li>
         </ul>
         <a class='btn btn-o' href='/community-clinic'>Learn More</a>
       </div>
@@ -619,7 +616,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
     </div>
     <div class="loc-grid fi">
       <div class="loc-card">
-        <h3>Waterloo</h3>
+        <h3><a href="/waterloo" style="color:inherit">Waterloo</a></h3>
         <p><strong>Breathe London Wellbeing</strong></p>
         <p>34 Colombo St, London SE1 8DP</p>
         <p style="margin-top:.5rem;font-size:.8rem;color:var(--light)">10 min walk from Waterloo station</p>
@@ -642,6 +639,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
   <div class="f-title">Registered Craniosacral Therapist · London</div>
   <div class="f-links">
     <a href='/'>Home</a>
+    <a href='/waterloo'>Waterloo</a>
     <a href='/community-clinic'>Low Cost CST</a>
     <a href='/journal'>Journal</a>
     <a href='/faq'>FAQ</a>
@@ -689,7 +687,7 @@ document.querySelectorAll('.fi').forEach(el=>io.observe(el));
 </script>
 <!-- Pre-warm the booking assistant so it's ready when visitors navigate to the contact page.
      This is why the booking app (cstlfalcrum.vercel.app) must never carry its own GA
-     pageview tag: it loads here, hidden, on every single homepage visit, so a tag in that
+     pageview tag: it loads here, hidden, on every single page visit, so a tag in that
      app would fabricate a phantom /book pageview for every one of those visitors. Its GA
      signal comes only from the postMessage bridge in assets/track.js, fired on a real
      confirmed booking. -->

@@ -23,6 +23,7 @@
 <style>
 :root{--cream:#faf8f4;--sand:#f2ede4;--clay:#b07a52;--terra:#9a6440;--deep:#1e1a15;--mid:#5c4f3d;--light:#9a8a76;--bord:rgba(30,26,21,0.1);--radius:14px;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
 body{background:var(--cream);color:var(--deep);font-family:'Jost',sans-serif;font-weight:300;line-height:1.78;overflow-x:hidden;}
 .wa-float{position:fixed;bottom:1.8rem;right:1.8rem;z-index:500;background:#25d366;color:#fff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:transform .25s;text-decoration:none;}
 .wa-float:hover{transform:scale(1.08);}
@@ -46,10 +47,24 @@ h2.dsp{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.2rem)
 em{font-style:italic;color:var(--clay);}
 
 /* CONTACT HERO */
-.contact-hero{background:var(--sand);padding:5rem 8vw;}
-.contact-hero-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
-.contact-card{background:var(--cream);border-radius:var(--radius);padding:2.2rem;margin-bottom:1.2rem;display:flex;align-items:flex-start;gap:1.5rem;border:1px solid var(--bord);transition:transform .3s;}
+.contact-hero{background:var(--sand);padding:3.25rem 8vw 3rem;}
+.contact-hero-in{max-width:860px;margin:0 auto;}
+.hero-head{max-width:620px;margin:0 auto;text-align:center;}
+.hero-head .rule{margin-left:auto;margin-right:auto;}
+.hero-intro{font-size:.95rem;color:var(--mid);line-height:1.8;margin-bottom:.9rem;}
+.contact-cta{display:inline-block;font-size:.84rem;color:var(--clay);text-decoration:underline;text-underline-offset:3px;margin-bottom:1.5rem;}
+.contact-cta:hover{color:var(--terra);}
+.contact-card{background:var(--cream);border-radius:var(--radius);padding:2.2rem;display:flex;align-items:flex-start;gap:1.5rem;border:1px solid var(--bord);transition:transform .3s;}
 .contact-card:hover{transform:translateY(-3px);}
+
+/* REACH BAND */
+.reach-band{background:var(--cream);padding:4.5rem 8vw;}
+.reach-in{max-width:1100px;margin:0 auto;}
+.reach-head{max-width:560px;margin:0 auto 3rem;text-align:center;}
+.sec-h{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:300;line-height:1.2;margin-bottom:.6rem;}
+.reach-head p{font-size:.92rem;color:var(--mid);}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;}
+.row3 .contact-card{flex-direction:column;}
 .contact-icon{width:44px;height:44px;border-radius:50%;background:var(--sand);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:.2rem;}
 .contact-icon svg{width:22px;height:22px;fill:var(--clay);}
 .contact-card h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;margin-bottom:.3rem;}
@@ -57,27 +72,9 @@ em{font-style:italic;color:var(--clay);}
 .contact-card a{color:var(--clay);text-decoration:none;font-size:.9rem;font-weight:400;}
 .contact-card a:hover{text-decoration:underline;}
 
-/* ENQUIRY FORM */
-.enquiry-body{flex:1;min-width:0;}
-.enquiry-form{display:flex;flex-direction:column;gap:.9rem;margin-top:.9rem;}
-.enquiry-form label{font-size:.78rem;color:var(--mid);display:block;margin-bottom:.3rem;}
-.enquiry-form input,.enquiry-form textarea{width:100%;font-family:'Jost',sans-serif;font-weight:300;font-size:.88rem;color:var(--deep);background:var(--sand);border:1px solid var(--bord);border-radius:8px;padding:.7rem .9rem;}
-.enquiry-form textarea{min-height:100px;resize:vertical;}
-.enquiry-form input:focus,.enquiry-form textarea:focus{outline:2px solid var(--clay);outline-offset:1px;}
-.enquiry-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
-.enquiry-form button{align-self:flex-start;background:var(--clay);color:#fff;border:none;border-radius:2px;padding:.75rem 1.6rem;font-family:'Jost',sans-serif;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .25s;}
-.enquiry-form button:hover{background:var(--terra);}
-.enquiry-form button:disabled{opacity:.6;cursor:default;}
-.enquiry-status{font-size:.84rem;min-height:1.2em;margin:0;}
-.enquiry-status.ok{color:#3a7d4f;}
-.enquiry-status.err{color:#b0523f;}
-.enquiry-fallback{font-size:.78rem;color:var(--light);margin-top:.8rem;}
-.enquiry-fallback a{color:var(--clay);text-decoration:none;}
-.enquiry-fallback a:hover{text-decoration:underline;}
-
 /* BOOKING PANEL */
-.book-panel{background:var(--cream);border:1px solid var(--bord);border-radius:var(--radius);padding:.9rem;}
-.book-frame{display:block;width:100%;height:780px;border:0;border-radius:var(--radius);background:var(--cream);}
+.book-panel{background:var(--cream);border:1px solid var(--bord);border-radius:var(--radius);padding:.9rem;max-width:860px;margin:0 auto;}
+.book-frame{display:block;width:100%;height:680px;border:0;border-radius:var(--radius);background:var(--cream);}
 .book-footer{margin:1.1rem .6rem .3rem;font-size:.82rem;color:var(--light);line-height:1.7;padding-top:1.1rem;border-top:1px solid var(--bord);}
 
 /* LOCATION STRIP */
@@ -101,16 +98,20 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
 .fi.v{opacity:1;transform:none;}
 
 @media(max-width:960px){
-  .contact-hero-in{grid-template-columns:1fr;gap:3rem;}
+  .row3{grid-template-columns:1fr;max-width:420px;margin:0 auto;}
   .loc-strip-in{grid-template-columns:1fr;}
 }
 @media(max-width:680px){
   .nav-links{display:none;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(250,248,244,.98);backdrop-filter:blur(10px);border-bottom:1px solid var(--bord);padding:1rem 5vw 2rem;}
   .nav-links.open{display:flex;}
   .nav-burger{display:flex;}
-  .contact-hero,.loc-strip{padding:3.5rem 5vw;}
+  .contact-hero{padding:2.5rem 5vw 2rem;}
+  .reach-band,.loc-strip{padding:3.5rem 5vw;}
   .book-panel{padding:.6rem;}
-  .book-frame{height:720px;}
+  .book-frame{height:560px;}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
 }
 </style>
 <!-- Google tag (gtag.js) -->
@@ -138,6 +139,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
     <a class='nav-logo' href='/'>Craniosacral Therapy London</a>
     <ul class="nav-links" id="navLinks">
       <li><a href='/'>Home</a></li>
+      <li><a href='/waterloo'>Waterloo</a></li>
       <li><a href='/community-clinic'>Low Cost CST</a></li>
       <li><a href='/journal'>Journal</a></li>
       <li><a href='/faq'>FAQ</a></li>
@@ -150,49 +152,32 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
 
 <section class="contact-hero" aria-labelledby="contact-h">
   <div class="contact-hero-in">
-
-    <!-- Contact details -->
-    <div class="fi">
+    <div class="hero-head fi">
       <span class="eyebrow">Get in Touch</span>
-      <h2 class="dsp" id="contact-h">Book a session or just<br>say <em>hello</em></h2>
+      <h2 class="dsp" id="contact-h">Let's find a time<br>that <em>suits you</em></h2>
       <div class="rule"></div>
-      <p style="font-size:.92rem;color:var(--mid);margin-bottom:2rem;max-width:460px;line-height:1.8">The easiest way to get started is to book directly using the booking panel on this page. If you'd rather ask something first, a quick email or WhatsApp works just as well, and I'll answer anything you'd like to know before committing to anything.</p>
+      <p class="hero-intro">Pick a slot below and you're booked — no back and forth needed.</p>
+      <a href="#reach" class="contact-cta">Contact me</a>
+    </div>
 
-      <div class="contact-card enquiry-card" id="enquiry">
-        <div class="contact-icon">
-          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        </div>
-        <div class="enquiry-body">
-          <h3>Send a message</h3>
-          <p>Tell me a little about what's going on for you. I aim to reply within 24 hours.</p>
-          <form class="enquiry-form" id="enquiryForm" novalidate>
-            <div>
-              <label for="enq-name">Name</label>
-              <input id="enq-name" name="name" type="text" autocomplete="name" required>
-            </div>
-            <div>
-              <label for="enq-email">Email</label>
-              <input id="enq-email" name="email" type="email" autocomplete="email" required>
-            </div>
-            <div>
-              <label for="enq-phone">Phone <span style="color:var(--light)">(optional)</span></label>
-              <input id="enq-phone" name="phone" type="tel" autocomplete="tel">
-            </div>
-            <div>
-              <label for="enq-message">What's going on for you?</label>
-              <textarea id="enq-message" name="message" required></textarea>
-            </div>
-            <div class="enquiry-hp" aria-hidden="true">
-              <label for="enq-company">Company</label>
-              <input id="enq-company" name="company" type="text" tabindex="-1" autocomplete="off">
-            </div>
-            <button type="submit">Send message</button>
-            <p class="enquiry-status" id="enquiryStatus" role="status" aria-live="polite"></p>
-          </form>
-          <p class="enquiry-fallback">Prefer your own email? Write to <a href="mailto:phoenix@tanner.me">phoenix@tanner.me</a> directly.</p>
-        </div>
+    <!-- Booking panel -->
+    <div class="fi">
+      <div class="book-panel">
+        <iframe class="book-frame" src="https://cstlfalcrum.vercel.app/book" title="Booking page, book a craniosacral therapy session" loading="eager"></iframe>
+        <p class="book-footer">If you'd rather not book online, just send an email or WhatsApp message and we'll find something that works.</p>
       </div>
+    </div>
+  </div>
+</section>
 
+<!-- REACH BAND -->
+<section class="reach-band" id="reach" aria-labelledby="reach-h">
+  <div class="reach-in">
+    <div class="reach-head fi">
+      <h2 class="sec-h" id="reach-h">Or reach me directly</h2>
+      <p>Any of these is fine — I answer all of them myself.</p>
+    </div>
+    <div class="row3 fi">
       <div class="contact-card">
         <div class="contact-icon">
           <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -201,6 +186,17 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
           <h3>WhatsApp</h3>
           <p>Often the quickest way to reach me. Send a message any time.</p>
           <a href="https://wa.me/447501827069?text=Hello%20Phoenix" target="_blank" rel="noopener">+44 7501 827069</a>
+        </div>
+      </div>
+
+      <div class="contact-card" id="enquiry">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <div>
+          <h3>Email</h3>
+          <p>Write to me directly, any time.</p>
+          <a href="mailto:phoenix@tanner.me">phoenix@tanner.me</a>
         </div>
       </div>
 
@@ -215,15 +211,6 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
         </div>
       </div>
     </div>
-
-    <!-- Booking panel -->
-    <div class="fi">
-      <div class="book-panel">
-        <iframe class="book-frame" src="https://cstlfalcrum.vercel.app/book" title="Booking page, book a craniosacral therapy session" loading="eager"></iframe>
-        <p class="book-footer">If you'd rather not book online, just send an email or WhatsApp message and we'll find something that works.</p>
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -248,6 +235,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
   <div class="f-title">Registered Craniosacral Therapist · London</div>
   <div class="f-links">
     <a href='/'>Home</a>
+    <a href='/waterloo'>Waterloo</a>
     <a href='/community-clinic'>Low Cost CST</a>
     <a href='/faq'>FAQ</a>
     <a href='/contact'>Contact / Book</a>
