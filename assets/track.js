@@ -12,8 +12,24 @@
   var BOOKING_ORIGIN = "https://cstlfalcrum.vercel.app";
   var SUBSCRIBE_ENDPOINT = BOOKING_ORIGIN + "/api/public/subscribe";
 
+  // The same moments, in Meta's standard event names, so Ads Manager can
+  // report (and optimise for) bookings from Instagram ads. fbq only exists
+  // once consent.js has loaded the pixel, so this is a no-op otherwise.
+  var META_EVENTS = {
+    contact_whatsapp: "Contact",
+    contact_phone: "Contact",
+    contact_email: "Contact",
+    booking_widget_view: "ViewContent",
+    booking_confirmed: "Schedule",
+    newsletter_signup: "Lead",
+  };
+
   function send(name, params) {
     if (typeof gtag === "function") gtag("event", name, params || {});
+    if (typeof fbq === "function") {
+      if (META_EVENTS[name]) fbq("track", META_EVENTS[name]);
+      else if (name === "booking_intent_click") fbq("trackCustom", "BookingIntent");
+    }
   }
 
   var here = location.pathname.replace(/\/$/, "") || "/";

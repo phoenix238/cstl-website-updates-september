@@ -10,7 +10,17 @@
 (function () {
   var GA_ID = "G-5ZW5PGE2YG";
   var BOOKING_ORIGIN = "https://cstlfalcrum.vercel.app";
-  var STORAGE_KEY = "cstl_consent";
+
+  // Meta (Instagram/Facebook) Pixel — lets Meta see which ad visitors go on to
+  // book. Left empty = Meta never loads and the banner keeps its original
+  // "not shared" wording. Paste the Pixel/Dataset ID from Meta Events Manager
+  // here to switch it on.
+  var META_PIXEL_ID = "";
+
+  // With the pixel on, data IS shared with Meta, so earlier "Accept" answers
+  // (given to a banner that said it wasn't) don't count — a new key makes
+  // everyone see the updated banner once.
+  var STORAGE_KEY = META_PIXEL_ID ? "cstl_consent_v2" : "cstl_consent";
 
   var stored = null;
   try {
@@ -31,19 +41,53 @@
     document.head.appendChild(s);
   }
 
+  function loadMetaPixel() {
+    if (!META_PIXEL_ID || window.fbq) return;
+    // Meta's standard base snippet, unminified enough to read.
+    var n = (window.fbq = function () {
+      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+    });
+    window._fbq = n;
+    n.push = n;
+    n.loaded = true;
+    n.version = "2.0";
+    n.queue = [];
+    fbq("init", META_PIXEL_ID);
+    fbq("track", "PageView");
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://connect.facebook.net/en_US/fbevents.js";
+    document.head.appendChild(s);
+  }
+
   function loadPrewarm() {
     var here = location.pathname.replace(/\/$/, "") || "/";
     if (here === "/contact" || here === "/contact.html") return;
     if (document.querySelector("iframe[data-prewarm]")) return;
-    var f = document.createElement("iframe");
-    f.src = BOOKING_ORIGIN + "/book";
-    f.style.cssText = "display:none;width:0;height:0;border:none;position:absolute;";
-    f.title = "";
-    f.setAttribute("aria-hidden", "true");
-    f.tabIndex = -1;
-    f.loading = "eager";
-    f.setAttribute("data-prewarm", "");
-    document.body.appendChild(f);
+
+    // Runs the actual iframe insertion once the browser is idle (or after a
+    // 3s cap), so booting the ~160KB booking app doesn't compete with the
+    // visible page's own load — it's a background nicety, not something the
+    // visitor is waiting on. requestIdleCallback isn't in Safari, hence the
+    // setTimeout fallback.
+    var insert = function () {
+      if (document.querySelector("iframe[data-prewarm]")) return;
+      var f = document.createElement("iframe");
+      f.src = BOOKING_ORIGIN + "/book";
+      f.style.cssText = "display:none;width:0;height:0;border:none;position:absolute;";
+      f.title = "";
+      f.setAttribute("aria-hidden", "true");
+      f.tabIndex = -1;
+      f.loading = "eager";
+      f.setAttribute("data-prewarm", "");
+      document.body.appendChild(f);
+    };
+
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(insert, { timeout: 3000 });
+    } else {
+      setTimeout(insert, 2000);
+    }
   }
 
   function grant() {
@@ -51,6 +95,7 @@
       localStorage.setItem(STORAGE_KEY, "granted");
     } catch (e) {}
     loadGA();
+    loadMetaPixel();
     loadPrewarm();
   }
 
@@ -65,8 +110,11 @@
     el.className = "consent-banner";
     el.setAttribute("role", "region");
     el.setAttribute("aria-label", "Cookie consent");
+    var message = META_PIXEL_ID
+      ? "This site uses cookies from Google Analytics and Meta (Instagram) to see how many people visit, which pages are useful, and whether Instagram ads are reaching the right people. Nothing is sold. Declining won’t affect anything else on the site."
+      : "This site uses a couple of analytics cookies to see how many people visit and which pages are useful — nothing is sold or shared with anyone else. Declining won’t affect anything else on the site.";
     el.innerHTML =
-      '<p>This site uses a couple of analytics cookies to see how many people visit and which pages are useful — nothing is sold or shared with anyone else. Declining won’t affect anything else on the site.</p>' +
+      "<p>" + message + "</p>" +
       '<div class="consent-actions">' +
       '<button type="button" class="consent-decline">Decline</button>' +
       '<button type="button" class="consent-accept">Accept</button>' +
@@ -85,6 +133,7 @@
 
   if (stored === "granted") {
     loadGA();
+    loadMetaPixel();
     loadPrewarm();
   } else if (stored !== "denied") {
     if (document.readyState === "loading") {

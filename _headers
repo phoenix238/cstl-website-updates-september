@@ -1,0 +1,29 @@
+# Netlify's default is `Cache-Control: public, max-age=0, must-revalidate` for
+# everything, including static assets that rarely change — so the browser (and
+# Netlify's own edge) re-validates every JS/CSS/image file on every page nav.
+# None of these files are content-hashed, so cache lifetimes below are chosen
+# to be safe without a cache-busting step, not maximal — if you edit
+# assets/*.js or assets/*.css and need visitors to get the new version
+# immediately, bump the path (e.g. track.js?v=2) or shorten this.
+
+# Photos don't change in place (see memory: cstl-photos-must-not-change) —
+# safe to cache aggressively, including Netlify's on-the-fly image transforms.
+/photos/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/.netlify/images*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Favicons/app icons — effectively static.
+/favicon*
+  Cache-Control: public, max-age=31536000, immutable
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/site.webmanifest
+  Cache-Control: public, max-age=86400
+
+# Shared JS/CSS — edited occasionally, so a short cache rather than immutable.
+/assets/*
+  Cache-Control: public, max-age=3600
