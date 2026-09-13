@@ -15,7 +15,7 @@
   // book. Left empty = Meta never loads and the banner keeps its original
   // "not shared" wording. Paste the Pixel/Dataset ID from Meta Events Manager
   // here to switch it on.
-  var META_PIXEL_ID = "";
+  var META_PIXEL_ID = "2409128286280968";
 
   // With the pixel on, data IS shared with Meta, so earlier "Accept" answers
   // (given to a banner that said it wasn't) don't count — a new key makes
