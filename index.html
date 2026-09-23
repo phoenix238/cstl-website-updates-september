@@ -45,268 +45,18 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root{--cream:#faf8f4;--sand:#f2ede4;--clay:#b07a52;--terra:#9a6440;--deep:#1e1a15;--mid:#5c4f3d;--light:#9a8a76;--bord:rgba(30,26,21,0.1);--radius:14px;}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--cream);color:var(--deep);font-family:'Jost',sans-serif;font-weight:300;line-height:1.78;overflow-x:hidden;}
-.wa-float{position:fixed;bottom:1.8rem;right:1.8rem;z-index:500;background:#25d366;color:#fff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:transform .25s;text-decoration:none;}
-.wa-float:hover{transform:scale(1.08);}
-.wa-float svg{width:28px;height:28px;fill:#fff;}
-nav{position:sticky;top:0;z-index:200;background:rgba(250,248,244,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--bord);padding:0 5vw;transition:background-color .5s ease,border-color .5s ease,backdrop-filter .5s ease;}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:68px;}
-.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;letter-spacing:.03em;color:var(--deep);text-decoration:none;transition:color .5s ease;}
-.nav-links{display:flex;list-style:none;align-items:center;gap:.2rem;}
-.nav-links a{display:block;padding:.45rem 1rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);text-decoration:none;font-family:'Jost',sans-serif;font-weight:300;transition:color .25s;}
-.nav-links a:hover,.nav-links a.active{color:var(--clay);}
-.nav-book{background:var(--clay)!important;color:#fff!important;border-radius:2px;}
-.nav-book:hover{background:var(--terra)!important;}
-.nav-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:.5rem;}
-.nav-burger span{display:block;width:22px;height:1.5px;background:var(--deep);transition:transform .3s,opacity .3s;}
-.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
-.nav-burger.open span:nth-child(2){opacity:0;}
-.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
-.eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--clay);margin-bottom:1rem;display:block;}
-.rule{width:40px;height:1px;background:var(--clay);margin:1.5rem 0 2rem;}
-.rule-c{margin-left:auto;margin-right:auto;}
-hr.div{border:none;border-top:1px solid var(--bord);margin:2.5rem 0;}
-.bt{font-size:.95rem;color:var(--mid);margin-bottom:1.2rem;max-width:620px;}
-h2.dsp{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3.2rem);font-weight:300;line-height:1.12;margin-bottom:1.2rem;}
-h3.sub{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;margin-bottom:.8rem;}
-em{font-style:italic;color:var(--clay);}
-img.r{border-radius:var(--radius);}
-.btn{display:inline-block;padding:.8rem 2rem;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;border-radius:2px;cursor:pointer;border:none;font-family:'Jost',sans-serif;font-weight:400;transition:background .25s,color .25s,transform .25s;text-decoration:none;}
-.btn-s{background:var(--clay);color:#fff;}
-.btn-s:hover{background:var(--terra);transform:translateY(-2px);}
-.btn-o{background:transparent;color:var(--clay);border:1px solid var(--clay);}
-.btn-o:hover{background:var(--clay);color:#fff;}
-/* HERO */
-/* height is clamped so the photo never crops past the two faces: the 50vw floor
-   keeps them in frame on short windows, the 80vw ceiling stops tall windows
-   cropping the sides and pushing the faces under the text */
-.hero{position:relative;display:flex;align-items:center;overflow:hidden;min-height:clamp(56vw,100vh,80vw);}
-.hero-media{position:absolute;inset:0;overflow:hidden;}
-.hero-media img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;display:block;filter:brightness(.92);}
-.hero-scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(95deg,rgba(24,18,13,0) 26%,rgba(24,18,13,.18) 45%,rgba(24,18,13,.46) 62%,rgba(24,18,13,.62) 80%,rgba(24,18,13,.66) 100%);}
-.hero-copy{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;margin-left:auto;width:34%;min-width:340px;padding:0 clamp(1.5rem,4vw,4.5rem) 0 0;}
-.hero-copy h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,2.9vw,3.4rem);font-weight:300;line-height:1.1;margin-bottom:.7rem;color:#fdfbf7;}
-.hero-copy h1 em{color:#e6b98f;}
-.hero-copy .eyebrow{color:#e0b189;}
-.hero-sub{font-size:.92rem;font-weight:300;color:rgba(253,251,247,.82);letter-spacing:.05em;margin-bottom:2.2rem;}
-.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
-.hero-wa{font-size:.8rem;color:rgba(253,251,247,.72);text-decoration:none;}
-.hero-wa:hover{color:#fff;}
-/* TRUST STRIP */
-.trust-strip{background:var(--deep);padding:1.1rem 8vw;}
-.trust-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap;}
-.trust-item{display:flex;align-items:center;gap:.7rem;color:rgba(250,248,244,.6);font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;}
-.trust-item img{width:26px;height:26px;object-fit:contain;filter:brightness(10);opacity:.75;}
-.tdot{width:3px;height:3px;border-radius:50%;background:var(--clay);}
-/* INTRO */
-.h-intro{background:var(--sand);padding:5rem 8vw;}
-.h-intro-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:6rem;align-items:center;}
-.h-intro-in img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;box-shadow:0 16px 48px rgba(30,26,21,.1);}
-/* CONDITIONS */
-.conditions{background:var(--cream);padding:5rem 8vw;}
-.conditions-in{max-width:1100px;margin:0 auto;}
-.cond-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;margin-top:2.5rem;}
-.cond-card{background:var(--sand);padding:1.6rem 1.8rem;border-radius:var(--radius);transition:transform .3s;}
-.cond-card:hover{transform:translateY(-3px);}
-.cond-dash{display:block;width:20px;height:1px;background:var(--clay);margin-bottom:.8rem;}
-.cond-card h4{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;margin-bottom:.4rem;}
-.cond-card p{font-size:.82rem;color:var(--light);line-height:1.55;}
-/* HOW */
-.h-how{padding:5rem 8vw;background:var(--sand);}
-.h-how-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:6rem;align-items:center;}
-.h-how-in img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;box-shadow:0 16px 48px rgba(30,26,21,.1);}
-.steps{margin:1.5rem 0 2rem;counter-reset:step;}
-.step{display:flex;gap:1.2rem;padding:.9rem 0;border-bottom:1px solid var(--bord);counter-increment:step;}
-.step::before{content:counter(step,decimal-leading-zero);font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--clay);flex-shrink:0;line-height:1;margin-top:.1rem;}
-.step p{font-size:.87rem;color:var(--mid);}
-/* QUOTE */
-.quote-band{background:var(--deep);padding:6rem 8vw;text-align:center;}
-.quote-band-in{max-width:780px;margin:0 auto;}
-.quote-band blockquote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,2.8vw,2.4rem);font-weight:300;font-style:italic;line-height:1.6;color:var(--cream);position:relative;padding-top:3rem;}
-.quote-band blockquote::before{content:'\201C';font-size:6rem;color:var(--clay);line-height:1;position:absolute;top:-1rem;left:50%;transform:translateX(-50%);font-style:normal;}
-.quote-band cite{display:block;margin-top:2rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--clay);font-style:normal;}
-/* ABOUT */
-.h-about{background:var(--cream);padding:5rem 8vw;}
-.h-about-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:6rem;align-items:start;}
-.h-about-in img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;box-shadow:0 16px 48px rgba(30,26,21,.1);}
-.csta-badge{margin-top:2.5rem;display:flex;align-items:center;gap:1.2rem;padding:1.2rem 1.5rem;border:1px solid var(--bord);border-radius:var(--radius);background:var(--sand);}
-.csta-badge img{width:60px;height:60px;object-fit:contain;}
-.csta-badge-text{font-size:.82rem;color:var(--mid);line-height:1.5;}
-.csta-badge-text strong{display:block;font-weight:500;color:var(--deep);font-size:.88rem;margin-bottom:.2rem;}
-/* FASCIAL */
-.fascial{background:var(--sand);padding:5rem 8vw;}
-.fascial-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:6rem;align-items:center;}
-.fascial-in img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;box-shadow:0 16px 48px rgba(30,26,21,.1);}
-/* SESSION */
-.h-session{background:var(--cream);padding:5rem 8vw;}
-.h-session-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:6rem;align-items:center;}
-.img-duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.img-duo img{width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;box-shadow:0 8px 24px rgba(30,26,21,.1);}
-.h-session-in>div:last-child img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;box-shadow:0 16px 48px rgba(30,26,21,.1);}
-/* TESTIMONIALS */
-.testimonials{background:var(--deep);padding:5rem 8vw;}
-.testimonials-in{max-width:1100px;margin:0 auto;}
-.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
-.test-card{background:rgba(250,248,244,.05);border:1px solid rgba(250,248,244,.08);border-radius:var(--radius);padding:2.2rem 2rem 2rem;}
-.test-quote{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;line-height:1.65;color:rgba(250,248,244,.88);margin-bottom:1.5rem;padding-top:1.8rem;position:relative;}
-.test-quote::before{content:'\201C';font-size:3.5rem;color:var(--clay);line-height:1;position:absolute;top:0;left:0;}
-.test-name{font-size:.73rem;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);}
-/* FAQ */
-.faq-section{background:var(--sand);padding:5rem 8vw;}
-.faq-in{max-width:780px;margin:0 auto;}
-details{border-bottom:1px solid var(--bord);}
-details:first-of-type{border-top:1px solid var(--bord);}
-summary{display:flex;justify-content:space-between;align-items:center;padding:1.3rem 0;cursor:pointer;list-style:none;font-weight:400;font-size:.95rem;}
-summary::-webkit-details-marker{display:none;}
-summary::after{content:'+';color:var(--clay);font-size:1.3rem;flex-shrink:0;margin-left:1rem;transition:transform .3s;line-height:1;}
-details[open] summary::after{transform:rotate(45deg);}
-.faq-answer{padding:.2rem 0 1.5rem;font-size:.9rem;color:var(--mid);line-height:1.75;}
-/* PRICING */
-.h-pricing{background:var(--cream);padding:5rem 8vw;}
-.h-pricing-in{max-width:1100px;margin:0 auto;}
-.p-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:3rem;}
-.p-card{padding:3rem 2.8rem 2.5rem;background:var(--sand);transition:transform .3s;border-radius:var(--radius);}
-.p-card:hover{transform:translateY(-4px);}
-.p-card.hl{background:var(--deep);color:var(--cream);}
-.p-loc{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--clay);margin-bottom:.8rem;display:block;}
-.p-card h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;margin-bottom:.5rem;}
-.p-price{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--clay);margin:1rem 0 .2rem;display:block;}
-.p-dur{font-size:.82rem;color:var(--light);margin-bottom:.8rem;}
-.p-card.hl .p-dur{color:rgba(250,248,244,.5);}
-.p-addr{font-size:.82rem;color:var(--light);margin-bottom:1.4rem;line-height:1.65;}
-.p-card.hl .p-addr{color:rgba(250,248,244,.5);}
-.p-list{list-style:none;margin-bottom:1.8rem;}
-.p-list li{font-size:.84rem;padding:.3rem 0;display:flex;gap:.6rem;color:var(--mid);border-bottom:1px solid var(--bord);}
-.p-card.hl .p-list li{color:rgba(250,248,244,.6);border-bottom-color:rgba(250,248,244,.08);}
-.p-list li::before{content:'—';color:var(--clay);flex-shrink:0;}
-/* BLOG */
-.blog-section{background:var(--sand);padding:5rem 8vw;}
-.blog-in{max-width:1100px;margin:0 auto;}
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem;}
-.blog-card{background:var(--cream);border-radius:var(--radius);overflow:hidden;transition:transform .3s,box-shadow .3s;}
-.blog-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(30,26,21,.1);}
-.blog-card-body{padding:1.8rem;}
-.blog-tag{font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);margin-bottom:.7rem;display:block;}
-.blog-card h3{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:400;line-height:1.3;margin-bottom:.7rem;}
-.blog-card p{font-size:.84rem;color:var(--mid);line-height:1.6;margin-bottom:1.2rem;}
-.blog-link{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--clay);text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;}
-.blog-link::after{content:'→';}
-/* BOOK CTA */
-.h-bookcta{background:var(--cream);padding:4.5rem 8vw;text-align:center;}
-.h-bookcta-in{max-width:580px;margin:0 auto;}
-.h-bookcta h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;margin-bottom:.8rem;}
-.cline{font-size:.9rem;color:var(--mid);margin-bottom:.4rem;}
-.cline a{color:var(--clay);text-decoration:none;}
-.cline a:hover{text-decoration:underline;}
-/* LOCATIONS */
-.h-loc{background:var(--sand);padding:5rem 8vw;}
-.h-loc-in{max-width:1100px;margin:0 auto;}
-.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;}
-.loc-card{padding:2.2rem 2.5rem;border:1px solid var(--bord);border-radius:var(--radius);background:var(--cream);}
-.loc-card h3{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:400;margin-bottom:.5rem;}
-.loc-card p{font-size:.87rem;color:var(--mid);margin-bottom:.2rem;}
-.map-w{margin-top:1.4rem;border-radius:var(--radius);overflow:hidden;height:210px;}
-.map-w iframe{width:100%;height:100%;border:none;display:block;}
-/* FOOTER */
-footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5rem;text-align:center;}
-.f-csta{display:flex;justify-content:center;margin-bottom:2rem;}
-.f-csta img{width:70px;opacity:.85;}
-.f-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--cream);margin-bottom:.3rem;}
-.f-title{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--clay);margin-bottom:2rem;}
-.f-links{margin-bottom:2rem;}
-.f-links a{font-size:.82rem;color:rgba(250,248,244,.5);text-decoration:none;margin:0 1rem;transition:color .25s;}
-.f-links a:hover{color:var(--clay);}
-.f-nap{font-style:normal;font-size:.78rem;color:rgba(250,248,244,.3);margin-bottom:1.5rem;line-height:1.9;}
-.f-nap a{color:rgba(250,248,244,.3);text-decoration:none;}
-.f-bottom{font-size:.72rem;margin-top:2rem;border-top:1px solid rgba(250,248,244,.08);padding-top:1.5rem;}
-/* ANIMATIONS */
-.fi{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
-.fi.v{opacity:1;transform:none;}
-/* RESPONSIVE */
-/* the hero stacks earlier than the rest of the grid: below ~1080px the overlaid
-   copy column gets close enough to crowd the client's face */
-/* Immersive landing: nav floats over the hero, resolves to the normal bar on scroll */
-@media(min-width:1081px){
-  /* --navp (0>1) is driven by scroll position, so the bar resolves continuously rather than snapping */
-  /* scrim travels with the nav, so link text stays legible however late the white arrives */
-  .nav-immersive::before{content:'';position:absolute;left:0;right:0;top:0;height:170px;z-index:-1;pointer-events:none;
-    opacity:var(--navs);
-    background:linear-gradient(to bottom,rgba(24,18,13,.8) 0,rgba(24,18,13,.62) 68px,rgba(24,18,13,0) 100%);}
-  .nav-immersive .nav-logo,.nav-immersive .nav-links a{text-shadow:0 1px 10px rgba(0,0,0,calc(.5*(1 - var(--navt))));}
-  .nav-immersive{--navp:0;--navt:0;--navs:1;position:fixed;left:0;right:0;top:0;transition:none;
-    background:rgba(250,248,244,calc(.96*var(--navp)));
-    -webkit-backdrop-filter:blur(calc(10px*var(--navp)));
-    backdrop-filter:blur(calc(10px*var(--navp)));
-    border-bottom-color:rgba(30,26,21,calc(.1*var(--navp)));}
-  .nav-immersive .nav-logo,.nav-immersive .nav-links a{transition:color .2s linear;}
-  .nav-immersive .nav-logo{color:color-mix(in srgb,#1e1a15 calc(var(--navt)*100%),#fdfbf7);}
-  .nav-immersive .nav-links a{color:color-mix(in srgb,#5c4f3d calc(var(--navt)*100%),#fdfbf7);}
-  .nav-immersive .nav-links a:hover,.nav-immersive .nav-links a.active{color:color-mix(in srgb,#b07a52 calc(var(--navt)*100%),#ffffff);}
-}
-@media(max-width:1080px){
-  /* phone/tablet: photo runs full-bleed under the floating nav (as on desktop), but the
-     copy sits beneath it — in portrait the frame shows its full height, so both faces
-     land at 18-78% of the screen and overlaid text would cover the client's face. */
-  .hero{flex-direction:column;align-items:stretch;min-height:auto;}
-  .hero-media{position:relative;order:1;height:53svh;min-height:300px;}
-  .hero-media img{object-position:50% 50%;filter:none;}
-  .hero-copy{order:2;width:100%;min-width:0;margin-left:0;padding:2.6rem 6vw 3rem;}
-  .hero-copy h1{font-size:clamp(2.2rem,6.5vw,3.2rem);color:var(--deep);}
-  .hero-copy h1 em{color:var(--clay);}
-  .hero-copy .eyebrow{color:var(--clay);}
-  .hero-sub{color:var(--light);margin-bottom:2.2rem;}
-  .hero-wa{color:var(--mid);}
-  .hero-wa:hover{color:var(--clay);}
-  .hero-scrim{display:none;}
-  .nav-immersive{--navs:1;position:fixed;left:0;right:0;top:0;}
-  .nav-immersive::before{content:'';position:absolute;left:0;right:0;top:0;height:150px;z-index:-1;pointer-events:none;opacity:var(--navs);
-    background:linear-gradient(to bottom,rgba(24,18,13,.72) 0,rgba(24,18,13,.5) 68px,rgba(24,18,13,0) 100%);}
-  .nav-immersive:not(.solid){background:transparent;backdrop-filter:none;border-bottom-color:transparent;}
-  .nav-immersive:not(.solid) .nav-logo{color:#fdfbf7;}
-  .nav-immersive:not(.solid) .nav-links a{color:rgba(253,251,247,.9);text-shadow:0 1px 10px rgba(0,0,0,.5);}
-  .nav-immersive:not(.solid) .nav-links a.active{color:#fff;}
-  .nav-immersive:not(.solid) .nav-burger span{background:#fdfbf7;}
-  .nav-immersive.solid .nav-links a{color:var(--mid);text-shadow:none;}
-  .nav-immersive.solid .nav-links a.active{color:var(--clay);}
-  .nav-immersive.solid{background:rgba(250,248,244,.96);border-bottom-color:var(--bord);}
-}
-@media(max-width:960px){
-  .h-intro-in,.h-how-in,.h-about-in,.fascial-in,.h-session-in,.quote-band-in{grid-template-columns:1fr;gap:3rem;}
-  .p-grid,.loc-grid{grid-template-columns:1fr;}
-  .cond-grid{grid-template-columns:repeat(2,1fr);}
-  .test-grid{grid-template-columns:1fr 1fr;}
-  .blog-grid{grid-template-columns:1fr 1fr;}
-  .img-duo{display:none;}
-  .h-how-in img{display:none;}
-  .fascial-in img{display:none;}
-}
-@media(max-width:680px){
-  .nav-links{display:none;flex-direction:column;position:absolute;top:68px;left:0;right:0;background:rgba(250,248,244,.98);backdrop-filter:blur(10px);border-bottom:1px solid var(--bord);padding:1rem 5vw 2rem;}
-  .nav-links.open{display:flex;}
-  /* dropdown carries its own cream panel, so its links stay dark even while the bar is clear */
-  .nav-immersive .nav-links.open a{color:var(--mid);text-shadow:none;}
-  .nav-immersive .nav-links.open a.active{color:var(--clay);}
-  .nav-immersive .nav-links.open a.nav-book{color:#fff!important;}
-  .nav-burger{display:flex;}
-  .cond-grid{grid-template-columns:1fr 1fr;}
-  .test-grid,.blog-grid{grid-template-columns:1fr;}
-  .h-intro,.h-how,.h-about,.fascial,.h-session,.h-pricing,.h-bookcta,.h-loc,.quote-band,.conditions,.testimonials,.faq-section,.blog-section{padding:3.5rem 5vw;}
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..400&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/atlas.css">
 <!-- GA4 loads only after cookie consent is granted — see assets/consent.js --><link rel="stylesheet" href="/assets/newsletter.css">
 <link rel="stylesheet" href="/assets/consent.css">
-<link rel="stylesheet" href="/assets/nature.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to main content</a>
 <a href="https://wa.me/447501827069?text=Hello%20Phoenix" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp Phoenix">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
-<nav class="nav-immersive" aria-label="Main navigation">
+<nav aria-label="Main navigation">
   <div class="nav-inner">
     <a class='nav-logo' href='/'>Craniosacral Therapy London</a>
     <ul class="nav-links" id="navLinks">
@@ -320,325 +70,284 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
     <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
+<!-- Scale rail: which magnification of the body we're looking at (decorative) -->
+<ol class="rail" aria-hidden="true">
+  <li data-scale="person"><span>The person</span><b>×1</b><i></i></li>
+  <li data-scale="touch"><span>Touch</span><b>×10</b><i></i></li>
+  <li data-scale="fascia"><span>Fascia</span><b>×100</b><i></i></li>
+  <li data-scale="cells"><span>Cells</span><b>×1000</b><i></i></li>
+  <li data-scale="room"><span>The room</span><b>×1</b><i></i></li>
+</ol>
 <main id="main">
-<!-- HERO -->
-<section class="hero" aria-label="Introduction">
-  <div class="hero-media">
-    <img src="/.netlify/images?url=/photos/craniosacral_therapy_london_.jpg&amp;w=2400&amp;q=80" srcset="/.netlify/images?url=/photos/craniosacral_therapy_london_.jpg&amp;w=1600&amp;q=80 1x, /.netlify/images?url=/photos/craniosacral_therapy_london_.jpg&amp;w=2400&amp;q=80 2x" alt="Craniosacral therapy session in London, gentle hands-on treatment" fetchpriority="high" width="900" height="1200" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/craniosacral_therapy_london_.jpg'">
-  </div>
-  <div class="hero-scrim" aria-hidden="true"></div>
-  <div class="hero-copy fi">
-    <span class="eyebrow">London · Bethnal Green &amp; Waterloo</span>
-    <h1>Craniosacral therapy &amp; <em>fascial unwinding</em> in London</h1>
-    <p class="hero-sub">Gentle, restorative sessions with Phoenix, CSTA registered</p>
-    <div class="hero-ctas">
-      <a class='btn btn-s' href='/contact'>Book a Session</a>
-      <a href="https://wa.me/447501827069?text=Hello%20Phoenix" class="hero-wa" target="_blank" rel="noopener">or WhatsApp us</a>
+
+<!-- x1 · THE PERSON -->
+<section class="hero" data-scale="person" aria-label="Introduction">
+  <div class="field" data-field="hero" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag rv">London · Bethnal Green &amp; Waterloo</span>
+      <h1 class="display rv" style="--d:.1s">Craniosacral therapy <em>&amp; fascial unwinding</em> <span class="sm">in London</span></h1>
+      <p class="lede rv" style="--d:.2s">Gentle, restorative sessions with Phoenix, CSTA registered. A touch no heavier than the weight of a coin, and an hour for your whole system to settle.</p>
+      <div class="cta-row rv" style="--d:.3s">
+        <a class='pill' href='/contact'>Book a Session <span class="ar" aria-hidden="true">→</span></a>
+        <a href="https://wa.me/447501827069?text=Hello%20Phoenix" class="ghost" target="_blank" rel="noopener">or WhatsApp us</a>
+      </div>
+      <div class="facts rv" style="--d:.4s">
+        <span><img src="photos/csta-member-logo-png-600x600-transparent.png" alt="" width="22" height="22" loading="lazy"> CSTA Registered</span>
+        <span>Trained at CCST London</span>
+        <span>Low Cost Clinic from £30</span>
+      </div>
     </div>
+    <figure class="lens rv" style="--d:.2s">
+      <div class="lens-in"><img src="/.netlify/images?url=/photos/craniosacral_therapy_london_.jpg&amp;w=1600&amp;q=80" srcset="/.netlify/images?url=/photos/craniosacral_therapy_london_.jpg&amp;w=900&amp;q=80 1x, /.netlify/images?url=/photos/craniosacral_therapy_london_.jpg&amp;w=1600&amp;q=80 2x" alt="Craniosacral therapy session in London, gentle hands-on treatment" width="900" height="1125" loading="eager" fetchpriority="high" style="object-position:45% 50%" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/craniosacral_therapy_london_.jpg'"></div>
+      <svg class="reticle" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><circle cx="100" cy="100" r="99" stroke-width=".4"/><g stroke-width=".5"><line x1="100" y1="1" x2="100" y2="7" transform="rotate(0 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(5 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(10 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(15 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(20 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(25 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(30 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(35 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(40 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(45 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(50 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(55 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(60 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(65 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(70 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(75 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(80 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(85 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(90 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(95 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(100 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(105 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(110 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(115 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(120 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(125 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(130 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(135 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(140 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(145 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(150 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(155 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(160 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(165 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(170 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(175 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(180 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(185 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(190 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(195 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(200 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(205 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(210 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(215 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(220 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(225 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(230 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(235 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(240 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(245 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(250 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(255 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(260 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(265 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(270 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(275 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(280 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(285 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(290 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(295 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(300 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(305 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(310 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(315 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(320 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(325 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(330 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(335 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(340 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(345 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(350 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(355 100 100)"/></g></svg>
+      <figcaption class="cap"><span>Fig. 01 · a session</span><span>×1</span></figcaption>
+    </figure>
   </div>
 </section>
-<!-- TRUST STRIP -->
-<div class="trust-strip">
-  <div class="trust-in">
-    <div class="trust-item"><img src="photos/csta-member-logo-png-600x600-transparent.png" alt="" width="26" height="26" loading="lazy"> CSTA Registered</div>
-    <div class="tdot"></div>
-    <div class="trust-item">Trained at CCST London</div>
-    <div class="tdot"></div>
-    <div class="trust-item">Low Cost Clinic from £30</div>
-    <div class="tdot"></div>
-    <div class="trust-item">Bethnal Green &amp; Waterloo</div>
-  </div>
-</div>
-<!-- INTRO -->
-<section class="h-intro" aria-labelledby="intro-h">
-  <div class="h-intro-in">
-    <div class="fi">
-      <span class="eyebrow">About the Practice</span>
-      <h2 class="dsp" id="intro-h">Restorative craniosacral therapy in London, Bethnal Green &amp; Waterloo</h2>
-      <div class="rule"></div>
-      <p class="bt">Craniosacral therapy is a gentle yet powerful hands-on approach that supports the body's natural ability to release tension, restore balance, and heal. It helps shift the nervous system into a parasympathetic state, where rest, recovery and repair happen. Using light touch and deep presence, I create a safe space for your system to unwind and return to flow.</p>
-      <hr class="div">
-      <h3 class="sub">How can craniosacral therapy help you?</h3>
-      <p class="bt">People often come when they feel stuck, physically, emotionally or both. Whether you're dealing with pain, stress, anxiety, burnout, or a general sense of disconnection, this work helps bring you back to yourself. Common concerns include migraines, jaw tension, insomnia, fatigue, trauma, and nervous system dysregulation.</p>
-      <br><a class='btn btn-o' href='/contact'>Book a Session</a>
+
+<!-- x10 · TOUCH -->
+<section class="sec" data-scale="touch" aria-labelledby="intro-h">
+  <div class="wrap split">
+    <div>
+      <span class="tag rv">About the Practice</span>
+      <h2 class="display rv" id="intro-h">Restorative craniosacral therapy in London, <em>Bethnal Green &amp; Waterloo</em></h2>
+      <div class="body rv">
+        <p>Craniosacral therapy is a gentle yet powerful hands-on approach that supports the body's natural ability to release tension, restore balance, and heal. It helps shift the nervous system into a parasympathetic state, where rest, recovery and repair happen. Using light touch and deep presence, I create a safe space for your system to unwind and return to flow.</p>
+        <p><strong>How can craniosacral therapy help you?</strong> People often come when they feel stuck, physically, emotionally or both. Whether you're dealing with pain, stress, anxiety, burnout, or a general sense of disconnection, this work helps bring you back to yourself. Common concerns include migraines, jaw tension, insomnia, fatigue, trauma, and nervous system dysregulation.</p>
+      </div>
+      <a class='ghost rv' href='/contact'>Book a Session <span aria-hidden="true">→</span></a>
     </div>
-    <div class="fi"><img class="r" src="/.netlify/images?url=/photos/craniosacral-therapy-bethnal-green-london.jpg&amp;w=1200&amp;q=80" srcset="/.netlify/images?url=/photos/craniosacral-therapy-bethnal-green-london.jpg&amp;w=600&amp;q=80 1x, /.netlify/images?url=/photos/craniosacral-therapy-bethnal-green-london.jpg&amp;w=1200&amp;q=80 2x" alt="Craniosacral therapy session London" width="600" height="800" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/craniosacral-therapy-bethnal-green-london.jpg'"></div>
+    <figure class="frame rv"><img src="/.netlify/images?url=/photos/craniosacral-therapy-bethnal-green-london.jpg&amp;w=1200&amp;q=80" srcset="/.netlify/images?url=/photos/craniosacral-therapy-bethnal-green-london.jpg&amp;w=600&amp;q=80 1x, /.netlify/images?url=/photos/craniosacral-therapy-bethnal-green-london.jpg&amp;w=1200&amp;q=80 2x" alt="Craniosacral therapy session London" width="600" height="750" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/craniosacral-therapy-bethnal-green-london.jpg'"><figcaption><span>Fig. 02 · light touch</span><span>×10</span></figcaption></figure>
   </div>
 </section>
-<!-- CONDITIONS -->
-<section class="conditions" aria-labelledby="cond-h">
-  <div class="conditions-in">
-    <div class="fi" style="text-align:center">
-      <span class="eyebrow">Who This Is For</span>
-      <h2 class="dsp" id="cond-h">Why people come to craniosacral therapy in London</h2>
-      <div class="rule rule-c"></div>
-      <p class="bt" style="margin:0 auto 0;text-align:center">People come to craniosacral therapy for all kinds of reasons — physical, emotional, and neurological. These are some of the most common.</p>
+
+<section class="sec" data-scale="touch" aria-labelledby="cond-h" style="padding-top:0">
+  <div class="wrap">
+    <span class="tag c-rose rv">Who This Is For</span>
+    <h2 class="display rv" id="cond-h">Why people come to craniosacral therapy <em>in London</em></h2>
+    <p class="lede rv">People come to craniosacral therapy for all kinds of reasons — physical, emotional, and neurological. These are some of the most common.</p>
+    <div class="index">
+      <article class="rv"><span class="ix">01</span><h3>Migraines &amp; Headaches</h3><p>Gentle attention to the cranial bones and membranes, easing tension that often sits behind recurring headaches.</p></article>
+      <article class="rv"><span class="ix">02</span><h3>Anxiety &amp; Stress</h3><p>Time for the nervous system to come out of high alert. Many people describe feeling calmer and more settled afterwards.</p></article>
+      <article class="rv"><span class="ix">03</span><h3>Burnout &amp; Fatigue</h3><p>Unhurried space to rest properly, for anyone who has been running on empty for a long while.</p></article>
+      <article class="rv"><span class="ix">04</span><h3>Jaw Tension (TMJ)</h3><p>Quiet work around the temporal bones and jaw, where a great deal of tension tends to be held unnoticed.</p></article>
+      <article class="rv"><span class="ix">05</span><h3>Trauma &amp; PTSD</h3><p>Working slowly and at your pace, supporting the nervous system as it finds its own way to settle.</p></article>
+      <article class="rv"><span class="ix">06</span><h3>Insomnia</h3><p>Helping an overactive nervous system wind down, which for many people makes sleep come a little more easily.</p></article>
+      <article class="rv"><span class="ix">07</span><h3>Chronic Pain</h3><p>Gentle contact with the body's connective tissue, giving long-held patterns room to soften in their own time.</p></article>
+      <article class="rv"><span class="ix">08</span><h3>Post-Natal Recovery</h3><p>Gentle, nourishing support after birth — space to restore and reconnect with your body.</p></article>
+      <article class="rv"><span class="ix">09</span><h3>Nervous System Dysregulation</h3><p>When the body stays stuck in fight-or-flight or freeze, CST offers a way back towards rhythm and a felt sense of safety.</p></article>
     </div>
-    <div class="cond-grid fi">
-      <article class="cond-card"><span class="cond-dash"></span><h4>Migraines &amp; Headaches</h4><p>Gentle attention to the cranial bones and membranes, easing tension that often sits behind recurring headaches.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Anxiety &amp; Stress</h4><p>Time for the nervous system to come out of high alert. Many people describe feeling calmer and more settled afterwards.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Burnout &amp; Fatigue</h4><p>Unhurried space to rest properly, for anyone who has been running on empty for a long while.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Jaw Tension (TMJ)</h4><p>Quiet work around the temporal bones and jaw, where a great deal of tension tends to be held unnoticed.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Trauma &amp; PTSD</h4><p>Working slowly and at your pace, supporting the nervous system as it finds its own way to settle.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Insomnia</h4><p>Helping an overactive nervous system wind down, which for many people makes sleep come a little more easily.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Chronic Pain</h4><p>Gentle contact with the body's connective tissue, giving long-held patterns room to soften in their own time.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Post-Natal Recovery</h4><p>Gentle, nourishing support after birth — space to restore and reconnect with your body.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Nervous System Dysregulation</h4><p>When the body stays stuck in fight-or-flight or freeze, CST offers a way back towards rhythm and a felt sense of safety.</p></article>
-    </div>
-    <div style="text-align:center;margin-top:3rem" class="fi"><a class='btn btn-o' href='/contact'>Book Here, from £30</a></div>
+    <div class="rv" style="margin-top:3rem"><a class='pill' href='/contact'>Book Here, from £30 <span class="ar" aria-hidden="true">→</span></a></div>
   </div>
 </section>
-<!-- HOW -->
-<section class="h-how" aria-labelledby="how-h">
-  <div class="h-how-in">
-    <div class="fi"><img class="r" src="/.netlify/images?url=/photos/gentle-bodywork-london.jpg&amp;w=1200&amp;q=80" srcset="/.netlify/images?url=/photos/gentle-bodywork-london.jpg&amp;w=600&amp;q=80 1x, /.netlify/images?url=/photos/gentle-bodywork-london.jpg&amp;w=1200&amp;q=80 2x" alt="Gentle craniosacral bodywork London, how it works" width="600" height="800" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/gentle-bodywork-london.jpg'"></div>
-    <div class="fi">
-      <span class="eyebrow">How it Works</span>
-      <h2 class="dsp" id="how-h">What happens in a session?</h2>
-      <div class="rule"></div>
-      <p class="bt">Every session is guided by what your body needs in the moment. Using a touch no heavier than the weight of a coin, I listen to the subtle rhythms that express your body's health and its places of restriction.</p>
-      <ol class="steps">
-        <li class="step"><p><strong>Check-in.</strong> We begin with a short conversation about how you're arriving and what you'd like to work with.</p></li>
-        <li class="step"><p><strong>On the table.</strong> You lie fully clothed. The session unfolds in its own time, sometimes deeply still, sometimes with gentle movement.</p></li>
-        <li class="step"><p><strong>Release &amp; integration.</strong> Your system releases what's ready to shift. Emotions and sensations are all welcome.</p></li>
-        <li class="step"><p><strong>Landing.</strong> We close gently, giving your system time to integrate before you return to the world.</p></li>
-      </ol>
-      <a class='btn btn-s' href='/contact'>Book a Session</a>
+
+<section class="sec" data-scale="touch" aria-labelledby="how-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <span class="tag c-cyan rv">How it Works</span>
+        <h2 class="display rv" id="how-h">What happens <em>in a session?</em></h2>
+        <p class="lede rv">Every session is guided by what your body needs in the moment. Using a touch no heavier than the weight of a coin, I listen to the subtle rhythms that express your body's health and its places of restriction.</p>
+      </div>
+      <figure class="frame rv"><img src="/.netlify/images?url=/photos/gentle-bodywork-london.jpg&amp;w=1200&amp;q=80" srcset="/.netlify/images?url=/photos/gentle-bodywork-london.jpg&amp;w=600&amp;q=80 1x, /.netlify/images?url=/photos/gentle-bodywork-london.jpg&amp;w=1200&amp;q=80 2x" alt="Gentle craniosacral bodywork London, how it works" width="600" height="750" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/gentle-bodywork-london.jpg'"><figcaption><span>Fig. 03 · listening</span><span>×10</span></figcaption></figure>
     </div>
+    <div class="stages-wrap">
+      <svg class="pulse" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true" focusable="false"><defs><linearGradient id="pulseGrad" x1="0" x2="1"><stop offset="0" stop-color="#ffc27a"/><stop offset=".5" stop-color="#e4528f"/><stop offset="1" stop-color="#7a6be0"/></linearGradient></defs>
+        <path class="base" d="M0 15 L95 15 Q110 1 125 15 Q140 29 155 15 L345 15 Q360 1 375 15 Q390 29 405 15 L595 15 Q610 1 625 15 Q640 29 655 15 L845 15 Q860 1 875 15 Q890 29 905 15 L1000 15"/>
+        <path class="run" pathLength="1" d="M0 15 L95 15 Q110 1 125 15 Q140 29 155 15 L345 15 Q360 1 375 15 Q390 29 405 15 L595 15 Q610 1 625 15 Q640 29 655 15 L845 15 Q860 1 875 15 Q890 29 905 15 L1000 15"/></svg>
+      <ol class="stages">
+      <li class="stage rv"><div class="dot"></div><span class="tag">Stage 01</span><h3>Check-in</h3><p>We begin with a short conversation about how you're arriving and what you'd like to work with.</p></li>
+      <li class="stage rv" style="--d:.1s"><div class="dot"></div><span class="tag">Stage 02</span><h3>On the table</h3><p>You lie fully clothed. The session unfolds in its own time, sometimes deeply still, sometimes with gentle movement.</p></li>
+      <li class="stage rv" style="--d:.2s"><div class="dot"></div><span class="tag">Stage 03</span><h3>Release &amp; integration</h3><p>Your system releases what's ready to shift. Emotions and sensations are all welcome.</p></li>
+      <li class="stage rv" style="--d:.3s"><div class="dot"></div><span class="tag">Stage 04</span><h3>Landing</h3><p>We close gently, giving your system time to integrate before you return to the world.</p></li>
+    </ol>
+    </div>
+    <div class="rv" style="margin-top:3.5rem"><a class='pill' href='/contact'>Book a Session <span class="ar" aria-hidden="true">→</span></a></div>
   </div>
 </section>
-<!-- QUOTE -->
-<div class="quote-band">
-  <div class="quote-band-in fi">
-    <blockquote>Whether we're working with anatomy or energy, this practice is about reconnecting to yourself, your body, and your natural movement toward healing.<cite>Phoenix, Craniosacral Therapist</cite></blockquote>
+
+<!-- x100 · FASCIA -->
+<section class="sec fascia" data-scale="fascia" aria-labelledby="fascial-h">
+  <div class="net" data-net="fascia" aria-hidden="true"></div>
+  <div class="wrap split flip">
+    <div>
+      <span class="tag c-cyan rv">Fascial Unwinding · ×100</span>
+      <h2 class="display rv" id="fascial-h">What is <em>fascial unwinding</em>?</h2>
+      <div class="body rv">
+        <p>Fascia is the body's connective tissue, a continuous web that surrounds every muscle, organ, bone, and nerve. It holds structure, transmits force, and carries memory. When the body experiences stress, injury, or trauma, the fascial system holds and organises these experiences long after the event has passed.</p>
+        <p>Fascial unwinding is a gentle, responsive technique in which I support part of your body, an arm, the head, the spine, and simply follow wherever it wants to go. The body, given space and permission, naturally moves through patterns that have been held in the tissue and release them with a precision no external force could match.</p>
+        <p>The results can be remarkable: spaciousness, lightness, or profound emotional release. Sometimes physical. Often both.</p>
+      </div>
+      <a class='ghost rv' href='/what-is-fascial-unwinding'>Read: What is Fascial Unwinding? <span aria-hidden="true">→</span></a>
+    </div>
+    <figure class="lens rv" style="margin:0 auto 0 0">
+      <div class="lens-in"><img src="/.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=1200&amp;q=80" srcset="/.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=700&amp;q=80 1x, /.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=1200&amp;q=80 2x" alt="Fascial unwinding session London, therapist gently guiding arm movement" width="700" height="875" loading="lazy" style="object-position:50% 40%" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/fascia-unwinding-session-london.jpg'"></div>
+      <svg class="reticle" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><circle cx="100" cy="100" r="99" stroke-width=".4"/><g stroke-width=".5"><line x1="100" y1="1" x2="100" y2="7" transform="rotate(0 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(5 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(10 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(15 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(20 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(25 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(30 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(35 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(40 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(45 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(50 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(55 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(60 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(65 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(70 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(75 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(80 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(85 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(90 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(95 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(100 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(105 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(110 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(115 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(120 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(125 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(130 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(135 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(140 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(145 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(150 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(155 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(160 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(165 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(170 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(175 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(180 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(185 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(190 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(195 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(200 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(205 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(210 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(215 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(220 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(225 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(230 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(235 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(240 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(245 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(250 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(255 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(260 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(265 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(270 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(275 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(280 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(285 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(290 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(295 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(300 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(305 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(310 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(315 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(320 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(325 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(330 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(335 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(340 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(345 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(350 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(355 100 100)"/></g></svg>
+      <figcaption class="cap"><span>Fig. 04 · unwinding</span><span>×100</span></figcaption>
+    </figure>
   </div>
-</div>
-<!-- ABOUT -->
-<section class="h-about" aria-labelledby="about-h">
-  <div class="h-about-in">
-    <div class="fi">
-      <span class="eyebrow">About My Journey</span>
-      <h2 class="dsp" id="about-h">Hey, I'm <em>Phoenix</em></h2>
-      <div class="rule"></div>
-      <p class="bt">My path began in movement. Years of training as a contemporary dancer tuned me into the body's language, its strength, its sensitivity, its stories.</p>
-      <p class="bt">Craniosacral therapy came into my life when I needed stillness. It offered me a quiet, powerful return to balance, and opened me to the healing potential of softness. That experience changed me.</p>
-      <p class="bt">I am a qualified, registered Craniosacral Therapist who trained in London with the renowned College of Cranio-Sacral Therapy (CCST). I am a proud member of the Craniosacral Therapy Association (CSTA), the UK's leading professional association for craniosacral therapists.</p>
-      <hr class="div">
-      <h3 class="sub">My approach</h3>
-      <p class="bt">My treatments are rooted in a deep love of conscious connection and inspired by the subtle intelligence of life force energy. I bring together anatomical precision with profound respect for the body's wisdom. I offer a space to return to stillness and flow, simply by meeting you with presence and care.</p>
-      <div class="csta-badge">
-        <img src="photos/csta-member-logo-png-600x600-transparent.png" alt="CSTA Member logo" width="60" height="60" loading="lazy">
-        <div class="csta-badge-text">
-          <strong>CSTA Registered Member</strong>
-          Member of the Craniosacral Therapy Association, the UK's leading professional association for craniosacral therapists
+  <div class="wrap bigquote">
+    <blockquote class="rv">Whether we're working with anatomy or energy, this practice is about reconnecting to yourself, your body, and your <span class="lum">natural movement toward healing.</span><cite class="tag">Phoenix, Craniosacral Therapist</cite></blockquote>
+  </div>
+</section>
+
+<!-- x1000 · CELLS: a minute to breathe -->
+<section class="sec cells" id="breathe" data-scale="cells" aria-labelledby="breathe-h">
+  <div class="wrap split">
+    <div>
+      <span class="tag c-violet rv">A Moment for You · ×1000</span>
+      <h2 class="display rv" id="breathe-h">Take <em>one slow minute</em> with your nervous system</h2>
+      <p class="lede rv">Down at the scale of cells, everything is rhythm. Pick a pace and follow the lens as it opens and settles. A slow, longer out-breath is one of the simplest ways to help your nervous system come out of high alert, the same shift a session gently supports.</p>
+      <div class="breathe-controls rv">
+        <div class="rhythms" role="group" aria-label="Breathing rhythm">
+          <button type="button" class="chip" data-rhythm="calm" aria-pressed="true">Calm<small>In 4 · out 6</small></button>
+          <button type="button" class="chip" data-rhythm="box" aria-pressed="false">Box<small>4 · 4 · 4 · 4</small></button>
+          <button type="button" class="chip" data-rhythm="unwind" aria-pressed="false">Unwind<small>4 · 7 · 8</small></button>
+        </div>
+        <div class="cta-row">
+          <button type="button" class="pill" id="breatheBtn" aria-pressed="false">Begin</button>
+          <button type="button" class="soundbtn" id="breatheSound" aria-pressed="false">Sound off</button>
         </div>
       </div>
     </div>
-    <div class="fi"><img class="r" src="/.netlify/images?url=/photos/phoenix-craniosacral-therapist.jpeg&amp;w=1200&amp;q=80" srcset="/.netlify/images?url=/photos/phoenix-craniosacral-therapist.jpeg&amp;w=600&amp;q=80 1x, /.netlify/images?url=/photos/phoenix-craniosacral-therapist.jpeg&amp;w=1200&amp;q=80 2x" alt="Phoenix Tanner, Craniosacral Therapist London" width="600" height="800" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/phoenix-craniosacral-therapist.jpeg'"></div>
-  </div>
-</section>
-<!-- MACRO: a close-up of mushroom gills, drawn in code by assets/nature.js.
-     Purely decorative; stays hidden unless the script runs. -->
-<div class="macro" aria-hidden="true" hidden>
-  <div class="macro-stick">
-    <div class="macro-light"></div>
-    <p class="macro-words"><span class="on">soften</span><span>listen</span><span>unwind</span><span>return</span></p>
-  </div>
-</div>
-<!-- FASCIAL UNWINDING -->
-<section class="fascial" aria-labelledby="fascial-h">
-  <div class="fascial-in">
-    <div class="fi"><img class="r" src="/.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=1200&amp;q=80" srcset="/.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=600&amp;q=80 1x, /.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=1200&amp;q=80 2x" alt="Fascial unwinding session London, therapist gently guiding arm movement" width="600" height="800" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/fascia-unwinding-session-london.jpg'"></div>
-    <div class="fi">
-      <span class="eyebrow">Fascial Unwinding</span>
-      <h2 class="dsp" id="fascial-h">What is <em>fascial unwinding</em>?</h2>
-      <div class="rule"></div>
-      <p class="bt">Fascia is the body's connective tissue, a continuous web that surrounds every muscle, organ, bone, and nerve. It holds structure, transmits force, and carries memory. When the body experiences stress, injury, or trauma, the fascial system holds and organises these experiences long after the event has passed.</p>
-      <p class="bt">Fascial unwinding is a gentle, responsive technique in which I support part of your body, an arm, the head, the spine, and simply follow wherever it wants to go. The body, given space and permission, naturally moves through patterns that have been held in the tissue and release them with a precision no external force could match.</p>
-      <p class="bt">The results can be remarkable: spaciousness, lightness, or profound emotional release. Sometimes physical. Often both.</p>
-      <a class='btn btn-o' href='/what-is-fascial-unwinding'>Read: What is Fascial Unwinding?</a>
+    <div class="rv">
+      <div class="scope">
+        <div class="scope-halo" aria-hidden="true"></div>
+        <div class="scope-dish" aria-hidden="true"></div>
+        <svg class="reticle" viewBox="0 0 200 200" aria-hidden="true" focusable="false"><circle cx="100" cy="100" r="99" stroke-width=".4"/><g stroke-width=".5"><line x1="100" y1="1" x2="100" y2="7" transform="rotate(0 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(5 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(10 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(15 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(20 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(25 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(30 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(35 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(40 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(45 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(50 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(55 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(60 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(65 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(70 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(75 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(80 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(85 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(90 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(95 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(100 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(105 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(110 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(115 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(120 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(125 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(130 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(135 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(140 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(145 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(150 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(155 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(160 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(165 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(170 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(175 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(180 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(185 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(190 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(195 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(200 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(205 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(210 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(215 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(220 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(225 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(230 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(235 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(240 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(245 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(250 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(255 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(260 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(265 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(270 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(275 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(280 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(285 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(290 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(295 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(300 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(305 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(310 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(315 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(320 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(325 100 100)"/><line x1="100" y1="1" x2="100" y2="7" transform="rotate(330 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(335 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(340 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(345 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(350 100 100)"/><line x1="100" y1="1" x2="100" y2="4" transform="rotate(355 100 100)"/></g></svg>
+        <svg class="scope-ring" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><defs><linearGradient id="ringGrad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#ffc27a"/><stop offset=".5" stop-color="#e4528f"/><stop offset="1" stop-color="#43c6b6"/></linearGradient></defs><circle cx="50" cy="50" r="49" pathLength="1"/></svg>
+        <p class="scope-label" id="breatheLabel" role="status" aria-live="polite"></p>
+        <span class="scope-count" aria-hidden="true"></span>
+      </div>
+      <p class="cap">Live · cells dividing under the lens · touch to feed them</p>
     </div>
   </div>
 </section>
-<!-- SESSION -->
-<section class="h-session" aria-labelledby="session-h">
-  <div class="h-session-in">
-    <div class="fi">
-      <span class="eyebrow">What to Expect</span>
-      <h2 class="dsp" id="session-h">Your session, your space</h2>
-      <div class="rule"></div>
-      <p class="bt">Each session begins with a short check-in. You'll lie fully clothed on the table, and I'll use gentle, responsive touch to meet your system where it's at. The experience is deeply relaxing, often leading to profound release and a renewed sense of connection.</p>
-      <p class="bt">If emotions surface, they're welcomed and supported. This is your space, to feel, release, and land. There is no agenda other than what your body shows us.</p>
-      <hr class="div">
-      <h3 class="sub">Practical details</h3>
-      <p class="bt">Sessions are 60 minutes. Wear comfortable, loose clothing. You remain fully clothed throughout. It's normal to feel deeply relaxed, spacious, or quietly emotional afterwards. Give yourself time to arrive back gently.</p>
-      <br><a class='btn btn-s' href='/contact'>Book Here</a>
+
+<div class="dawn" aria-hidden="true"></div>
+
+<!-- BACK TO x1 · THE ROOM -->
+<section class="sec room" data-scale="room" aria-labelledby="about-h" style="padding-top:clamp(2rem,5vw,4rem)">
+  <div class="wrap split">
+    <div>
+      <span class="tag rv">About My Journey · back to ×1</span>
+      <h2 class="display rv" id="about-h">Hey, I'm <em>Phoenix</em></h2>
+      <div class="body rv">
+        <p>My path began in movement. Years of training as a contemporary dancer tuned me into the body's language, its strength, its sensitivity, its stories.</p>
+        <p>Craniosacral therapy came into my life when I needed stillness. It offered me a quiet, powerful return to balance, and opened me to the healing potential of softness. That experience changed me.</p>
+        <p>I am a qualified, registered Craniosacral Therapist who trained in London with the renowned College of Cranio-Sacral Therapy (CCST). I am a proud member of the Craniosacral Therapy Association (CSTA), the UK's leading professional association for craniosacral therapists.</p>
+        <p><strong>My approach.</strong> My treatments are rooted in a deep love of conscious connection and inspired by the subtle intelligence of life force energy. I bring together anatomical precision with profound respect for the body's wisdom. I offer a space to return to stillness and flow, simply by meeting you with presence and care.</p>
+      </div>
+      <div class="badge rv">
+        <img src="photos/csta-member-logo-png-600x600-transparent.png" alt="CSTA Member logo" width="56" height="56" loading="lazy">
+        <div><strong>CSTA Registered Member</strong>Member of the Craniosacral Therapy Association, the UK's leading professional association for craniosacral therapists</div>
+      </div>
     </div>
-    <div class="fi"><img class="r" src="/.netlify/images?url=/photos/craniosacral-therapy-london.jpg&amp;w=1200&amp;q=80" srcset="/.netlify/images?url=/photos/craniosacral-therapy-london.jpg&amp;w=600&amp;q=80 1x, /.netlify/images?url=/photos/craniosacral-therapy-london.jpg&amp;w=1200&amp;q=80 2x" alt="Craniosacral therapy session London" width="600" height="800" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/craniosacral-therapy-london.jpg'"></div>
+    <figure class="frame rv"><img src="/.netlify/images?url=/photos/phoenix-craniosacral-therapist.jpeg&amp;w=1200&amp;q=80" srcset="/.netlify/images?url=/photos/phoenix-craniosacral-therapist.jpeg&amp;w=600&amp;q=80 1x, /.netlify/images?url=/photos/phoenix-craniosacral-therapist.jpeg&amp;w=1200&amp;q=80 2x" alt="Phoenix Tanner, Craniosacral Therapist London" width="600" height="750" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/phoenix-craniosacral-therapist.jpeg'"><figcaption><span>Phoenix Tanner</span><span>CSTA</span></figcaption></figure>
   </div>
 </section>
-<!-- TESTIMONIALS -->
-<section class="testimonials" aria-labelledby="test-h">
-  <div class="testimonials-in">
-    <div class="fi" style="text-align:center">
-      <span class="eyebrow" style="color:rgba(250,248,244,.4)">Client Experiences</span>
-      <h2 class="dsp" id="test-h" style="color:var(--cream)">What clients say</h2>
-      <div class="rule rule-c" style="background:var(--clay)"></div>
+
+<section class="sec room" data-scale="room" aria-labelledby="session-h" style="padding-top:0">
+  <div class="wrap split flip">
+    <div>
+      <span class="tag c-rose rv">What to Expect</span>
+      <h2 class="display rv" id="session-h">Your session, <em>your space</em></h2>
+      <div class="body rv">
+        <p>Each session begins with a short check-in. You'll lie fully clothed on the table, and I'll use gentle, responsive touch to meet your system where it's at. The experience is deeply relaxing, often leading to profound release and a renewed sense of connection.</p>
+        <p>If emotions surface, they're welcomed and supported. This is your space, to feel, release, and land. There is no agenda other than what your body shows us.</p>
+        <p><strong>Practical details.</strong> Sessions are 60 minutes. Wear comfortable, loose clothing. You remain fully clothed throughout. It's normal to feel deeply relaxed, spacious, or quietly emotional afterwards. Give yourself time to arrive back gently.</p>
+      </div>
+      <div class="details rv"><div><b>60</b><span>minutes, fully clothed</span></div><div><b>£30</b><span>clinic sessions from</span></div><div><b>2</b><span>London locations</span></div></div>
+      <div class="rv" style="margin-top:2.2rem"><a class='pill' href='/contact'>Book Here <span class="ar" aria-hidden="true">→</span></a></div>
     </div>
-    <div class="test-grid fi">
-      <article class="test-card">
-        <p class="test-quote">The environment feels safe, supportive, and non-judgmental. I felt immediately open to release, move, and feel. A gifted healer, listener, and grounding force. His dance background shines through. I highly recommend his practice.</p>
-        <div class="test-name">Gabby</div>
-      </article>
-      <article class="test-card">
-        <p class="test-quote">I felt so held that the tension I brought in had almost completely gone. I'm new to this kind of treatment, but I made discoveries about myself and left feeling calmer and more present than I have in months.</p>
-        <div class="test-name">Geebs</div>
-      </article>
-      <article class="test-card">
-        <p class="test-quote">From arrival to leaving, I was held with deep warmth and care. Cranio Sacral with Phoenix tapped into an ancient body knowledge through softness and intuitive listening. My body and mind could rest, and the subconscious had space. Sharing before and after revealed where I was holding and releasing and how long I'd been carrying unconscious weight. Phoenix brings warmth, intuition, and deep physical understanding. A magical and deeply relaxing experience.</p>
-        <div class="test-name">Phoebe</div>
-      </article>
-    </div>
+    <figure class="frame rv"><img src="/.netlify/images?url=/photos/craniosacral-therapy-london.jpg&amp;w=1200&amp;q=80" srcset="/.netlify/images?url=/photos/craniosacral-therapy-london.jpg&amp;w=600&amp;q=80 1x, /.netlify/images?url=/photos/craniosacral-therapy-london.jpg&amp;w=1200&amp;q=80 2x" alt="Craniosacral therapy session London" width="600" height="750" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/craniosacral-therapy-london.jpg'"><figcaption><span>Fig. 05 · the room</span><span>×1</span></figcaption></figure>
   </div>
 </section>
-<!-- BREATHE: tree-ring breathing guide, drawn and run by assets/nature.js.
-     Stays hidden unless the script runs, since the button needs it. -->
-<section class="breathe" id="breathe" aria-labelledby="breathe-h" hidden>
-  <div class="breathe-in">
-    <div class="fi">
-      <span class="eyebrow">A Moment for You</span>
-      <h2 class="dsp" id="breathe-h">Pause here for <em>three slow breaths</em></h2>
-      <div class="rule"></div>
-      <p class="bt">Follow the rings: breathe in as they open, and out as they settle. A slow, longer out-breath is one of the simplest ways to help your nervous system come out of high alert, the same shift a session gently supports.</p>
-      <button type="button" class="btn btn-o breathe-btn" id="breatheBtn" aria-pressed="false" aria-controls="breatheLabel">Begin</button>
+
+<section class="sec room" data-scale="room" aria-labelledby="test-h" style="padding-top:0">
+  <div class="wrap">
+    <span class="tag c-violet rv">Client Experiences</span>
+    <h2 class="display rv" id="test-h">What clients <em>say</em></h2>
+    <div class="voices" id="voices">
+      <blockquote class="voice"><p>The environment feels safe, supportive, and non-judgmental. I felt immediately open to release, move, and feel. A gifted healer, listener, and grounding force. His dance background shines through. I highly recommend his practice.</p><footer>Gabby</footer></blockquote>
+      <blockquote class="voice"><p>I felt so held that the tension I brought in had almost completely gone. I'm new to this kind of treatment, but I made discoveries about myself and left feeling calmer and more present than I have in months.</p><footer>Geebs</footer></blockquote>
+      <blockquote class="voice"><p>From arrival to leaving, I was held with deep warmth and care. Cranio Sacral with Phoenix tapped into an ancient body knowledge through softness and intuitive listening. My body and mind could rest, and the subconscious had space. Sharing before and after revealed where I was holding and releasing and how long I'd been carrying unconscious weight. Phoenix brings warmth, intuition, and deep physical understanding. A magical and deeply relaxing experience.</p><footer>Phoebe</footer></blockquote>
     </div>
-    <div class="breathe-visual">
-      <p class="breathe-label" id="breatheLabel" role="status" aria-live="polite"></p>
-      <span class="breathe-count" aria-hidden="true"></span>
-    </div>
+    <div class="voice-nav"><button type="button" data-dir="-1" aria-label="Previous testimonial">←</button><div class="voice-dots" aria-hidden="true"><i></i><i></i><i></i></div><button type="button" data-dir="1" aria-label="Next testimonial">→</button></div>
   </div>
 </section>
-<!-- FAQ teaser -->
-<section class="faq-section" id="faq" aria-labelledby="faq-h">
-  <div class="faq-in" style="text-align:center">
-    <div class="fi">
-      <span class="eyebrow">Common Questions</span>
-      <h2 class="dsp" id="faq-h">Have questions?</h2>
-      <div class="rule rule-c"></div>
-      <p class="bt" style="text-align:center;margin:0 auto 2rem;max-width:520px">Everything you need to know about sessions, what to expect, pricing, and whether craniosacral therapy is right for you.</p>
-      <a class='btn btn-s' href='/faq'>Read the FAQ</a>
-    </div>
-  </div>
-</section>
-<!-- PRICING -->
-<section class="h-pricing" aria-labelledby="pricing-h">
-  <div class="h-pricing-in">
-    <div class="fi">
-      <span class="eyebrow">Pricing</span>
-      <h2 class="dsp" id="pricing-h">Session rates</h2>
-      <p class="bt">Both sessions are 60 minutes. Both offer the same quality of care. The only difference is where, and what you pay.</p>
-    </div>
-    <div class="p-grid fi">
-      <div class="p-card hl">
-        <span class="p-loc"><a href="/waterloo" style="color:inherit">Waterloo, London SE1</a></span>
+
+<section class="sec room" data-scale="room" aria-labelledby="pricing-h" style="padding-top:0">
+  <div class="wrap">
+    <span class="tag rv">Pricing</span>
+    <h2 class="display rv" id="pricing-h">Session <em>rates</em></h2>
+    <p class="lede rv">Both sessions are 60 minutes. Both offer the same quality of care. The only difference is where, and what you pay.</p>
+    <div class="prices">
+      <div class="price dark rv">
+        <a class="where" href="/waterloo">Waterloo, London SE1 →</a>
         <h3>Individual Session</h3>
-        <span class="p-price">£80</span>
-        <p class="p-dur">60 minutes · Breathe London Wellbeing</p>
-        <p class="p-addr">34 Colombo St, London SE1 8DP<br>10 minutes from Waterloo station</p>
-        <ul class="p-list">
-          <li>A professional wellbeing clinic</li>
-          <li>Flexible times, we'll find one that suits</li>
-        </ul>
-        <a class='btn btn-s' href='/contact'>Book This</a>
+        <span class="amt">£80</span>
+        <p class="meta">60 minutes · Breathe London Wellbeing<br>34 Colombo St, London SE1 8DP · 10 minutes from Waterloo station</p>
+        <ul><li>A professional wellbeing clinic</li><li>Flexible times, we'll find one that suits</li></ul>
+        <a class='pill' href='/contact'>Book This <span class="ar" aria-hidden="true">→</span></a>
       </div>
-      <div class="p-card">
-        <span class="p-loc">Bethnal Green, London E2</span>
+      <div class="price light rv" style="--d:.1s">
+        <span class="where">Bethnal Green, London E2</span>
         <h3>Low Cost Clinic</h3>
-        <span class="p-price">£30–60</span>
-        <p class="p-dur">60 minutes · Sliding scale</p>
-        <p class="p-addr">279 Cambridge Heath Rd, E2 0EL<br>Near Bethnal Green station</p>
-        <ul class="p-list">
-          <li>The same 60 minutes, the same care</li>
-          <li>You pick your fee. No proof needed</li>
-          <li>A warm, creative space, not a clinical one</li>
-        </ul>
-        <a class='btn btn-o' href='/community-clinic'>Learn More</a>
+        <span class="amt lum">£30–60</span>
+        <p class="meta">60 minutes · Sliding scale<br>279 Cambridge Heath Rd, E2 0EL · Near Bethnal Green station</p>
+        <ul><li>The same 60 minutes, the same care</li><li>You pick your fee. No proof needed</li><li>A warm, creative space, not a clinical one</li></ul>
+        <a class='ghost' href='/community-clinic'>Learn More <span aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
 </section>
-<!-- BLOG -->
-<section class="blog-section" aria-labelledby="blog-h">
-  <div class="blog-in">
-    <div class="fi" style="text-align:center">
-      <span class="eyebrow">Learn &amp; Explore</span>
-      <h2 class="dsp" id="blog-h">From the journal</h2>
-      <div class="rule rule-c"></div>
+
+<section class="sec room" data-scale="room" aria-labelledby="blog-h" style="padding-top:0">
+  <div class="wrap">
+    <span class="tag c-cyan rv">Learn &amp; Explore</span>
+    <h2 class="display rv" id="blog-h">From the <em>journal</em></h2>
+    <div class="journal">
+      <a class='entry rv' href='/what-is-craniosacral-therapy'><div class="pic"><img src="/.netlify/images?url=/photos/craniosacral-therapy-session-london.jpg&amp;w=960&amp;q=80" srcset="/.netlify/images?url=/photos/craniosacral-therapy-session-london.jpg&amp;w=480&amp;q=80 1x, /.netlify/images?url=/photos/craniosacral-therapy-session-london.jpg&amp;w=960&amp;q=80 2x" alt="Craniosacral therapy session London" width="480" height="600" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/craniosacral-therapy-session-london.jpg'"></div><div class="txt"><span class="tag">Craniosacral Therapy</span><h3>What Is Craniosacral Therapy? A Guide for First-Timers</h3><p>Curious but uncertain? This is where to start. A clear, honest introduction to what CST is, what a session involves, and who it's for.</p><span class="more">Read article →</span></div></a>
+      <a class='entry rv' style="--d:.1s" href='/what-is-fascial-unwinding'><div class="pic"><img src="/.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=960&amp;q=80" srcset="/.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=480&amp;q=80 1x, /.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=960&amp;q=80 2x" alt="Fascial unwinding session London" width="480" height="600" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/fascia-unwinding-session-london.jpg'"></div><div class="txt"><span class="tag c-cyan">Fascial Unwinding</span><h3>What Is Fascial Unwinding and Why Does It Matter?</h3><p>Your fascia is the body's connective intelligence. This article explores what it is, how it holds tension and trauma, and why releasing it changes everything.</p><span class="more">Read article →</span></div></a>
+      <a class='entry rv' style="--d:.2s" href='/nervous-system-support'><div class="pic"><img src="/.netlify/images?url=/photos/craniosacral-therapy-nervous-system-regulation-london.jpg&amp;w=960&amp;q=80" srcset="/.netlify/images?url=/photos/craniosacral-therapy-nervous-system-regulation-london.jpg&amp;w=480&amp;q=80 1x, /.netlify/images?url=/photos/craniosacral-therapy-nervous-system-regulation-london.jpg&amp;w=960&amp;q=80 2x" alt="Nervous system support craniosacral therapy London" width="480" height="600" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/craniosacral-therapy-nervous-system-regulation-london.jpg'"></div><div class="txt"><span class="tag c-violet">Nervous System</span><h3>Five Signs Your Nervous System Needs Support</h3><p>Constant overwhelm, difficulty sleeping, jaw clenching, emotional reactivity. Your nervous system might be dysregulated. Here's what to look for, and what helps.</p><span class="more">Read article →</span></div></a>
     </div>
-    <div class="blog-grid fi">
-      <article class="blog-card">
-        <div class="blog-card-img"><img src="/.netlify/images?url=/photos/craniosacral-therapy-session-london.jpg&amp;w=960&amp;q=80" srcset="/.netlify/images?url=/photos/craniosacral-therapy-session-london.jpg&amp;w=480&amp;q=80 1x, /.netlify/images?url=/photos/craniosacral-therapy-session-london.jpg&amp;w=960&amp;q=80 2x" alt="Craniosacral therapy session London" width="480" height="320" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/craniosacral-therapy-session-london.jpg'"></div>
-        <div class="blog-card-body">
-          <span class="blog-tag">Craniosacral Therapy</span>
-          <h3>What Is Craniosacral Therapy? A Guide for First-Timers</h3>
-          <p>Curious but uncertain? This is where to start. A clear, honest introduction to what CST is, what a session involves, and who it's for.</p>
-          <a class='blog-link' href='/what-is-craniosacral-therapy'>Read article</a>
-        </div>
-      </article>
-      <article class="blog-card">
-        <div class="blog-card-img"><img src="/.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=960&amp;q=80" srcset="/.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=480&amp;q=80 1x, /.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=960&amp;q=80 2x" alt="Fascial unwinding session London" width="480" height="320" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/fascia-unwinding-session-london.jpg'"></div>
-        <div class="blog-card-body">
-          <span class="blog-tag">Fascial Unwinding</span>
-          <h3>What Is Fascial Unwinding and Why Does It Matter?</h3>
-          <p>Your fascia is the body's connective intelligence. This article explores what it is, how it holds tension and trauma, and why releasing it changes everything.</p>
-          <a class='blog-link' href='/what-is-fascial-unwinding'>Read article</a>
-        </div>
-      </article>
-      <article class="blog-card">
-        <div class="blog-card-img"><img src="/.netlify/images?url=/photos/craniosacral-therapy-nervous-system-regulation-london.jpg&amp;w=960&amp;q=80" srcset="/.netlify/images?url=/photos/craniosacral-therapy-nervous-system-regulation-london.jpg&amp;w=480&amp;q=80 1x, /.netlify/images?url=/photos/craniosacral-therapy-nervous-system-regulation-london.jpg&amp;w=960&amp;q=80 2x" alt="Nervous system support craniosacral therapy London" width="480" height="320" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/craniosacral-therapy-nervous-system-regulation-london.jpg'"></div>
-        <div class="blog-card-body">
-          <span class="blog-tag">Nervous System</span>
-          <h3>Five Signs Your Nervous System Needs Support</h3>
-          <p>Constant overwhelm, difficulty sleeping, jaw clenching, emotional reactivity. Your nervous system might be dysregulated. Here's what to look for, and what helps.</p>
-          <a class='blog-link' href='/nervous-system-support'>Read article</a>
-        </div>
-      </article>
+    <div class="rv" style="margin-top:3rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center" id="faq">
+      <p style="color:var(--dark-mute);margin-right:.6rem">Have questions? Everything you need to know about sessions, what to expect, pricing, and whether craniosacral therapy is right for you.</p>
+      <a class='ghost' href='/faq'>Read the FAQ <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
-<!-- CTA -->
-<div class="h-bookcta">
-  <div class="h-bookcta-in fi">
-    <h2>Ready to book?</h2>
-    <div class="rule" style="margin:1.2rem auto"></div>
-    <p class="bt" style="text-align:center;margin:0 auto 1.5rem">Send me an email or WhatsApp message and I'll let you know my current availability. No commitment needed, just say hello.</p>
-    <p class="cline">Email: <a href="/contact#enquiry">phoenix@tanner.me</a></p>
-    <p class="cline" style="margin-bottom:2rem">WhatsApp: <a href="https://wa.me/447501827069?text=Hello%20Phoenix" target="_blank" rel="noopener">+44 7501 827069</a></p>
-    <a class='btn btn-s' href='/contact'>Get in Touch</a>
+
+<section class="sec closing" data-scale="room" aria-labelledby="book-h">
+  <div class="field" data-field="closing" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="tag rv">Ready to book?</span>
+    <h2 class="display rv" id="book-h">Come and feel it <em>for yourself</em></h2>
+    <p class="lede rv">Send me an email or WhatsApp message and I'll let you know my current availability. No commitment needed, just say hello.</p>
+    <div class="cta-row rv"><a class='pill' href='/contact'>Get in Touch <span class="ar" aria-hidden="true">→</span></a></div>
+    <div class="contact-lines rv"><span>Email: <a href="/contact#enquiry">phoenix@tanner.me</a></span><span>WhatsApp: <a href="https://wa.me/447501827069?text=Hello%20Phoenix" target="_blank" rel="noopener">+44 7501 827069</a></span></div>
   </div>
-</div>
-<!-- LOCATIONS -->
-<section class="h-loc" aria-labelledby="loc-h">
-  <div class="h-loc-in">
-    <div class="fi">
-      <span class="eyebrow">Where to Find Me</span>
-      <h2 class="dsp" id="loc-h">Two locations across London</h2>
-      <p class="bt">Sessions offered on a flexible schedule in Waterloo and Bethnal Green. Get in touch and we'll find a time that suits.</p>
-    </div>
-    <div class="loc-grid fi">
-      <div class="loc-card">
-        <h3><a href="/waterloo" style="color:inherit">Waterloo</a></h3>
+</section>
+
+<section class="sec room" data-scale="room" aria-labelledby="loc-h">
+  <div class="wrap">
+    <span class="tag c-rose rv">Where to Find Me</span>
+    <h2 class="display rv" id="loc-h">Two locations <em>across London</em></h2>
+    <p class="lede rv">Sessions offered on a flexible schedule in Waterloo and Bethnal Green. Get in touch and we'll find a time that suits.</p>
+    <div class="places">
+      <div class="place rv">
+        <h3><a href="/waterloo">Waterloo →</a></h3>
         <p><strong>Breathe London Wellbeing</strong></p>
-        <p>34 Colombo St, London SE1 8DP</p>
-        <p style="margin-top:.5rem;font-size:.8rem;color:var(--light)">10 min walk from Waterloo station</p>
-        <div class="map-w"><iframe src="https://maps-api-ssl.google.com/maps?hl=en-US&ll=51.505475,-0.105536&output=embed&q=51.505452,-0.105477&z=16" loading="lazy" title="Waterloo location"></iframe></div>
+        <p>34 Colombo St, London SE1 8DP · 10 min walk from Waterloo station</p>
+        <div class="map"><iframe src="https://maps-api-ssl.google.com/maps?hl=en-US&ll=51.505475,-0.105536&output=embed&q=51.505452,-0.105477&z=16" loading="lazy" title="Waterloo location"></iframe></div>
       </div>
-      <div class="loc-card">
+      <div class="place rv" style="--d:.1s">
         <h3>Bethnal Green</h3>
         <p><strong>Low Cost Community Clinic</strong></p>
-        <p>279 Cambridge Heath Rd, London E2 0EL</p>
-        <p style="margin-top:.5rem;font-size:.8rem;color:var(--light)">Near Bethnal Green station</p>
-        <div class="map-w"><iframe src="https://maps-api-ssl.google.com/maps?hl=en-US&ll=51.526471,-0.055801&output=embed&q=51.526487,-0.055788&z=16" loading="lazy" title="Bethnal Green location"></iframe></div>
+        <p>279 Cambridge Heath Rd, London E2 0EL · Near Bethnal Green station</p>
+        <div class="map"><iframe src="https://maps-api-ssl.google.com/maps?hl=en-US&ll=51.526471,-0.055801&output=embed&q=51.526487,-0.055788&z=16" loading="lazy" title="Bethnal Green location"></iframe></div>
       </div>
     </div>
   </div>
@@ -681,20 +390,6 @@ document.getElementById('yr').textContent=new Date().getFullYear();
 const burger=document.getElementById('navBurger'),links=document.getElementById('navLinks');
 burger.addEventListener('click',()=>{const o=links.classList.toggle('open');burger.classList.toggle('open',o);burger.setAttribute('aria-expanded',o);});
 links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');burger.classList.remove('open');burger.setAttribute('aria-expanded',false);}));
-const nvi=document.querySelector('nav.nav-immersive');
-if(nvi){const mediaEl=document.querySelector('.hero-media');let A=220,B=640;
-  const cl=t=>Math.min(1,Math.max(0,t)),ss=t=>t*t*(3-2*t);
-  const measure=()=>{const h=mediaEl?mediaEl.getBoundingClientRect().height:innerHeight;A=h*.55;B=h*.78;};
-  const paint=()=>{const r=cl((window.scrollY-A)/(B-A));
-    nvi.style.setProperty('--navp',ss(r).toFixed(4));
-    nvi.style.setProperty('--navt',ss(cl((r-.40)/.08)).toFixed(4));
-    nvi.style.setProperty('--navs',(1-ss(cl((r-.88)/.12))).toFixed(4));
-    nvi.classList.toggle('solid',r>.5);};
-  measure();paint();
-  addEventListener('scroll',paint,{passive:true});
-  addEventListener('resize',()=>{measure();paint();},{passive:true});}
-const io=new IntersectionObserver((entries)=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('v'),i*70);io.unobserve(e.target);}});},{threshold:0.08});
-document.querySelectorAll('.fi').forEach(el=>io.observe(el));
 </script>
 <!-- Pre-warm the booking assistant so it's ready when visitors navigate to the contact
      page. It's a performance nicety, not something the visitor asked for on this page,
@@ -706,6 +401,6 @@ document.querySelectorAll('.fi').forEach(el=>io.observe(el));
      confirmed booking. -->
 <script defer src="/assets/consent.js"></script>
 <script defer src="/assets/track.js"></script>
-<script defer src="/assets/nature.js"></script>
+<script defer src="/assets/atlas.js"></script>
 </body>
 </html>
