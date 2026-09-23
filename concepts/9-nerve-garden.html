@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept 9 · Nerve Garden</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Franklin:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Concept 9 — Nerve Garden.
+   From the drawn nervous system on board two (red and green nerves on pink,
+   branching like roots), the arteries in the body scan and the glowing
+   ribcage. Nerves grow out of the photo like mycelium, and small lights —
+   signals — travel along them. Move the cursor and new nerves reach toward
+   it; tap and a signal travels home. */
+:root{--blush:#f7d5cb;--pale:#fbe9e2;--crimson:#c42a3c;--teal:#1f8f7a;--ink:#2a1d22;--mute:#7a5f63;}
+body{background:var(--blush);color:var(--ink);font-family:'Libre Franklin',sans-serif;font-weight:300;font-size:17px;line-height:1.75;}
+.cs{font-family:'Libre Caslon Display',Georgia,serif;font-weight:400;}
+.nv{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;}
+.nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:1.6rem 6vw;}
+.logo{font-family:'Libre Caslon Display',serif;font-size:1.2rem;text-decoration:none;}
+.links{display:flex;gap:1.8rem;font-size:.86rem;letter-spacing:.05em;}
+.links a{text-decoration:none;color:var(--mute);}
+.sig{position:relative;display:inline-block;padding:.9rem 1.8rem;border-radius:999px;text-decoration:none;color:var(--pale);background:var(--crimson);font-weight:400;font-size:.92rem;letter-spacing:.03em;overflow:hidden;transition:background .5s;}
+.sig::after{content:'';position:absolute;top:0;bottom:0;left:-40%;width:30%;background:linear-gradient(90deg,transparent,rgba(255,240,230,.55),transparent);transform:skewX(-20deg);transition:left 0s;}
+.sig:hover::after{left:120%;transition:left .9s ease;}
+.sig.teal{background:var(--teal);}
+.sig.soft{background:rgba(251,233,226,.75);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(42,29,34,.2);}
+
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4vw;padding:7rem 6vw 5rem;overflow:hidden;touch-action:pan-y;}
+.hero .copy{position:relative;z-index:2;max-width:33rem;}
+.eyebrow{font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);}
+h1{font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(2.7rem,5.4vw,5.1rem);line-height:1.02;margin:1rem 0 1.4rem;}
+h1 em{color:var(--crimson);}
+.lede{color:var(--mute);margin-bottom:2rem;max-width:28em;}
+.ctas{display:flex;gap:.9rem;flex-wrap:wrap;}
+.hint{margin-top:2rem;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);}
+.soma{position:relative;z-index:0;justify-self:center;width:min(440px,78vw);aspect-ratio:1;}
+.soma img{width:100%;height:100%;object-fit:cover;border-radius:50%;
+  -webkit-mask-image:radial-gradient(circle,#000 50%,transparent 70%);mask-image:radial-gradient(circle,#000 50%,transparent 70%);}
+.hero .nv{z-index:1;}
+
+.sec{position:relative;padding:9rem 6vw;}
+h2{font-family:'Libre Caslon Display',serif;font-weight:400;font-size:clamp(2.3rem,4.4vw,3.8rem);line-height:1.06;margin:1rem 0 1.4rem;}
+h2 em{color:var(--crimson);}
+.two{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center;}
+.two p{color:var(--mute);margin-bottom:1rem;}
+.rooted{position:relative;}
+.rooted img{width:100%;aspect-ratio:4/5;object-fit:cover;
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);}
+.rooted svg{position:absolute;inset:-12%;width:124%;height:124%;overflow:visible;pointer-events:none;}
+.grow path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 3.2s cubic-bezier(.3,.6,.2,1);}
+.in .grow path,.grow.in path{stroke-dashoffset:0;}
+
+.cells{max-width:1100px;margin:3.5rem auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;}
+.cell{position:relative;padding:2rem 1.8rem 1.8rem;border-radius:36px;background:rgba(251,233,226,.65);overflow:hidden;isolation:isolate;}
+.cell svg{position:absolute;right:-10px;bottom:-10px;width:140px;height:140px;z-index:-1;opacity:.8;}
+.cell h3{font-family:'Libre Caslon Display',serif;font-weight:400;font-size:1.45rem;line-height:1.2;}
+.cell p{color:var(--mute);font-size:.93rem;margin-top:.4rem;max-width:17em;}
+
+.dark{background:var(--ink);color:var(--pale);min-height:90vh;display:grid;place-items:center;overflow:hidden;
+  -webkit-mask-image:linear-gradient(transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(transparent,#000 9%,#000 91%,transparent);}
+.dark blockquote{position:relative;z-index:2;max-width:20em;text-align:center;font-family:'Libre Caslon Display',serif;font-size:clamp(1.7rem,3.2vw,2.7rem);line-height:1.3;}
+.dark cite{display:block;margin-top:1.4rem;font-family:'Libre Franklin',sans-serif;font-style:normal;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;opacity:.7;}
+
+.prices{max-width:1000px;margin:3rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.price{position:relative;padding:3rem 2.6rem;border-radius:40px;background:rgba(251,233,226,.7);}
+.price h3{font-family:'Libre Caslon Display',serif;font-weight:400;font-size:1.8rem;}
+.amt{font-family:'Libre Caslon Display',serif;font-size:3.8rem;line-height:1.1;margin:.3rem 0;}
+.price p{color:var(--mute);margin-bottom:1.4rem;}
+@media (max-width:900px){
+  .hero,.two,.prices{grid-template-columns:1fr;}
+  .cells{grid-template-columns:1fr 1fr;}
+  .soma{order:-1;width:min(300px,70vw);}
+  .hero{padding-top:6rem;}
+  .links{display:none;}
+}
+@media (max-width:560px){.cells{grid-template-columns:1fr;}}
+</style>
+</head>
+<body data-concept="9">
+<header class="nav">
+  <a class="logo" href="#">Craniosacral Therapy London</a>
+  <nav class="links"><a href="#">Waterloo</a><a href="#">Low Cost CST</a><a href="#">Journal</a><a href="#">FAQ</a></nav>
+  <a class="sig" href="#">Book</a>
+</header>
+
+<section class="hero" id="hero">
+  <div class="copy" data-block>
+    <span class="eyebrow" data-rv>London · Bethnal Green &amp; Waterloo</span>
+    <h1 data-rv style="--d:.1s">Craniosacral therapy <em>&amp; fascial unwinding</em> in London</h1>
+    <p class="lede" data-rv style="--d:.2s">Gentle, restorative sessions with Phoenix, CSTA registered. Quiet, listening touch that helps your nervous system come out of high alert.</p>
+    <div class="ctas" data-rv style="--d:.3s"><a class="sig" href="#">Book a session</a><a class="sig soft" href="#">Low cost clinic</a></div>
+    <p class="hint" data-rv style="--d:.5s">Move and the nerves reach for you · tap to send a signal</p>
+  </div>
+  <figure class="soma" id="soma">
+    <img src="/.netlify/images?url=/photos/gentle-touch-therapy-session-craniosacral-therapy.jpg&amp;w=900&amp;q=80" alt="Phoenix with a hand resting just above a client during a gentle session" style="object-position:58% 40%" onerror="this.onerror=null;this.src='/photos/gentle-touch-therapy-session-craniosacral-therapy.jpg'">
+  </figure>
+</section>
+
+<section class="sec">
+  <div class="two">
+    <figure class="rooted" data-rv>
+      <img src="/.netlify/images?url=/photos/craniosacral-therapy-waterloo-london.jpg&amp;w=1000&amp;q=80" alt="Craniosacral therapy session at the Waterloo clinic" loading="lazy" style="object-position:50% 50%" onerror="this.onerror=null;this.src='/photos/craniosacral-therapy-waterloo-london.jpg'">
+      <svg class="grow" id="rootSvg" viewBox="0 0 124 124" preserveAspectRatio="none" aria-hidden="true"></svg>
+    </figure>
+    <div data-rv style="--d:.1s">
+      <span class="eyebrow">About the practice</span>
+      <h2>Calm, <em>all the way through</em></h2>
+      <p>Craniosacral therapy is a gentle yet powerful hands-on approach that supports the body's natural ability to release tension, restore balance, and heal. It helps shift the nervous system into a parasympathetic state, where rest, recovery and repair happen.</p>
+      <p>Using light touch and deep presence, I create a safe space for your system to unwind and return to flow.</p>
+      <a class="sig" href="#" style="margin-top:1rem">Book a session</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:2rem">
+  <div style="text-align:center" data-rv><span class="eyebrow">Who this is for</span><h2>What people <em>bring</em></h2></div>
+  <div class="cells">
+    <div class="cell" data-rv><h3>Migraines &amp; headaches</h3><p>Gentle attention to the cranial bones and membranes.</p></div>
+    <div class="cell" data-rv style="--d:.08s"><h3>Anxiety &amp; stress</h3><p>Time for the nervous system to come out of high alert.</p></div>
+    <div class="cell" data-rv style="--d:.16s"><h3>Burnout &amp; fatigue</h3><p>Unhurried space to rest properly.</p></div>
+    <div class="cell" data-rv><h3>Jaw tension</h3><p>Quiet work where tension is held unnoticed.</p></div>
+    <div class="cell" data-rv style="--d:.08s"><h3>Trauma &amp; PTSD</h3><p>Slowly, at your pace, as your system settles.</p></div>
+    <div class="cell" data-rv style="--d:.16s"><h3>Insomnia</h3><p>Helping an overactive system wind down.</p></div>
+  </div>
+</section>
+
+<section class="sec dark" id="dark">
+  <blockquote data-block>“I felt so held that the tension I brought in had almost completely gone. I left feeling calmer and more present than I have in months.”<cite>Geebs</cite></blockquote>
+</section>
+
+<section class="sec">
+  <div style="text-align:center" data-rv><span class="eyebrow">Session rates</span><h2>Same care, <em>two ways to come</em></h2></div>
+  <div class="prices">
+    <div class="price" data-rv><span class="eyebrow">Waterloo, SE1</span><h3>Individual session</h3><div class="amt">£80</div><p>60 minutes at Breathe London Wellbeing, ten minutes from Waterloo station.</p><a class="sig" href="#">Book this</a></div>
+    <div class="price" data-rv style="--d:.1s"><span class="eyebrow">Bethnal Green, E2</span><h3>Low cost clinic</h3><div class="amt">£30–60</div><p>The same 60 minutes on a sliding scale. You pick your fee; no proof needed.</p><a class="sig teal" href="#">Learn more</a></div>
+  </div>
+</section>
+<p class="cx-foot">Concept preview · Nerve Garden · inspired by the drawn nervous system, body-scan arteries and glowing ribcage pins</p>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+  "use strict";
+  var TAU = Math.PI * 2;
+
+  // small static nerve trees (SVG) for the about photo and the condition cards;
+  // they draw themselves in when they scroll into view
+  function tree(r, x, y, a, len, w, depth, cols, out) {
+    var d = "M" + x.toFixed(1) + " " + y.toFixed(1);
+    for (var s = 0; s < len; s++) {
+      a += (r() - 0.5) * 0.5; x += Math.cos(a) * 1.6; y += Math.sin(a) * 1.6; d += "L" + x.toFixed(1) + " " + y.toFixed(1);
+      if (depth < 4 && r() < 0.09) tree(r, x, y, a + (r() < 0.5 ? -1 : 1) * (0.4 + r() * 0.5), len * 0.6, w * 0.65, depth + 1, cols, out);
+    }
+    out.push("<path pathLength='1' d='" + d + "' fill='none' stroke='" + cols[depth % cols.length] + "' stroke-width='" + w.toFixed(2) + "' stroke-linecap='round'/>");
+  }
+  (function () {
+    var r = C.rng(17), out = [];
+    for (var i = 0; i < 16; i++) { var a = i / 16 * TAU; tree(r, 62 + Math.cos(a) * 40, 62 + Math.sin(a) * 48, a + (r() - 0.5) * 0.4, 10 + r() * 12, 0.28 + r() * 0.3, 0, i % 2 ? ["#1f8f7a", "#c42a3c"] : ["#c42a3c", "#1f8f7a"], out); }
+    document.getElementById("rootSvg").innerHTML = out.join("");
+  })();
+  Array.prototype.forEach.call(document.querySelectorAll(".cell"), function (c, k) {
+    var r = C.rng(40 + k), out = [];
+    for (var i = 0; i < 3; i++) tree(r, 120 + r() * 10, 130, -Math.PI / 2 - 0.5 - r() * 0.9, 34 + r() * 20, 1.6, 0, k % 2 ? ["#1f8f7a", "#c42a3c"] : ["#c42a3c", "#1f8f7a"], out);
+    c.insertAdjacentHTML("afterbegin", "<svg class='grow' viewBox='0 0 140 140' aria-hidden='true'>" + out.join("") + "</svg>");
+  });
+
+  // ---- living nerves: tips wander outward, taper and fork, and are drawn
+  // once onto a canvas that keeps them; signals run root-to-tip on a second
+  // canvas above. Tips die at the edges and around text. ----
+  function nerves(host, o) {
+    var base = document.createElement("canvas"), top = document.createElement("canvas");
+    base.className = top.className = "nv"; base.setAttribute("aria-hidden", "true"); top.setAttribute("aria-hidden", "true");
+    host.insertBefore(top, host.firstChild); host.insertBefore(base, host.firstChild);
+    var W, H, bx, tx, CAP = 16000, X = new Float32Array(CAP), Y = new Float32Array(CAP), PA = new Int32Array(CAP), n = 0;
+    var tips = [], leaves = [], pulses = [], blocks = [], r = C.rng(o.seed || 1), started = 0;
+    function localRect(el) { var x = 0, y = 0, e = el; while (e && e !== host) { x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; } return { x: x, y: y, w: el.offsetWidth, h: el.offsetHeight }; }
+    function node(x, y, p) { if (n >= CAP) return -1; X[n] = x; Y[n] = y; PA[n] = p; return n++; }
+    function tip(i, a, w, life, col, goal) { tips.push({ i: i, a: a, h: a, w: w, life: life, col: col, s: r() * 100, g: goal || null }); }
+    function blocked(x, y) { for (var k = 0; k < blocks.length; k++) { var b = blocks[k]; if (x > b.x && x < b.x + b.w && y > b.y && y < b.y + b.h) return true; } return false; }
+    function size() {
+      var f = C.fitCanvas(base, 2); bx = f.ctx; W = f.w; H = f.h; tx = C.fitCanvas(top, 2).ctx;
+      bx.lineCap = tx.lineCap = "round"; bx.lineJoin = "round";
+      n = 0; tips = []; leaves = []; pulses = [];
+      blocks = Array.prototype.map.call(host.querySelectorAll("[data-block]"), function (el) { var q = localRect(el), p = 18; return { x: q.x - p, y: q.y - p, w: q.w + p * 2, h: q.h + p * 2 }; });
+      if (o.clearTop) blocks.push({ x: -10, y: -10, w: W + 20, h: o.clearTop + 10 });
+      o.plant(W, H, function (x, y, a, w, life, col) { var i = node(x, y, -1); if (i >= 0) tip(i, a, w, life, col); }, r, localRect);
+      started = performance.now();
+    }
+    function grow() {
+      for (var k = tips.length - 1; k >= 0; k--) {
+        var t = tips[k], x = X[t.i], y = Y[t.i];
+        // a steady heading that drifts slowly and falls a little, plus a gentle meander
+        t.h += (r() - 0.5) * 0.06 + Math.atan2(Math.sin(Math.PI / 2 - t.h), Math.cos(Math.PI / 2 - t.h)) * o.fall;
+        if (t.g && Math.hypot(t.g[0] - x, t.g[1] - y) < 14) t.life = 0;   // arrived: stop, don't circle
+        if (t.g) { var ga = Math.atan2(t.g[1] - y, t.g[0] - x); t.h += Math.atan2(Math.sin(ga - t.h), Math.cos(ga - t.h)) * 0.12; }
+        t.a = t.h + C.n2(x * 0.011 + t.s, y * 0.011) * 0.55;
+        var nx = x + Math.cos(t.a) * o.step, ny = y + Math.sin(t.a) * o.step;
+        var dead = nx < 0 || ny < 0 || nx > W || ny > H || blocked(nx, ny), j = dead ? -1 : node(nx, ny, t.i);
+        if (j < 0) { leaves.push(t.i); tips.splice(k, 1); continue; }
+        bx.strokeStyle = t.col; bx.lineWidth = t.w; bx.beginPath(); bx.moveTo(x, y); bx.lineTo(nx, ny); bx.stroke();
+        t.i = j; t.w *= o.taper; t.life--;
+        if (t.w > 0.45 && r() < o.fork) tip(j, t.a + (r() < 0.5 ? -1 : 1) * (0.3 + r() * 0.55), t.w * 0.7, t.life * 0.75, r() < 0.12 ? o.cols[Math.floor(r() * o.cols.length)] : t.col, t.g);
+        if (t.w < 0.28 || t.life <= 0) { leaves.push(j); tips.splice(k, 1); }
+      }
+    }
+    function send(from, inward) {
+      var path = []; for (var k = from; k >= 0 && path.length < 900; k = PA[k]) path.push(k);
+      if (!inward) path.reverse();
+      if (path.length > 6) pulses.push({ p: path, s: 0, v: 2.2 + r() * 2.2 });
+    }
+    function drawPulses() {
+      tx.clearRect(0, 0, W, H);
+      for (var k = pulses.length - 1; k >= 0; k--) {
+        var q = pulses[k]; q.s += q.v; var hd = Math.floor(q.s);
+        if (hd >= q.p.length) { pulses.splice(k, 1); continue; }
+        var tl = Math.max(0, hd - 14);
+        tx.beginPath(); tx.moveTo(X[q.p[tl]], Y[q.p[tl]]);
+        for (var i = tl + 1; i <= hd; i++) tx.lineTo(X[q.p[i]], Y[q.p[i]]);
+        tx.strokeStyle = o.glow; tx.lineWidth = 2.2; tx.globalAlpha = 0.55; tx.stroke(); tx.globalAlpha = 1;
+        var hx = X[q.p[hd]], hy = Y[q.p[hd]], g = tx.createRadialGradient(hx, hy, 0, hx, hy, 9);
+        g.addColorStop(0, o.core); g.addColorStop(0.35, o.glow); g.addColorStop(1, "rgba(255,255,255,0)");
+        tx.fillStyle = g; tx.beginPath(); tx.arc(hx, hy, 9, 0, TAU); tx.fill();
+      }
+    }
+    function nearest(x, y, lim) { var best = -1, bd = lim * lim; for (var k = 0; k < n; k += 2) { var dx = X[k] - x, dy = Y[k] - y, d = dx * dx + dy * dy; if (d < bd) { bd = d; best = k; } } return best; }
+    var lastReach = 0, reaching = 0;
+    host.addEventListener("pointermove", function (e) {
+      var now = performance.now(); if (now - lastReach < 70 || reaching > 36) return; lastReach = now;
+      var b = host.getBoundingClientRect(), x = e.clientX - b.left, y = e.clientY - b.top, k = nearest(x, y, 170);
+      if (k >= 0) { reaching++; tip(k, Math.atan2(y - Y[k], x - X[k]), 0.9 + r() * 0.5, 40 + r() * 30, o.cols[Math.floor(r() * o.cols.length)], [x, y]); }
+    }, { passive: true });
+    host.addEventListener("pointerdown", function (e) {
+      var b = host.getBoundingClientRect(), x = e.clientX - b.left, y = e.clientY - b.top, k = nearest(x, y, 220);
+      if (k < 0) return;
+      for (var i = 0; i < 3; i++) send(k, true);
+      for (i = 0; i < 5; i++) tip(k, r() * TAU, 1 + r() * 0.6, 30 + r() * 30, o.cols[i % o.cols.length]);
+    }, { passive: true });
+    var nextPulse = 0;
+    var lp = C.loop(function (now) {
+      for (var s = 0; s < o.speed; s++) grow();
+      if (!tips.length) reaching = 0;
+      if (leaves.length && now > nextPulse && now - started > 900) { send(leaves[Math.floor(r() * leaves.length)], false); nextPulse = now + o.every * (0.5 + r()); }
+      drawPulses();
+    });
+    function start() {
+      size();
+      if (C.reduce) { for (var i = 0; i < 600 && tips.length; i++) grow(); return; }
+      C.whileVisible(host, lp.start, lp.stop);
+      C.onResize(host, size);
+    }
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(start);
+  }
+
+  var CR = "rgba(196,42,60,.85)", TE = "rgba(31,143,122,.85)", IK = "rgba(42,29,34,.7)";
+  nerves(document.getElementById("hero"), {
+    seed: 4, clearTop: 90, step: 2.6, taper: 0.9945, fork: 0.028, fall: 0.004, speed: 2, every: 260, cols: [CR, TE, CR, TE, IK],
+    glow: "rgba(255,236,226,.95)", core: "#fff",
+    plant: function (W, H, add, r, rect) {
+      var s = rect(document.getElementById("soma")), cx = s.x + s.w / 2, cy = s.y + s.h / 2, R = s.w * 0.36;
+      for (var i = 0; i < 30; i++) { var a = i / 30 * TAU + r() * 0.15; add(cx + Math.cos(a) * R, cy + Math.sin(a) * R, a + (r() - 0.5) * 0.4, 1 + r() * 2.4, 220 + r() * 200, [CR, TE, CR, TE, IK][i % 5]); }
+      for (i = 0; i < 6; i++) add(W * (0.15 + i * 0.14), H + 1, -Math.PI / 2 + (r() - 0.5) * 0.6, 1.6 + r() * 1.4, 200 + r() * 120, i % 2 ? CR : TE);
+    }
+  });
+  nerves(document.getElementById("dark"), {
+    seed: 9, step: 2.6, taper: 0.995, fork: 0.03, fall: 0.0015, speed: 2, every: 180, cols: ["rgba(224,72,90,.85)", "rgba(43,179,154,.85)"],
+    glow: "rgba(255,210,200,.9)", core: "#fff",
+    plant: function (W, H, add, r) {
+      for (var i = 0; i < 18; i++) { var left = i % 2 === 0, y = H * (0.12 + r() * 0.76); add(left ? -1 : W + 1, y, (left ? 0 : Math.PI) + (r() - 0.5) * 0.7, 1.4 + r() * 1.8, 260 + r() * 160, i % 4 < 2 ? "rgba(224,72,90,.85)" : "rgba(43,179,154,.85)"); }
+    }
+  });
+})();
+</script>
+</body>
+</html>

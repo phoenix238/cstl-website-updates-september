@@ -1,5 +1,5 @@
 /**
- * Shared helpers for the five design concepts in /concepts/.
+ * Shared helpers for the design concepts in /concepts/.
  * Exposes window.C with: rng, noise (simplex 2D/3D), loop, whileVisible,
  * once, fitCanvas, paintMask (soft painted image edges) and the concept
  * switcher bar. Concept pages are previews only — they are noindex and
@@ -128,17 +128,19 @@
   }
 
   // the switcher between concepts
-  var NAMES = ["Mycelium Silk", "Marbled Watercolour", "Ripple Lines", "Soft Culture", "Aura"];
-  var FILES = ["1-mycelium-silk.html", "2-marbled-watercolour.html", "3-ripple-lines.html", "4-soft-culture.html", "5-aura.html"];
+  var NAMES = ["Mycelium Silk", "Marbled Watercolour", "Ripple Lines", "Soft Culture", "Aura",
+    "Body Heat", "Whorl", "Fluid Body", "Nerve Garden", "Spine of Light"];
+  var FILES = ["1-mycelium-silk.html", "2-marbled-watercolour.html", "3-ripple-lines.html", "4-soft-culture.html", "5-aura.html",
+    "6-body-heat.html", "7-whorl.html", "8-fluid-body.html", "9-nerve-garden.html", "10-spine-of-light.html"];
   function switcher() {
     var n = +doc.body.getAttribute("data-concept");
     if (!n) return;
     var bar = doc.createElement("nav");
     bar.className = "cx-bar"; bar.setAttribute("aria-label", "Concept switcher");
-    var prev = (n + 3) % 5, next = n % 5;
+    var N = FILES.length, prev = (n - 2 + N) % N, next = n % N;
     bar.innerHTML = "<a href='./' class='cx-all'>All concepts</a>" +
       "<a href='" + FILES[prev] + "' aria-label='Previous concept'>&larr;</a>" +
-      "<span><b>" + n + "/5</b> " + NAMES[n - 1] + "</span>" +
+      "<span><b>" + n + "/" + N + "</b> " + NAMES[n - 1] + "</span>" +
       "<a href='" + FILES[next] + "' aria-label='Next concept'>&rarr;</a>";
     doc.body.appendChild(bar);
   }

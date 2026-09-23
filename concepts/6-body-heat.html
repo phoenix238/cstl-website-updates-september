@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept 6 · Body Heat</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Hanken+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Concept 6 — Body Heat.
+   From the grainy thermal gradients on board two (the orange arcs, the
+   orange body, the heat-map hand, the sun on violet). The page is warm and
+   dark like a thermal camera; wherever the cursor or a finger goes it leaves
+   warmth that slowly spreads and cools. Photos show as heat, and the lens
+   under your hand reveals the real colour. Touch is the therapy, so touch
+   is the interaction. */
+:root{--night:#150907;--plum:#3a1230;--ember:#c2331c;--orange:#ee7a1c;--amber:#f7b53c;--cream:#fbeede;--violet:#4b1f74;--ink:#2a1410;}
+body{background:var(--night);color:var(--cream);font-family:'Hanken Grotesk',sans-serif;font-weight:300;font-size:17px;line-height:1.75;}
+/* fine film grain over everything — the board's grain, not old paper */
+body::after{content:'';position:fixed;inset:0;z-index:900;pointer-events:none;opacity:.16;mix-blend-mode:overlay;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.6 -.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+.gk{font-family:'Gloock',Georgia,serif;font-weight:400;}
+.nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:1.6rem 6vw;}
+.logo{font-family:'Gloock',serif;font-size:1.1rem;text-decoration:none;}
+.links{display:flex;gap:1.8rem;font-size:.86rem;letter-spacing:.06em;}
+.links a{text-decoration:none;opacity:.75;}
+.warm{display:inline-block;padding:.95rem 1.9rem;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:500;font-size:.92rem;letter-spacing:.03em;
+  background:radial-gradient(120% 180% at 30% 20%,var(--cream),var(--amber) 45%,var(--orange));box-shadow:0 0 40px -6px rgba(238,122,28,.55);transition:box-shadow .6s,transform .6s;}
+.warm:hover{box-shadow:0 0 60px 0 rgba(247,181,60,.65);transform:translateY(-2px);}
+.warm.ghost{background:rgba(251,238,222,.08);color:var(--cream);box-shadow:inset 0 0 0 1px rgba(251,238,222,.25);}
+
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.05fr .95fr;align-items:end;gap:4vw;padding:8rem 6vw 6rem;overflow:hidden;}
+.heat{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block;touch-action:pan-y;}
+.hero.nogl{background:radial-gradient(60% 50% at 70% 40%,var(--orange),transparent 70%),radial-gradient(70% 60% at 20% 80%,var(--ember),transparent 70%),var(--plum);}
+.hero > div{position:relative;z-index:1;}
+.eyebrow{font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;opacity:.75;}
+h1{font-family:'Gloock',serif;font-weight:400;font-size:clamp(2.7rem,5.6vw,5.4rem);line-height:1.02;margin:1rem 0 1.4rem;text-shadow:0 2px 40px rgba(21,9,7,.5);}
+h1 em{font-style:normal;color:var(--amber);}
+.lede{max-width:28em;opacity:.85;margin-bottom:2.2rem;}
+.ctas{display:flex;gap:.9rem;flex-wrap:wrap;}
+.hint{margin-top:2.4rem;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;opacity:.6;}
+
+/* the thermal lens: the photo is shown as heat, the lens reveals true colour */
+.lens{position:relative;justify-self:center;align-self:center;width:min(500px,86vw);aspect-ratio:4/5;cursor:none;
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);}
+.lens img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.lens .t{filter:url(#thermal);}
+.lens .r{--x:50%;--y:40%;--rr:120px;
+  -webkit-mask-image:radial-gradient(circle var(--rr) at var(--x) var(--y),#000 35%,transparent 100%);mask-image:radial-gradient(circle var(--rr) at var(--x) var(--y),#000 35%,transparent 100%);}
+
+.sec{position:relative;padding:9rem 6vw;}
+h2{font-family:'Gloock',serif;font-weight:400;font-size:clamp(2.2rem,4.4vw,3.8rem);line-height:1.08;margin:1rem 0 1.4rem;}
+h2 em{font-style:normal;color:var(--orange);}
+/* a warm grainy wash like the orange body pin */
+.dawn{background:radial-gradient(80% 90% at 80% 40%,var(--orange) 0,rgba(238,122,28,.0) 70%),radial-gradient(90% 90% at 10% 100%,var(--amber),transparent 70%),linear-gradient(180deg,var(--night),#f3c795 38%,#f6d7b3);color:var(--ink);}
+.dawn .eyebrow{opacity:.65;}
+.dawn h2 em{color:var(--ember);}
+.two{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center;}
+.two p{margin-bottom:1rem;opacity:.85;}
+.glowpic{position:relative;aspect-ratio:4/5;}
+.glowpic::before{content:'';position:absolute;inset:-12%;z-index:0;border-radius:50%;filter:blur(40px);background:radial-gradient(circle,var(--cream),var(--amber) 40%,transparent 70%);}
+.glowpic img{position:relative;width:100%;height:100%;object-fit:cover;
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);}
+
+/* heat spots: grainy suns on violet */
+.violet{background:radial-gradient(90% 60% at 50% 0,#6a2a86,transparent 70%),linear-gradient(#2a0f33,var(--violet) 60%,#2a0f33);}
+.spots{max-width:1100px;margin:3.5rem auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:3rem 2rem;}
+.spot{text-align:center;}
+.sun{width:150px;aspect-ratio:1;margin:0 auto 1.2rem;border-radius:50%;filter:blur(6px);transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter 1.2s;
+  background:radial-gradient(circle,var(--c1,#ff9a1f) 0,var(--c1,#ff9a1f) 42%,var(--c2,#e8467c) 62%,transparent 72%);}
+.spot:hover .sun{transform:scale(1.18);filter:blur(10px);}
+.spot h3{font-family:'Gloock',serif;font-weight:400;font-size:1.35rem;}
+.spot p{font-size:.92rem;opacity:.75;max-width:18em;margin:.3rem auto 0;}
+
+/* the quote sits on a slow warm wave (the orange wave pin) */
+.wave{min-height:80vh;display:grid;place-items:center;overflow:hidden;color:var(--ink);background:#f6dfc2;}
+.wave i{position:absolute;inset:-20%;filter:blur(50px);animation:roll 26s ease-in-out infinite alternate;
+  background:radial-gradient(40% 60% at 20% 50%,var(--orange),transparent 70%),radial-gradient(35% 55% at 78% 40%,rgba(194,51,28,.75),transparent 70%),radial-gradient(30% 45% at 55% 85%,var(--amber),transparent 70%);}
+@keyframes roll{to{transform:translate(6%,-4%) rotate(8deg) scale(1.08);}}
+.wave blockquote{position:relative;max-width:22em;text-align:center;font-family:'Gloock',serif;font-size:clamp(1.6rem,3.2vw,2.7rem);line-height:1.3;color:var(--ink);text-shadow:0 1px 24px rgba(251,238,222,.6);}
+.wave cite{display:block;margin-top:1.4rem;font-family:'Hanken Grotesk',sans-serif;font-style:normal;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;}
+
+.prices{max-width:1000px;margin:3.5rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;}
+.price{position:relative;padding:4.5rem 2.6rem 3rem;text-align:center;isolation:isolate;}
+.price::before{content:'';position:absolute;left:50%;top:50%;width:min(440px,100%);aspect-ratio:1;transform:translate(-50%,-50%);z-index:-1;border-radius:50%;filter:blur(24px);opacity:.9;
+  background:radial-gradient(circle,var(--c1) 0,var(--c1) 30%,var(--c2) 55%,transparent 70%);}
+.price h3{font-family:'Gloock',serif;font-weight:400;font-size:1.7rem;margin-top:.3rem;}
+.amt{font-family:'Gloock',serif;font-size:3.6rem;line-height:1.1;margin:.3rem 0;}
+.price p{max-width:20em;margin:0 auto 1.4rem;opacity:.85;font-size:.95rem;}
+@media (max-width:900px){
+  .hero,.two,.prices{grid-template-columns:1fr;}
+  .lens{order:-1;width:min(360px,80vw);}
+  .hero{align-items:center;padding-top:6rem;}
+  .spots{grid-template-columns:1fr 1fr;}
+  .links{display:none;}
+}
+@media (max-width:520px){.spots{grid-template-columns:1fr;}.sun{width:120px;}}
+</style>
+</head>
+<body data-concept="6">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- thermal gradient map: shadows go plum-black, mid-tones ember, highlights amber and cream -->
+  <filter id="thermal" color-interpolation-filters="sRGB">
+    <feColorMatrix type="saturate" values="0"/>
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues=".08 .3 .78 .95 .99 .99"/>
+      <feFuncG type="table" tableValues=".03 .06 .2 .46 .72 .94"/>
+      <feFuncB type="table" tableValues=".05 .17 .1 .1 .24 .86"/>
+    </feComponentTransfer>
+  </filter>
+</svg>
+<header class="nav">
+  <a class="logo" href="#">Craniosacral Therapy London</a>
+  <nav class="links"><a href="#">Waterloo</a><a href="#">Low Cost CST</a><a href="#">Journal</a><a href="#">FAQ</a></nav>
+  <a class="warm" href="#">Book</a>
+</header>
+
+<section class="hero" id="hero">
+  <canvas class="heat" id="heat" aria-hidden="true"></canvas>
+  <div>
+    <span class="eyebrow" data-rv>London · Bethnal Green &amp; Waterloo</span>
+    <h1 data-rv style="--d:.1s">Craniosacral therapy <em>&amp; fascial unwinding</em> in London</h1>
+    <p class="lede" data-rv style="--d:.2s">Gentle, restorative sessions with Phoenix, CSTA registered. Light touch, warm hands, and time for your whole system to soften.</p>
+    <div class="ctas" data-rv style="--d:.3s"><a class="warm" href="#">Book a session</a><a class="warm ghost" href="#">Low cost clinic</a></div>
+    <p class="hint" data-rv style="--d:.5s">Move your hand across the page — it leaves warmth</p>
+  </div>
+  <figure class="lens" id="lens" data-rv style="--d:.2s">
+    <img class="t" src="/.netlify/images?url=/photos/craniosacral-therapy-bethnal-green-london.jpg&amp;w=900&amp;q=80" alt="" aria-hidden="true" onerror="this.onerror=null;this.src='/photos/craniosacral-therapy-bethnal-green-london.jpg'">
+    <img class="r" id="lensR" src="/.netlify/images?url=/photos/craniosacral-therapy-bethnal-green-london.jpg&amp;w=900&amp;q=80" alt="Phoenix holding a client's head during a craniosacral therapy session in Bethnal Green" onerror="this.onerror=null;this.src='/photos/craniosacral-therapy-bethnal-green-london.jpg'">
+  </figure>
+</section>
+
+<section class="sec dawn">
+  <div class="two">
+    <figure class="glowpic" data-rv>
+      <img src="/.netlify/images?url=/photos/craniosacral-therapy-nervous-system-regulation-london.jpg&amp;w=1000&amp;q=80" alt="Craniosacral therapy for nervous system regulation" loading="lazy" style="object-position:40% 50%" onerror="this.onerror=null;this.src='/photos/craniosacral-therapy-nervous-system-regulation-london.jpg'">
+    </figure>
+    <div data-rv style="--d:.1s">
+      <span class="eyebrow">About the practice</span>
+      <h2>Where you're held, <em>you soften</em></h2>
+      <p>Craniosacral therapy is a gentle yet powerful hands-on approach that supports the body's natural ability to release tension, restore balance, and heal. It helps shift the nervous system into a parasympathetic state, where rest, recovery and repair happen.</p>
+      <p>Using light touch and deep presence, I create a safe space for your system to unwind and return to flow.</p>
+      <a class="warm" href="#" style="margin-top:1rem">Book a session</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec violet">
+  <div style="text-align:center" data-rv><span class="eyebrow">Who this is for</span><h2>What people <em>bring</em></h2></div>
+  <div class="spots">
+    <div class="spot" data-rv><div class="sun"></div><h3>Migraines &amp; headaches</h3><p>Gentle attention to the cranial bones and membranes.</p></div>
+    <div class="spot" data-rv style="--d:.08s"><div class="sun" style="--c1:#f7b53c;--c2:#ee7a1c"></div><h3>Anxiety &amp; stress</h3><p>Time for the nervous system to come out of high alert.</p></div>
+    <div class="spot" data-rv style="--d:.16s"><div class="sun" style="--c1:#fbeede;--c2:#f7b53c"></div><h3>Burnout &amp; fatigue</h3><p>Unhurried space to rest properly.</p></div>
+    <div class="spot" data-rv><div class="sun" style="--c1:#ee7a1c;--c2:#c2331c"></div><h3>Jaw tension</h3><p>Quiet work where tension is held unnoticed.</p></div>
+    <div class="spot" data-rv style="--d:.08s"><div class="sun" style="--c1:#e8467c;--c2:#7a2a86"></div><h3>Trauma &amp; PTSD</h3><p>Slowly, at your pace, as your system settles.</p></div>
+    <div class="spot" data-rv style="--d:.16s"><div class="sun" style="--c1:#f7b53c;--c2:#e8467c"></div><h3>Insomnia</h3><p>Helping an overactive system wind down.</p></div>
+  </div>
+</section>
+
+<section class="sec wave">
+  <i aria-hidden="true"></i>
+  <blockquote data-rv>“I felt so held that the tension I brought in had almost completely gone. I left feeling calmer and more present than I have in months.”<cite>Geebs</cite></blockquote>
+</section>
+
+<section class="sec">
+  <div style="text-align:center" data-rv><span class="eyebrow">Session rates</span><h2>Same care, <em>two ways to come</em></h2></div>
+  <div class="prices">
+    <div class="price" data-rv style="--c1:#c2331c;--c2:#3a1230"><span class="eyebrow">Waterloo, SE1</span><h3>Individual session</h3><div class="amt">£80</div><p>60 minutes at Breathe London Wellbeing, ten minutes from Waterloo station.</p><a class="warm" href="#">Book this</a></div>
+    <div class="price" data-rv style="--c1:#7a2a86;--c2:#2a0f33;--d:.1s"><span class="eyebrow">Bethnal Green, E2</span><h3>Low cost clinic</h3><div class="amt">£30–60</div><p>The same 60 minutes on a sliding scale. You pick your fee; no proof needed.</p><a class="warm ghost" href="#">Learn more</a></div>
+  </div>
+</section>
+<p class="cx-foot">Concept preview · Body Heat · inspired by the grainy thermal gradients, orange body and sun-on-violet pins</p>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+  "use strict";
+  var hero = document.getElementById("hero"), cv = document.getElementById("heat");
+
+  // ---- the heat field: a small grid of warmth that spreads and cools, drawn
+  // through a thermal palette with drifting warp and film grain in WebGL ----
+  var gl = cv.getContext("webgl", { antialias: false, premultipliedAlpha: false });
+  if (!gl) { hero.classList.add("nogl"); } else {
+    var VS = "attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0.,1.);}";
+    var FS = [
+      "precision mediump float;uniform sampler2D uH;uniform float uT;uniform vec2 uR;varying vec2 v;",
+      "float hash(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}",
+      "float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+vec2(1,1)),f.x),f.y);}",
+      "float fbm(vec2 p){float s=0.,a=.5;for(int i=0;i<4;i++){s+=a*noise(p);p=p*2.03+7.1;a*=.5;}return s;}",
+      "vec3 pal(float x){x=clamp(x,0.,1.);",
+      " vec3 c0=vec3(.07,.03,.03),c1=vec3(.24,.07,.17),c2=vec3(.70,.17,.10),c3=vec3(.93,.46,.11),c4=vec3(.97,.71,.26),c5=vec3(.99,.93,.84);",
+      " if(x<.22)return mix(c0,c1,x/.22);if(x<.44)return mix(c1,c2,(x-.22)/.22);if(x<.64)return mix(c2,c3,(x-.44)/.2);if(x<.84)return mix(c3,c4,(x-.64)/.2);return mix(c4,c5,(x-.84)/.16);}",
+      "void main(){vec2 a=vec2(uR.x/uR.y,1.);vec2 q=v*a*1.6;",
+      " vec2 w=vec2(fbm(q+vec2(0.,uT*.04)),fbm(q+vec2(5.2,-uT*.035)))-.5;",
+      " float h=texture2D(uH,vec2(v.x,1.-v.y)+w*.05).r;",
+      " float amb=fbm(q*.9+w*1.8+vec2(uT*.025,uT*.01));",
+      " float x=h*.85+amb*.5-.06;",
+      " x+=(hash(floor(gl_FragCoord.xy)+fract(uT*7.)*91.)-.5)*.085;",
+      " gl_FragColor=vec4(pal(x),1.);}"
+    ].join("\n");
+    function sh(t, s) { var o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); return o; }
+    var pr = gl.createProgram(); gl.attachShader(pr, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(pr);
+    if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) { hero.classList.add("nogl"); gl = null; }
+  }
+  if (gl) {
+    gl.useProgram(pr);
+    var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(pr, "p"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var uT = gl.getUniformLocation(pr, "uT"), uR = gl.getUniformLocation(pr, "uR");
+    var tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+
+    var GW = 120, GH = 80, H, T, B, W = 1, Hh = 1;
+    function size() {
+      var dpr = Math.min(devicePixelRatio || 1, 1.5); W = cv.clientWidth; Hh = cv.clientHeight;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(Hh * dpr); gl.viewport(0, 0, cv.width, cv.height);
+      GH = Math.max(40, Math.min(200, Math.round(GW * Hh / W)));
+      H = new Float32Array(GW * GH); T = new Float32Array(GW * GH); B = new Uint8Array(GW * GH);
+      for (var i = 0; i < 260; i++) step(i * 16);
+    }
+    function add(cx, cy, r, s) {
+      var x0 = Math.max(1, Math.floor(cx - r * 2)), x1 = Math.min(GW - 2, Math.ceil(cx + r * 2)), y0 = Math.max(1, Math.floor(cy - r * 2)), y1 = Math.min(GH - 2, Math.ceil(cy + r * 2)), ir = 1 / (r * r);
+      for (var y = y0; y <= y1; y++) for (var x = x0; x <= x1; x++) { var dx = x - cx, dy = y - cy, i = y * GW + x; H[i] = Math.min(1.3, H[i] + s * Math.exp(-(dx * dx + dy * dy) * ir)); }
+    }
+    var px = -1, py = -1, pv = 0;
+    function step(t) {
+      // three slow warm bodies drift through the dark, like figures on a thermal camera
+      for (var k = 0; k < 3; k++) add(GW * (0.5 + 0.4 * Math.sin(t * 0.00009 * (k + 1) + k * 2.1)), GH * (0.5 + 0.34 * Math.cos(t * 0.00012 * (k + 1.3) + k)), GH * (0.2 + 0.06 * k), 0.0085);
+      if (pv > 0.01) { add(px, py, GH * 0.075, 0.11 * Math.min(1, pv)); pv *= 0.9; }
+      for (var y = 1; y < GH - 1; y++) for (var x = 1; x < GW - 1; x++) { var i = y * GW + x; T[i] = (H[i] * 0.52 + (H[i - 1] + H[i + 1] + H[i - GW] + H[i + GW]) * 0.12) * 0.991; }
+      var s = H; H = T; T = s;
+    }
+    size(); C.onResize(cv, size);
+    hero.addEventListener("pointermove", function (e) {
+      var r = cv.getBoundingClientRect(), nx = (e.clientX - r.left) / r.width * GW, ny = (e.clientY - r.top) / r.height * GH;
+      if (px >= 0) pv = Math.min(1.2, pv + Math.hypot(nx - px, ny - py) * 0.25); else pv = 0.4;
+      px = nx; py = ny;
+    }, { passive: true });
+    hero.addEventListener("pointerdown", function (e) { var r = cv.getBoundingClientRect(); px = (e.clientX - r.left) / r.width * GW; py = (e.clientY - r.top) / r.height * GH; pv = 1.2; }, { passive: true });
+
+    var t0 = performance.now();
+    function draw(now) {
+      var t = (now - t0) / 1000;
+      step(now);
+      for (var i = 0; i < H.length; i++) { var v = H[i] * 196; B[i] = v > 255 ? 255 : v; }
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, GW, GH, 0, gl.LUMINANCE, gl.UNSIGNED_BYTE, B);
+      gl.uniform1f(uT, t); gl.uniform2f(uR, cv.width, cv.height);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    }
+    var lp = C.loop(draw);
+    draw(performance.now());
+    C.whileVisible(hero, lp.start, lp.stop);
+  }
+
+  // ---- the thermal lens: follows the pointer over the photo, and wanders
+  // on its own (along the hands) when nobody is touching ----
+  var lens = document.getElementById("lens"), real = document.getElementById("lensR");
+  var lx = 50, ly = 40, tx = 50, ty = 40, over = false, rr = 24, trr = 24;
+  lens.addEventListener("pointerenter", function () { over = true; trr = 30; });
+  lens.addEventListener("pointerleave", function () { over = false; trr = 24; });
+  lens.addEventListener("pointermove", function (e) { var r = lens.getBoundingClientRect(); tx = (e.clientX - r.left) / r.width * 100; ty = (e.clientY - r.top) / r.height * 100; });
+  var ll = C.loop(function (now) {
+    if (!over) { var s = now * 0.00025; tx = 48 + Math.sin(s) * 16; ty = 44 + Math.sin(s * 1.7) * 12; }
+    lx += (tx - lx) * 0.07; ly += (ty - ly) * 0.07; rr += (trr - rr) * 0.05;
+    real.style.setProperty("--x", lx.toFixed(2) + "%"); real.style.setProperty("--y", ly.toFixed(2) + "%"); real.style.setProperty("--rr", (rr / 100 * lens.clientWidth).toFixed(1) + "px");
+  });
+  C.whileVisible(lens, ll.start, ll.stop);
+})();
+</script>
+</body>
+</html>
