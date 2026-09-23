@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept 1 · Mycelium Silk</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Concept 1 — Mycelium Silk.
+   The "smoke" becomes silk: thousands of hand-drawn threads (hyphae, fascia)
+   flowing across warm paper in sepia and rose ink, drifting over the photos
+   so they sit inside the drawing. Your cursor stirs them. */
+:root{--paper:#f5eee6;--paper2:#efe5d9;--ink:#43352c;--mute:#7b6b60;--rose:#b2677a;--indigo:#4a5482;--sage:#8c9a7e;}
+body{background:var(--paper);color:var(--ink);font-family:'Jost',sans-serif;font-weight:300;font-size:17px;line-height:1.75;}
+.serif{font-family:'EB Garamond',Georgia,serif;}
+.nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:1.6rem 6vw;}
+.logo{font-family:'EB Garamond',serif;font-style:italic;font-size:1.25rem;text-decoration:none;}
+.links{display:flex;gap:1.8rem;font-size:.9rem;}
+.links a{text-decoration:none;color:var(--mute);}
+.links a:hover{color:var(--ink);}
+.wash{position:relative;isolation:isolate;display:inline-block;padding:1rem 2rem;text-decoration:none;color:#fff;font-weight:400;letter-spacing:.02em;}
+.wash::before{content:'';position:absolute;inset:-6px -10px;z-index:-1;background:radial-gradient(120% 140% at 30% 40%,#c07b8b,var(--rose) 45%,#8f4c5e);
+  -webkit-mask-image:var(--paint);mask-image:var(--paint);-webkit-mask-size:100% 100%;mask-size:100% 100%;transition:transform .5s;}
+.wash:hover::before{transform:scale(1.05) rotate(-1deg);}
+.wash.sage::before{background:radial-gradient(120% 140% at 30% 40%,#a4b095,var(--sage) 50%,#6f7d62);}
+.wash.ghost{color:var(--ink);}
+.wash.ghost::before{background:rgba(178,103,122,.16);}
+
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3vw;padding:7rem 6vw 4rem;overflow:hidden;}
+#silk{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;mix-blend-mode:multiply;}
+.hero-copy{position:relative;z-index:3;}
+.note{font-family:'EB Garamond',serif;font-style:italic;color:var(--rose);font-size:1.15rem;}
+h1{font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(2.8rem,6vw,5.6rem);line-height:1.02;letter-spacing:-.01em;margin:.6rem 0 1.4rem;}
+h1 em{color:var(--rose);}
+.lede{max-width:30em;color:var(--mute);font-size:1.08rem;margin-bottom:2.2rem;}
+.ctas{display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap;}
+.plain{color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(67,53,44,.3);padding-bottom:2px;}
+.hero-photo{position:relative;z-index:1;aspect-ratio:4/5;width:100%;max-width:560px;justify-self:end;}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:45% 50%;}
+
+.sec{position:relative;padding:8rem 6vw;}
+.brush{display:block;width:180px;height:14px;margin:.6rem 0 1.8rem;color:var(--rose);}
+h2{font-family:'EB Garamond',serif;font-weight:400;font-size:clamp(2.2rem,4.4vw,3.8rem);line-height:1.08;}
+h2 em{color:var(--rose);}
+.two{display:grid;grid-template-columns:.9fr 1.1fr;gap:6vw;align-items:center;max-width:1200px;margin:0 auto;}
+.two p{color:var(--mute);margin-bottom:1rem;max-width:34em;}
+.photo{aspect-ratio:4/5;}
+.photo img{width:100%;height:100%;object-fit:cover;}
+
+.bring{max-width:1150px;margin:0 auto;}
+.bring-list{margin-top:3rem;display:grid;grid-template-columns:repeat(3,1fr);gap:2.6rem 3.4rem;}
+.bring-list h3{font-family:'EB Garamond',serif;font-weight:400;font-size:1.55rem;margin-bottom:.3rem;display:flex;gap:.7rem;align-items:baseline;}
+.bring-list h3::before{content:'';flex:none;width:9px;height:9px;border-radius:50% 45% 55% 40%;background:var(--rose);opacity:.7;transform:translateY(-3px);}
+.bring-list p{color:var(--mute);font-size:.94rem;}
+
+.trace{background:var(--paper2);}
+.trace-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:.8fr 1.2fr;gap:5vw;align-items:center;}
+.trace-pad{position:relative;aspect-ratio:5/4;background:#faf5ee;cursor:crosshair;touch-action:none;}
+.trace-pad canvas{position:absolute;inset:0;width:100%;height:100%;}
+.trace-hint{position:absolute;left:0;right:0;bottom:12%;text-align:center;font-family:'EB Garamond',serif;font-style:italic;color:var(--mute);pointer-events:none;transition:opacity .6s;}
+.clear{margin-top:1.4rem;background:none;border:0;font:inherit;color:var(--mute);cursor:pointer;border-bottom:1px solid rgba(67,53,44,.25);}
+
+.prices{max-width:1100px;margin:3rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+.price{position:relative;isolation:isolate;padding:3.4rem 3rem;}
+.price::before{content:'';position:absolute;inset:0;z-index:-1;-webkit-mask-image:var(--paint);mask-image:var(--paint);-webkit-mask-size:100% 100%;mask-size:100% 100%;}
+.price.a::before{background:radial-gradient(90% 90% at 40% 35%,rgba(178,103,122,.22),rgba(178,103,122,.1));}
+.price.b::before{background:radial-gradient(90% 90% at 40% 35%,rgba(140,154,126,.3),rgba(140,154,126,.12));}
+.price .where{font-family:'EB Garamond',serif;font-style:italic;color:var(--rose);}
+.price h3{font-family:'EB Garamond',serif;font-weight:400;font-size:1.9rem;}
+.amt{font-family:'EB Garamond',serif;font-size:3.6rem;line-height:1.1;margin:.6rem 0;}
+.price p{color:var(--mute);font-size:.94rem;margin-bottom:1.6rem;}
+.center{text-align:center;}
+@media (max-width:900px){
+  .hero,.two,.trace-in{grid-template-columns:1fr;}
+  .hero-photo{justify-self:center;max-width:420px;order:-1;}
+  .hero{padding-top:6rem;}
+  .bring-list{grid-template-columns:1fr 1fr;}
+  .prices{grid-template-columns:1fr;}
+  .links{display:none;}
+}
+@media (max-width:560px){.bring-list{grid-template-columns:1fr;}.sec{padding:5rem 6vw;}}
+</style>
+</head>
+<body data-concept="1">
+<header class="nav">
+  <a class="logo" href="#">Craniosacral Therapy London</a>
+  <nav class="links"><a href="#">Waterloo</a><a href="#">Low Cost CST</a><a href="#">Journal</a><a href="#">FAQ</a></nav>
+  <a class="wash" data-paintvar="seed:11;r:44;wob:.12;blur:2;tear:6" href="#">Book</a>
+</header>
+
+<section class="hero">
+  <canvas id="silk" aria-hidden="true"></canvas>
+  <div class="hero-copy">
+    <span class="note" data-rv>London · Bethnal Green &amp; Waterloo</span>
+    <h1 data-rv style="--d:.1s">Craniosacral therapy <em>&amp; fascial unwinding</em> in London</h1>
+    <p class="lede" data-rv style="--d:.2s">Gentle, restorative sessions with Phoenix, CSTA registered. A touch no heavier than the weight of a coin, and an hour for your whole system to settle.</p>
+    <div class="ctas" data-rv style="--d:.3s">
+      <a class="wash" data-paintvar="seed:5;r:44;wob:.12;blur:2;tear:6" href="#">Book a session</a>
+      <a class="plain" href="#">or WhatsApp</a>
+    </div>
+  </div>
+  <figure class="hero-photo" data-paint="seed:3;r:43;wob:.12;blur:3.6;tear:11">
+    <img src="/.netlify/images?url=/photos/craniosacral_therapy_london_.jpg&amp;w=1200&amp;q=80" alt="Craniosacral therapy session in London" onerror="this.onerror=null;this.src='/photos/craniosacral_therapy_london_.jpg'">
+  </figure>
+</section>
+
+<section class="sec">
+  <div class="two">
+    <figure class="photo" data-paint="seed:21;r:42;wob:.14;blur:3.4;tear:10" data-rv>
+      <img src="/.netlify/images?url=/photos/craniosacral-therapy-bethnal-green-london.jpg&amp;w=900&amp;q=80" alt="Craniosacral therapy session London" loading="lazy" onerror="this.onerror=null;this.src='/photos/craniosacral-therapy-bethnal-green-london.jpg'">
+    </figure>
+    <div data-rv>
+      <span class="note">About the practice</span>
+      <h2>A quiet, listening touch <em>for the whole of you</em></h2>
+      <svg class="brush" viewBox="0 0 180 14" aria-hidden="true"><path fill="currentColor" d="M2 8 C 30 3, 70 4, 110 6 S 160 5, 178 7 C 160 10, 120 11, 80 10 S 25 11, 2 8Z" opacity=".75"/></svg>
+      <p>Craniosacral therapy is a gentle yet powerful hands-on approach that supports the body's natural ability to release tension, restore balance, and heal. It helps shift the nervous system into a parasympathetic state, where rest, recovery and repair happen.</p>
+      <p>Using light touch and deep presence, I create a safe space for your system to unwind and return to flow.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:2rem">
+  <div class="bring">
+    <span class="note" data-rv>Who this is for</span>
+    <h2 data-rv>What people <em>bring</em></h2>
+    <div class="bring-list">
+      <div data-rv><h3>Migraines &amp; headaches</h3><p>Gentle attention to the cranial bones and membranes.</p></div>
+      <div data-rv style="--d:.05s"><h3>Anxiety &amp; stress</h3><p>Time for the nervous system to come out of high alert.</p></div>
+      <div data-rv style="--d:.1s"><h3>Burnout &amp; fatigue</h3><p>Unhurried space to rest properly.</p></div>
+      <div data-rv><h3>Jaw tension (TMJ)</h3><p>Quiet work where tension is held unnoticed.</p></div>
+      <div data-rv style="--d:.05s"><h3>Trauma &amp; PTSD</h3><p>Slowly, at your pace, as your system settles.</p></div>
+      <div data-rv style="--d:.1s"><h3>Insomnia</h3><p>Helping an overactive system wind down.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec trace">
+  <div class="trace-in">
+    <div data-rv>
+      <span class="note">Fascia is a living web</span>
+      <h2>Draw a line, <em>watch it root</em></h2>
+      <svg class="brush" viewBox="0 0 180 14" aria-hidden="true"><path fill="currentColor" d="M2 7 C 40 4, 80 3, 120 6 S 165 6, 178 8 C 150 10, 110 10, 70 9 S 20 10, 2 7Z" opacity=".75"/></svg>
+      <p style="color:var(--mute);max-width:30em">Fascia is the body's connective tissue, a continuous web around every muscle, organ, bone and nerve. Anything you draw here grows threads of its own, the way tension and ease spread through that web.</p>
+      <button class="clear" id="clearTrace" type="button">Clear the page</button>
+    </div>
+    <div class="trace-pad" id="tracePad" data-paint="seed:31;r:45;wob:.08;blur:2.4;tear:7" data-rv>
+      <canvas aria-label="Drawing surface: draw with your finger or mouse and threads grow from the line" role="img"></canvas>
+      <p class="trace-hint">draw here</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="center">
+    <span class="note" data-rv>Session rates</span>
+    <h2 data-rv>Same care, <em>two ways to come</em></h2>
+  </div>
+  <div class="prices">
+    <div class="price a" data-paintvar="seed:41;r:46;wob:.07;blur:2.2;tear:8" data-rv>
+      <span class="where">Waterloo, SE1</span><h3>Individual session</h3><div class="amt">£80</div>
+      <p>60 minutes at Breathe London Wellbeing, ten minutes from Waterloo station.</p>
+      <a class="wash" data-paintvar="seed:43;r:44;wob:.12;blur:2;tear:6" href="#">Book this</a>
+    </div>
+    <div class="price b" data-paintvar="seed:47;r:46;wob:.07;blur:2.2;tear:8" data-rv style="--d:.1s">
+      <span class="where">Bethnal Green, E2</span><h3>Low cost clinic</h3><div class="amt">£30–60</div>
+      <p>The same 60 minutes on a sliding scale. You pick your fee; no proof needed.</p>
+      <a class="wash sage" data-paintvar="seed:49;r:44;wob:.12;blur:2;tear:6" href="#">Learn more</a>
+    </div>
+  </div>
+</section>
+<p class="cx-foot">Concept preview · Mycelium Silk · inspired by the dotted swirl, ink neuron and branching vein pins</p>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+  "use strict";
+  // painted wash behind buttons and cards (mask on the ::before via --paint)
+  Array.prototype.forEach.call(document.querySelectorAll("[data-paintvar]"), function (el, i) {
+    var o = {}; el.getAttribute("data-paintvar").split(";").forEach(function (kv) { var p = kv.split(":"); if (p[1]) o[p[0]] = +p[1]; });
+    el.style.setProperty("--paint", C.paintMask(o.seed || i, o));
+  });
+
+  /* ---------- silk: threads flowing through a slow noise field ---------- */
+  var cv = document.getElementById("silk"), hero = cv.parentNode, S, parts = [], r = C.rng(9), mx = -9999, my = -9999, t = 0;
+  var INKS = ["67,53,44", "67,53,44", "67,53,44", "178,103,122", "74,84,130"];
+  function spawn(p, x, y, bias) {
+    p.x = x != null ? x : r() * S.w; p.y = y != null ? y : r() * S.h;
+    p.b = bias != null ? bias : (r() - 0.5) * 1.1; p.life = 260 + r() * 520; p.sp = 0.9 + r() * 1.1;
+    p.c = (r() * INKS.length) | 0; p.w = 0.35 + r() * 0.7; return p;
+  }
+  function init() {
+    S = C.fitCanvas(cv, 1.5);
+    parts = [];
+    var n = C.small ? 420 : 1000;
+    for (var i = 0; i < n; i++) parts.push(spawn({}));
+  }
+  function frame() {
+    var ctx = S.ctx, W = S.w, H = S.h, paths = INKS.map(function () { return []; });
+    // older threads fade back into the paper, like smoke settling
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.fillStyle = "rgba(0,0,0,.0065)"; ctx.fillRect(0, 0, W, H);
+    ctx.globalCompositeOperation = "source-over";
+    t += 1;
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i], ox = p.x, oy = p.y;
+      var a = C.n3(p.x * 0.0017, p.y * 0.0017, t * 0.0007) * 3.4 + p.b + 0.25;
+      var vx = Math.cos(a) * p.sp, vy = Math.sin(a) * p.sp;
+      var dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+      if (d2 < 26000) { // the pointer stirs the threads into a slow eddy
+        var d = Math.sqrt(d2) + 1, k = (1 - d2 / 26000) * 2.4;
+        vx += (-dy / d) * k - (dx / d) * k * 0.25; vy += (dx / d) * k - (dy / d) * k * 0.25;
+      }
+      p.x += vx; p.y += vy; p.life--;
+      if (p.life < 0 || p.x < -20 || p.y < -20 || p.x > W + 20 || p.y > H + 20) { spawn(p); continue; }
+      paths[p.c].push(ox, oy, p.x, p.y, p.w);
+      // hyphae fork now and then, and the two ends drift apart
+      if (r() < 0.0015 && parts.length < (C.small ? 700 : 1600)) parts.push(spawn({}, p.x, p.y, p.b + (r() < 0.5 ? -0.45 : 0.45)));
+    }
+    ctx.lineCap = "round";
+    for (var c = 0; c < INKS.length; c++) {
+      var arr = paths[c];
+      if (!arr.length) continue;
+      ctx.strokeStyle = "rgba(" + INKS[c] + ",.13)"; ctx.lineWidth = 0.65;
+      ctx.beginPath();
+      for (var j = 0; j < arr.length; j += 5) { ctx.moveTo(arr[j], arr[j + 1]); ctx.lineTo(arr[j + 2], arr[j + 3]); }
+      ctx.stroke();
+    }
+  }
+  init();
+  // warm up so the page opens on threads, not an empty sheet
+  for (var k = 0; k < (C.reduce ? 420 : 140); k++) frame();
+  var lp = C.loop(frame);
+  C.whileVisible(hero, lp.start, lp.stop);
+  C.onResize(hero, init);
+  hero.addEventListener("pointermove", function (e) { var b = cv.getBoundingClientRect(); mx = e.clientX - b.left; my = e.clientY - b.top; }, { passive: true });
+  hero.addEventListener("pointerleave", function () { mx = my = -9999; });
+
+  /* ---------- trace: draw a line and hyphae grow from it ---------- */
+  var pad = document.getElementById("tracePad"), tc = pad.querySelector("canvas"), hint = pad.querySelector(".trace-hint"), T, tips = [], down = false, last = null, rr = C.rng(3), idle = true, drew = false;
+  function tfit() { T = C.fitCanvas(tc, 2); }
+  function tip(x, y, a, g, life) { tips.push({ x: x, y: y, a: a, g: g, life: life }); }
+  function stroke(x, y) {
+    var ctx = T.ctx;
+    if (last) {
+      ctx.strokeStyle = "rgba(67,53,44,.85)"; ctx.lineWidth = 2.2; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(last[0], last[1]); ctx.quadraticCurveTo(last[0], last[1], (last[0] + x) / 2, (last[1] + y) / 2); ctx.lineTo(x, y); ctx.stroke();
+      var a = Math.atan2(y - last[1], x - last[0]);
+      if (rr() < 0.35) tip(x, y, a + (rr() < 0.5 ? 1 : -1) * (1 + rr() * 0.8), 0, 60 + rr() * 90);
+    }
+    last = [x, y];
+    if (idle) { idle = false; hint.style.opacity = 0; }
+  }
+  function grow() {
+    var ctx = T.ctx, b = [[], [], []];
+    for (var i = tips.length - 1; i >= 0; i--) {
+      var q = tips[i], ox = q.x, oy = q.y;
+      q.a += (rr() - 0.5) * 0.35; q.x += Math.cos(q.a) * 1.2; q.y += Math.sin(q.a) * 1.2; q.life--;
+      b[Math.min(2, q.g)].push(ox, oy, q.x, q.y);
+      if (q.g < 4 && tips.length < 900 && rr() < 0.03) tip(q.x, q.y, q.a + (rr() < 0.5 ? -0.6 : 0.6), q.g + 1, q.life * 0.7);
+      if (q.life <= 0) tips.splice(i, 1);
+    }
+    var cols = ["rgba(67,53,44,.55)", "rgba(178,103,122,.45)", "rgba(74,84,130,.35)"];
+    for (var g = 0; g < 3; g++) {
+      if (!b[g].length) continue;
+      ctx.strokeStyle = cols[g]; ctx.lineWidth = 1 - g * 0.25;
+      ctx.beginPath();
+      for (var j = 0; j < b[g].length; j += 4) { ctx.moveTo(b[g][j], b[g][j + 1]); ctx.lineTo(b[g][j + 2], b[g][j + 3]); }
+      ctx.stroke();
+    }
+  }
+  function pos(e) { var bb = tc.getBoundingClientRect(); return [e.clientX - bb.left, e.clientY - bb.top]; }
+  tfit();
+  tc.addEventListener("pointerdown", function (e) { down = true; drew = true; last = null; tc.setPointerCapture(e.pointerId); var p = pos(e); stroke(p[0], p[1]); });
+  tc.addEventListener("pointermove", function (e) { if (!down) return; var p = pos(e); stroke(p[0], p[1]); });
+  tc.addEventListener("pointerup", function () { down = false; last = null; });
+  document.getElementById("clearTrace").addEventListener("click", function () { T.ctx.clearRect(0, 0, T.w, T.h); tips = []; });
+  var tl = C.loop(function () { if (tips.length) grow(); });
+  C.whileVisible(pad, tl.start, tl.stop);
+  // if nobody draws, sketch a slow demo curve so the page isn't empty
+  C.once(pad, function () {
+    setTimeout(function () {
+      if (drew) return;
+      var k = 0, W = T.w, H = T.h;
+      var demo = setInterval(function () {
+        if (drew) { clearInterval(demo); last = null; return; }
+        var u = k / 90, x = W * (0.15 + 0.7 * u), y = H * (0.5 + 0.18 * Math.sin(u * 6.28));
+        stroke(x, y); k++;
+        if (C.reduce) { for (var z = 0; z < 60; z++) grow(); }
+        if (k > 90) { clearInterval(demo); last = null; }
+      }, 16);
+    }, 1400);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+/* Shared base for the design concepts in /concepts/ (previews only). */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}
+a{color:inherit;}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px;}
+
+/* reveal on scroll */
+[data-rv]{opacity:0;transform:translateY(24px);transition:opacity 1.2s ease,transform 1.4s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s);}
+[data-rv].in{opacity:1;transform:none;}
+@media (prefers-reduced-motion:reduce){[data-rv]{opacity:1;transform:none;transition:none;}html{scroll-behavior:auto;}}
+
+/* concept switcher */
+.cx-bar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:.2rem;
+  padding:.35rem;border-radius:999px;background:rgba(255,255,255,.82);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:0 8px 30px rgba(40,30,30,.18);font:500 13px/1 system-ui,-apple-system,'Segoe UI',sans-serif;color:#2a2323;white-space:nowrap;}
+.cx-bar a,.cx-bar span{padding:.6rem .8rem;border-radius:999px;text-decoration:none;}
+.cx-bar a:hover{background:rgba(0,0,0,.06);}
+.cx-bar span b{opacity:.5;font-weight:600;margin-right:.3rem;}
+.cx-all{background:#2a2323;color:#fff!important;}
+.cx-all:hover{background:#000!important;}
+@media (max-width:420px){.cx-bar span{padding:.6rem .4rem;font-size:12px;}.cx-all{font-size:12px;}}
+
+/* shared little footer */
+.cx-foot{padding:3rem 6vw 6.5rem;text-align:center;font-size:.8rem;opacity:.6;}
