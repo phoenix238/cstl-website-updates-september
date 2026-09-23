@@ -129,9 +129,9 @@
 
   // the switcher between concepts
   var NAMES = ["Mycelium Silk", "Marbled Watercolour", "Ripple Lines", "Soft Culture", "Aura",
-    "Body Heat", "Whorl", "Fluid Body", "Nerve Garden", "Spine of Light"];
+    "Body Heat", "Whorl", "Fluid Body", "Nerve Garden", "Spine of Light", "Every Scale"];
   var FILES = ["1-mycelium-silk.html", "2-marbled-watercolour.html", "3-ripple-lines.html", "4-soft-culture.html", "5-aura.html",
-    "6-body-heat.html", "7-whorl.html", "8-fluid-body.html", "9-nerve-garden.html", "10-spine-of-light.html"];
+    "6-body-heat.html", "7-whorl.html", "8-fluid-body.html", "9-nerve-garden.html", "10-spine-of-light.html", "11-every-scale.html"];
   function switcher() {
     var n = +doc.body.getAttribute("data-concept");
     if (!n) return;
