@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept 7 · Whorl</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Caveat:wght@500&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Concept 7 — Whorl.
+   From the pen drawings on board two: the hand filled with fingerprint lines,
+   the body made of contour whorls, the red-and-blue biro anatomy sketch.
+   The page is drawn in ink. Thousands of fine lines flow like the ridges of
+   a fingertip and curve around the photo and the words, as if everything sat
+   on the skin. Press anywhere and the lines give way under your fingertip;
+   around the photo they widen and settle slowly, like the cranial rhythm. */
+:root{--paper:#f3eee5;--ink:#221c1a;--mute:#6f6660;--red:#b3342a;--blue:#2c4a8f;}
+body{background:var(--paper);color:var(--ink);font-family:'Source Sans 3',sans-serif;font-weight:300;font-size:17.5px;line-height:1.75;}
+.cg{font-family:'Cormorant Garamond',Georgia,serif;}
+.hand{font-family:'Caveat',cursive;font-weight:500;color:var(--red);}
+.whorl{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:0;touch-action:pan-y;
+  -webkit-mask-image:linear-gradient(transparent,#000 7%,#000 88%,transparent);mask-image:linear-gradient(transparent,#000 7%,#000 88%,transparent);}
+.hero .whorl{-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent);}
+.nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 6vw;}
+.logo{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.25rem;text-decoration:none;background:var(--paper);padding:.1rem .6rem;border-radius:40px;}
+.links{display:flex;gap:1.6rem;font-size:.9rem;background:var(--paper);padding:.2rem .9rem;border-radius:40px;}
+.links a{text-decoration:none;color:var(--mute);}
+.pen{position:relative;display:inline-block;padding:.85rem 1.7rem;text-decoration:none;color:var(--paper);background:var(--ink);font-weight:400;font-size:.95rem;letter-spacing:.02em;
+  border-radius:46% 54% 50% 50% / 60% 55% 45% 40%;transition:border-radius .8s,transform .6s;}
+.pen:hover{border-radius:55% 45% 48% 52% / 45% 60% 40% 55%;transform:rotate(-1deg);}
+.pen.line{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1.2px var(--ink);}
+
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:5vw;padding:7rem 7vw 5rem;overflow:hidden;}
+.copy,.print{position:relative;z-index:1;}
+.copy{max-width:34rem;}
+.eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);}
+h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.8rem,5.4vw,5.2rem);line-height:1;margin:.9rem 0 1.3rem;}
+h1 em{color:var(--red);}
+.lede{color:var(--mute);margin-bottom:2rem;max-width:27em;}
+.ctas{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center;}
+.note{display:block;margin-top:1.6rem;font-size:1.35rem;line-height:1.2;transform:rotate(-2deg);}
+.print{justify-self:center;width:min(430px,80vw);aspect-ratio:5/6;}
+.print img{width:100%;height:100%;object-fit:cover;
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 62%,transparent 100%);}
+
+.sec{position:relative;padding:8rem 7vw;}
+h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(2.3rem,4.4vw,3.8rem);line-height:1.05;margin:.8rem 0 1.3rem;}
+h2 em{color:var(--red);}
+.two{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center;}
+.two p{color:var(--mute);margin-bottom:1rem;}
+.sketch{position:relative;}
+.sketch img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.85) sepia(.12);
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);}
+.sketch .anno{position:absolute;right:-6%;top:12%;width:44%;font-size:1.3rem;line-height:1.15;transform:rotate(4deg);}
+.sketch svg{position:absolute;right:18%;top:22%;width:30%;overflow:visible;}
+.ink{fill:none;stroke-linecap:round;stroke-linejoin:round;}
+.draw path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s cubic-bezier(.4,.1,.2,1);}
+.draw.in path,.in .draw path{stroke-dashoffset:0;}
+
+.list{max-width:980px;margin:3rem auto 0;}
+.row{display:grid;grid-template-columns:5rem 1fr 1.2fr;gap:1.5rem;align-items:baseline;padding:1.6rem 0;position:relative;}
+.row .n{font-size:2rem;}
+.row h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.7rem;line-height:1.15;}
+.row p{color:var(--mute);}
+.row svg{position:absolute;left:0;right:0;bottom:0;width:100%;height:10px;}
+
+.qsec{min-height:90vh;display:grid;place-items:center;overflow:hidden;}
+.qsec blockquote{position:relative;z-index:1;max-width:19em;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.7rem,3.3vw,2.8rem);line-height:1.25;}
+.qsec cite{display:block;margin-top:1rem;font-style:normal;font-size:1.5rem;}
+
+.prices{max-width:1000px;margin:3rem auto 0;display:grid;grid-template-columns:1fr auto 1fr;gap:3rem;align-items:start;}
+.price h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.8rem;}
+.amt{font-family:'Cormorant Garamond',serif;font-size:4.2rem;line-height:1;margin:.6rem 0 .2rem;}
+.price p{color:var(--mute);margin:.6rem 0 1.4rem;}
+.price .hand{font-size:1.3rem;display:block;transform:rotate(-2deg);}
+.divider{width:14px;height:100%;min-height:260px;}
+@media (max-width:900px){
+  .hero,.two,.prices{grid-template-columns:1fr;}
+  .hero{padding-top:6rem;}
+  .print{order:-1;width:min(300px,70vw);}
+  .links{display:none;}
+  .row{grid-template-columns:3rem 1fr;}.row p{grid-column:2;}
+  .divider{display:none;}
+  .sketch .anno{right:0;top:-2rem;}
+}
+</style>
+</head>
+<body data-concept="7">
+<section class="hero" id="hero" data-whorl="hero">
+  <header class="nav">
+    <a class="logo" href="#">Craniosacral Therapy London</a>
+    <nav class="links"><a href="#">Waterloo</a><a href="#">Low Cost CST</a><a href="#">Journal</a><a href="#">FAQ</a></nav>
+    <a class="pen" href="#">Book</a>
+  </header>
+  <div class="copy" data-ob="44" data-obn="6">
+    <span class="eyebrow">London · Bethnal Green &amp; Waterloo</span>
+    <h1>Craniosacral therapy <em>&amp; fascial unwinding</em> in London</h1>
+    <p class="lede">Gentle, restorative sessions with Phoenix, CSTA registered. Light touch that listens, and time for your whole system to unwind.</p>
+    <div class="ctas"><a class="pen" href="#">Book a session</a><a class="pen line" href="#">Low cost clinic</a></div>
+    <span class="note hand">press anywhere — the lines give way under your fingertip</span>
+  </div>
+  <figure class="print" data-ob="4" data-obn="2" data-core>
+    <img src="/.netlify/images?url=/photos/craniosacral_therapy_london_.jpg&amp;w=900&amp;q=80" alt="Phoenix's hands resting under a client's head during a craniosacral therapy session" style="object-position:48% 40%" onerror="this.onerror=null;this.src='/photos/craniosacral_therapy_london_.jpg'">
+  </figure>
+</section>
+
+<section class="sec">
+  <div class="two">
+    <figure class="sketch" data-rv>
+      <img src="/.netlify/images?url=/photos/craniosacral-therapy-community-clinic-london.jpg&amp;w=1000&amp;q=80" alt="Hands resting on a client's wrist during a gentle session" loading="lazy" onerror="this.onerror=null;this.src='/photos/craniosacral-therapy-community-clinic-london.jpg'">
+      <span class="anno hand">about the weight of a coin — that's all the pressure it takes</span>
+      <svg class="draw" viewBox="0 0 100 60" aria-hidden="true"><path class="ink" pathLength="1" stroke="#b3342a" stroke-width="1.6" d="M92 6 C70 4 48 12 34 26 S14 46 8 54 M8 54 l9 -2 M8 54 l1 -9"/></svg>
+    </figure>
+    <div data-rv style="--d:.1s">
+      <span class="eyebrow">About the practice</span>
+      <h2>Listening <em>through the hands</em></h2>
+      <p>Craniosacral therapy is a gentle yet powerful hands-on approach that supports the body's natural ability to release tension, restore balance, and heal. It helps shift the nervous system into a parasympathetic state, where rest, recovery and repair happen.</p>
+      <p>Using light touch and deep presence, I create a safe space for your system to unwind and return to flow.</p>
+      <a class="pen" href="#" style="margin-top:1rem">Book a session</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:2rem">
+  <div style="text-align:center" data-rv><span class="eyebrow">Who this is for</span><h2>What people <em>bring</em></h2></div>
+  <div class="list">
+    <div class="row" data-rv><span class="n hand">i.</span><h3>Migraines &amp; headaches</h3><p>Gentle attention to the cranial bones and membranes.</p></div>
+    <div class="row" data-rv><span class="n hand">ii.</span><h3>Anxiety &amp; stress</h3><p>Time for the nervous system to come out of high alert.</p></div>
+    <div class="row" data-rv><span class="n hand">iii.</span><h3>Burnout &amp; fatigue</h3><p>Unhurried space to rest properly.</p></div>
+    <div class="row" data-rv><span class="n hand">iv.</span><h3>Jaw tension</h3><p>Quiet work where tension is held unnoticed.</p></div>
+    <div class="row" data-rv><span class="n hand">v.</span><h3>Trauma &amp; PTSD</h3><p>Slowly, at your pace, as your system settles.</p></div>
+    <div class="row" data-rv><span class="n hand">vi.</span><h3>Insomnia</h3><p>Helping an overactive system wind down.</p></div>
+  </div>
+</section>
+
+<section class="sec qsec" data-whorl="quote">
+  <blockquote data-ob="40" data-obn="4">“I felt so held that the tension I brought in had almost completely gone. I left feeling calmer and more present than I have in months.”<cite class="hand">— Geebs</cite></blockquote>
+</section>
+
+<section class="sec">
+  <div style="text-align:center" data-rv><span class="eyebrow">Session rates</span><h2>Same care, <em>two ways to come</em></h2></div>
+  <div class="prices">
+    <div class="price" data-rv><span class="eyebrow">Waterloo, SE1</span><h3>Individual session</h3><div class="amt">£80</div><p>60 minutes at Breathe London Wellbeing, ten minutes from Waterloo station.</p><a class="pen" href="#">Book this</a></div>
+    <svg class="divider draw" data-rv viewBox="0 0 14 300" preserveAspectRatio="none" aria-hidden="true"><path class="ink" pathLength="1" stroke="#221c1a" stroke-width="1.2" id="divPath"/></svg>
+    <div class="price" data-rv style="--d:.1s"><span class="eyebrow">Bethnal Green, E2</span><h3>Low cost clinic</h3><div class="amt">£30–60</div><span class="hand">sliding scale — you choose</span><p>The same 60 minutes. You pick your fee; no proof needed.</p><a class="pen line" href="#">Learn more</a></div>
+  </div>
+</section>
+<p class="cx-foot">Concept preview · Whorl · inspired by the fingerprint hand, contour body and biro anatomy pins</p>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+  "use strict";
+  var reduce = C.reduce;
+
+  // hand-drawn wobbly rules under the list rows and between the prices
+  function wobble(len, amp, seed, vertical) {
+    var r = C.rng(seed), d = "", n = 14;
+    for (var i = 0; i <= n; i++) { var a = i / n * len, b = (r() - 0.5) * amp + (vertical ? 7 : 5);
+      d += (i ? " L" : "M") + (vertical ? b.toFixed(1) + " " + a.toFixed(1) : a.toFixed(1) + " " + b.toFixed(1)); }
+    return d;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll(".row"), function (row, i) {
+    row.insertAdjacentHTML("beforeend", "<svg class='draw' viewBox='0 0 1000 10' preserveAspectRatio='none' aria-hidden='true'><path class='ink' pathLength='1' stroke='" + (i % 3 === 1 ? "#b3342a" : "#221c1a") + "' stroke-opacity='.55' stroke-width='1' vector-effect='non-scaling-stroke' d='" + wobble(1000, 3.2, 40 + i) + "'/></svg>");
+  });
+  document.getElementById("divPath").setAttribute("d", wobble(300, 4, 7, true));
+
+  // ---- the whorl field: evenly spaced streamlines (after Jobard & Lefer)
+  // through a flow that runs in parallel ridges like a fingertip, and wraps
+  // in closed loops around each [data-ob] element, like contours round an island ----
+  function whorl(host, o) {
+    // the lines are drawn once (in ink, growing out from their seeds) into an
+    // offscreen canvas; a tiny WebGL pass then bends that drawing under the
+    // fingertip and breathes it round the photo, so each frame stays cheap
+    var cv = document.createElement("canvas"); cv.className = "whorl"; cv.setAttribute("aria-hidden", "true"); host.insertBefore(cv, host.firstChild);
+    var ink = document.createElement("canvas"), ctx = ink.getContext("2d"), W, H, dpr, lines = [], obs = [], core = null;
+    var mx = -1e4, my = -1e4, press = 0, pressT = 0, hover = 0;
+    var gl = cv.getContext("webgl", { premultipliedAlpha: true, alpha: true, antialias: false }), U = {}, tex;
+    if (gl) {
+      var VS = "attribute vec2 p;varying vec2 v;void main(){v=vec2(p.x*.5+.5,.5-p.y*.5);gl_Position=vec4(p,0.,1.);}";
+      var FS = "precision highp float;uniform sampler2D uT;uniform vec2 uR,uM,uC,uCr;uniform float uP,uA,uS,uB;varying vec2 v;" +
+        "void main(){vec2 p=v*uR;vec2 d=p-uM;float r2=dot(d,d);vec2 o=d/(sqrt(r2)+.001)*uA*uP*exp(-r2/uS);" +
+        "vec2 dc=(p-uC)/uCr;o+=(p-uC)*uB*exp(-dot(dc,dc)/2.2);gl_FragColor=texture2D(uT,(p-o)/uR);}";
+      var mk = function (t, src) { var sh = gl.createShader(t); gl.shaderSource(sh, src); gl.compileShader(sh); return sh; };
+      var pr = gl.createProgram(); gl.attachShader(pr, mk(gl.VERTEX_SHADER, VS)); gl.attachShader(pr, mk(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(pr);
+      if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) gl = null;
+    }
+    if (gl) {
+      gl.useProgram(pr);
+      gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer()); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+      var al = gl.getAttribLocation(pr, "p"); gl.enableVertexAttribArray(al); gl.vertexAttribPointer(al, 2, gl.FLOAT, false, 0, 0);
+      ["uT", "uR", "uM", "uC", "uCr", "uP", "uA", "uS", "uB"].forEach(function (k) { U[k] = gl.getUniformLocation(pr, k); });
+      tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+    } else {
+      host.removeChild(cv); cv = ink; cv.className = "whorl"; cv.setAttribute("aria-hidden", "true"); host.insertBefore(cv, host.firstChild);
+    }
+
+    function localRect(el) { // layout position inside host, ignoring reveal transforms
+      var x = 0, y = 0, e = el; while (e && e !== host) { x += e.offsetLeft; y += e.offsetTop; e = e.offsetParent; }
+      return { x: x, y: y, w: el.offsetWidth, h: el.offsetHeight };
+    }
+    function build() {
+      dpr = Math.min(devicePixelRatio || 1, 1.5); W = host.clientWidth; H = host.clientHeight; lines = [];
+      ink.width = Math.round(W * dpr); ink.height = Math.round(H * dpr); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.lineCap = "round"; ctx.lineJoin = "round";
+      if (gl) { cv.width = ink.width; cv.height = ink.height; gl.viewport(0, 0, cv.width, cv.height); }
+      obs = Array.prototype.map.call(host.querySelectorAll("[data-ob]"), function (el, i) {
+        var r = localRect(el), pad = +el.getAttribute("data-ob");
+        var ob = { x: r.x + r.w / 2, y: r.y + r.h / 2, rx: r.w / 2 + pad, ry: r.h / 2 + pad, n: +el.getAttribute("data-obn") || 2, s: i % 2 ? -1 : 1 };
+        if (el.hasAttribute("data-core")) core = ob;
+        return ob;
+      });
+      var dsep = o.dsep * (C.small ? 0.85 : 1), dtest = dsep * 0.5, h = 2, r = C.rng(o.seed || 3);
+      var cs = dsep, gc = Math.ceil(W / cs) + 1, gr = Math.ceil(H / cs) + 1, grid = new Array(gc * gr);
+      var PX = [], PY = [], PL = [], PI = [];
+      function F(ob, x, y) { return Math.pow(Math.abs(x - ob.x) / ob.rx, ob.n) + Math.pow(Math.abs(y - ob.y) / ob.ry, ob.n); }
+      function blocked(x, y) { for (var i = 0; i < obs.length; i++) if (F(obs[i], x, y) < 1) return true; return false; }
+      function field(x, y) {
+        var th = o.angle + C.n2(x * 0.0019 + o.seed, y * 0.0019) * 1.1, vx = Math.cos(th), vy = Math.sin(th);
+        for (var i = 0; i < obs.length; i++) {
+          var ob = obs[i], dx = x - ob.x, dy = y - ob.y, ax = Math.abs(dx) / ob.rx, ay = Math.abs(dy) / ob.ry, n = ob.n;
+          var gx = n * Math.pow(ax, n - 1) / ob.rx * (dx < 0 ? -1 : 1), gy = n * Math.pow(ay, n - 1) / ob.ry * (dy < 0 ? -1 : 1), gl = Math.hypot(gx, gy) || 1;
+          var q = Math.pow(Math.pow(ax, n) + Math.pow(ay, n), 1 / n), w = 3.2 * Math.exp(-Math.max(0, q - 1) * o.reach);
+          vx += -gy / gl * w * ob.s; vy += gx / gl * w * ob.s;
+        }
+        var l = Math.hypot(vx, vy) || 1; return [vx / l, vy / l];
+      }
+      function ok(x, y, d, id, idx, skip) {
+        if (x < 1 || y < 1 || x > W - 1 || y > H - 1 || blocked(x, y)) return false;
+        var cx = Math.floor(x / cs), cy = Math.floor(y / cs), d2 = d * d;
+        for (var j = cy - 1; j <= cy + 1; j++) for (var i = cx - 1; i <= cx + 1; i++) {
+          if (i < 0 || j < 0 || i >= gc || j >= gr) continue;
+          var c = grid[j * gc + i]; if (!c) continue;
+          for (var k = 0; k < c.length; k++) { var p = c[k], ex = PX[p] - x, ey = PY[p] - y;
+            if (ex * ex + ey * ey < d2 && !(PL[p] === id && Math.abs(PI[p] - idx) < skip)) return false; }
+        }
+        return true;
+      }
+      function put(x, y, id, idx) { var p = PX.length; PX.push(x); PY.push(y); PL.push(id); PI.push(idx); var g = Math.floor(y / cs) * gc + Math.floor(x / cs); (grid[g] || (grid[g] = [])).push(p); }
+      var queue = [], skip = Math.ceil(dtest * 3 / h);
+      function trace(sx, sy) {
+        if (!ok(sx, sy, dsep, -1, 0, 0)) return;
+        var id = lines.length, fw = [sx, sy], bw = [];
+        put(sx, sy, id, 0);
+        for (var dir = 1; dir >= -1; dir -= 2) {
+          var x = sx, y = sy, idx = 0, arr = dir > 0 ? fw : bw;
+          for (var k = 0; k < 1400; k++) {
+            var a = field(x, y), m = field(x + a[0] * h * 0.5 * dir, y + a[1] * h * 0.5 * dir), nx = x + m[0] * h * dir, ny = y + m[1] * h * dir;
+            idx += dir;
+            if (!ok(nx, ny, dtest, id, idx, skip)) break;
+            arr.push(nx, ny); put(nx, ny, id, idx); x = nx; y = ny;
+          }
+        }
+        var pts = [], back = bw.length / 2;
+        for (var i = bw.length - 2; i >= 0; i -= 2) pts.push(bw[i], bw[i + 1]);
+        pts = pts.concat(fw);
+        if (pts.length < 16) return;
+        // colour: red ridges ring the photo, a few blue veins elsewhere
+        var col = 0;
+        if (core) { var q = Math.sqrt(F({ x: core.x, y: core.y, rx: core.rx, ry: core.ry, n: 2 }, sx, sy)); if (q < o.redRing && r() < 0.42) col = 1; }
+        if (!col && r() < o.blue) col = 2;
+        var L = new Float32Array(pts);
+        lines.push({ p: L, s: back, c: col, d0: back, d1: back });
+        for (i = 0; i < pts.length; i += 8) {
+          var j = Math.min(pts.length - 4, i), tx = pts[j + 2] - pts[j], ty = pts[j + 3] - pts[j + 1], tl = Math.hypot(tx, ty) || 1;
+          queue.push(pts[i] - ty / tl * dsep, pts[i + 1] + tx / tl * dsep, pts[i] + ty / tl * dsep, pts[i + 1] - tx / tl * dsep);
+        }
+      }
+      trace(W * 0.5, H * 0.5);
+      var gx0 = 0, fallback = [];
+      for (var yy = dsep; yy < H; yy += dsep * 3) for (var xx = dsep; xx < W; xx += dsep * 3) fallback.push(xx, yy);
+      var qi = 0;
+      while (true) {
+        if (qi < queue.length) { trace(queue[qi], queue[qi + 1]); qi += 2; continue; }
+        if (gx0 < fallback.length) { trace(fallback[gx0], fallback[gx0 + 1]); gx0 += 2; continue; }
+        break;
+      }
+      born = performance.now(); grown = false;
+    }
+    var born = 0, grown = false, COLS = ["rgba(34,28,26,.8)", "rgba(179,52,42,.85)", "rgba(44,74,143,.8)"];
+
+    // ink: extend every line a little further out from its seed each frame
+    function grow(now) {
+      var rev = reduce ? 1 : Math.min(1, (now - born) / 2600); rev = 1 - Math.pow(1 - rev, 3);
+      for (var c = 0; c < 3; c++) {
+        ctx.beginPath();
+        for (var li = 0; li < lines.length; li++) {
+          var L = lines[li]; if (L.c !== c) continue;
+          var n = L.p.length / 2, a0 = Math.max(0, Math.floor(L.s - L.s * rev)), a1 = Math.min(n - 1, Math.ceil(L.s + (n - 1 - L.s) * rev)), i;
+          if (a0 < L.d0) { ctx.moveTo(L.p[L.d0 * 2], L.p[L.d0 * 2 + 1]); for (i = L.d0 - 1; i >= a0; i--) ctx.lineTo(L.p[i * 2], L.p[i * 2 + 1]); L.d0 = a0; }
+          if (a1 > L.d1) { ctx.moveTo(L.p[L.d1 * 2], L.p[L.d1 * 2 + 1]); for (i = L.d1 + 1; i <= a1; i++) ctx.lineTo(L.p[i * 2], L.p[i * 2 + 1]); L.d1 = a1; }
+        }
+        ctx.strokeStyle = COLS[c]; ctx.lineWidth = c ? 1 : 0.85; ctx.stroke();
+      }
+      if (rev >= 1) grown = true;
+      if (gl) gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, ink);
+    }
+    function draw(now) {
+      if (!grown) grow(now);
+      if (!gl) return;
+      var t = now / 1000;
+      press += ((pressT ? 1 : hover) - press) * 0.08;
+      gl.uniform2f(U.uR, W, H); gl.uniform2f(U.uM, mx, my);
+      gl.uniform1f(U.uP, press); gl.uniform1f(U.uA, 26 + press * 30); gl.uniform1f(U.uS, Math.pow(60 + press * 40, 2));
+      if (core) { gl.uniform2f(U.uC, core.x, core.y); gl.uniform2f(U.uCr, core.rx, core.ry); }
+      gl.uniform1f(U.uB, core && !reduce ? Math.sin(t * Math.PI * 2 / 10) * 0.035 : 0);   // one slow tide every ten seconds
+      gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    }
+    host.addEventListener("pointermove", function (e) { var b = cv.getBoundingClientRect(); mx = e.clientX - b.left; my = e.clientY - b.top; hover = 0.45; }, { passive: true });
+    host.addEventListener("pointerleave", function () { hover = 0; pressT = 0; });
+    host.addEventListener("pointerdown", function (e) { var b = cv.getBoundingClientRect(); mx = e.clientX - b.left; my = e.clientY - b.top; pressT = 1; }, { passive: true });
+    addEventListener("pointerup", function () { pressT = 0; if (C.small) hover = 0; });
+    var lp = C.loop(draw);
+    function start() { build(); draw(performance.now()); C.whileVisible(host, lp.start, lp.stop); C.onResize(host, function () { build(); draw(performance.now()); }); }
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(start);
+  }
+
+  whorl(document.getElementById("hero"), { dsep: 7, angle: 0.5, reach: 1.6, seed: 3, redRing: 1.9, blue: 0.05 });
+  whorl(document.querySelector(".qsec"), { dsep: 9, angle: -0.35, reach: 1.1, seed: 11, redRing: 0, blue: 0.12 });
+})();
+</script>
+</body>
+</html>

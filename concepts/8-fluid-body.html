@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept 8 · Fluid Body</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Concept 8 — Fluid Body.
+   From the figures in water on board two: the body in a blue whirlpool, the
+   silhouettes wrapped in swirling blue and rust ink, the marbled brain.
+   The hero is real fluid: ink in water that you stir with the cursor or a
+   finger. Every eight seconds the pool around the photo swells and settles
+   again, a slow tide like the rhythm craniosacral therapists listen for. */
+:root{--mist:#e8ecec;--navy:#10304f;--teal:#2f6f8a;--rust:#cf5a2c;--peach:#efb49a;--ink:#13263a;--mute:#56687a;}
+body{background:var(--mist);color:var(--ink);font-family:'Nunito Sans',sans-serif;font-weight:300;font-size:17px;line-height:1.75;}
+.bd{font-family:'Bodoni Moda',Didot,serif;font-weight:400;}
+.nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:1.6rem 6vw;}
+.logo{font-family:'Bodoni Moda',serif;font-size:1.1rem;text-decoration:none;}
+.links{display:flex;gap:1.8rem;font-size:.86rem;letter-spacing:.06em;}
+.links a{text-decoration:none;color:var(--mute);}
+.drop{display:inline-block;padding:.9rem 1.9rem;border-radius:999px;text-decoration:none;color:var(--mist);background:var(--navy);font-weight:400;font-size:.92rem;letter-spacing:.04em;
+  box-shadow:0 10px 30px -14px rgba(16,48,79,.8);transition:background .6s,transform .6s;}
+.drop:hover{background:var(--teal);transform:translateY(-2px);}
+.drop.clear{background:rgba(232,236,236,.7);color:var(--ink);box-shadow:inset 0 0 0 1px rgba(19,38,58,.25);}
+.drop.rust{background:var(--rust);}
+
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 6vw 4.5rem;overflow:hidden;isolation:isolate;background:var(--mist);}
+.fluid{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:2;mix-blend-mode:multiply;touch-action:pan-y;}
+.hero.nogl .fluid{display:none;}
+.hero.nogl::before{content:'';position:absolute;inset:-10%;z-index:0;filter:url(#bloom) blur(8px);opacity:.8;
+  background:radial-gradient(30% 30% at 35% 55%,var(--teal),transparent 70%),radial-gradient(25% 25% at 65% 45%,var(--rust),transparent 70%);}
+.hero > :not(canvas){position:relative;}
+.hero .words{z-index:3;}
+.eyebrow{font-size:.76rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);}
+h1{font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(2.5rem,4.8vw,4.6rem);line-height:1.05;margin:.8rem auto 0;max-width:15em;text-shadow:0 0 28px var(--mist),0 0 12px var(--mist);}
+h1 em{color:var(--rust);}
+.pool{z-index:1;width:min(36vh,74vw);aspect-ratio:1;margin:1.6rem auto;}
+.pool img{width:100%;height:100%;object-fit:cover;border-radius:50%;
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 52%,transparent 71%);mask-image:radial-gradient(circle at 50% 50%,#000 52%,transparent 71%);}
+.lede{max-width:30em;margin:0 auto 1.8rem;color:var(--mute);text-shadow:0 0 18px var(--mist);}
+.ctas{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;}
+.hint{margin-top:1.6rem;font-family:'Bodoni Moda',serif;font-style:italic;color:var(--mute);}
+
+.sec{position:relative;padding:9rem 6vw;}
+h2{font-family:'Bodoni Moda',serif;font-weight:400;font-size:clamp(2.2rem,4.2vw,3.6rem);line-height:1.08;margin:1rem 0 1.4rem;}
+h2 em{color:var(--rust);}
+.two{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center;}
+.two p{color:var(--mute);margin-bottom:1rem;}
+/* an ink bloom behind the photo: soft dye shapes torn by turbulence */
+.bloomed{position:relative;}
+.bloomed::before{content:'';position:absolute;inset:-24%;z-index:-1;filter:url(#bloom);opacity:1;animation:turn 60s linear infinite;
+  background:radial-gradient(36% 30% at 30% 40%,rgba(47,111,138,.8),transparent 70%),radial-gradient(28% 34% at 70% 62%,rgba(207,90,44,.65),transparent 70%),radial-gradient(22% 22% at 60% 25%,rgba(16,48,79,.7),transparent 70%);}
+@keyframes turn{to{transform:rotate(360deg);}}
+.bloomed img{width:100%;aspect-ratio:4/5;object-fit:cover;
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,transparent 100%);}
+
+.inks{max-width:1000px;margin:3rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:2.4rem 5rem;}
+.inkrow{display:flex;gap:1.3rem;align-items:flex-start;}
+.inkrow i{flex:none;width:46px;height:46px;margin-top:.2rem;filter:url(#bloom);border-radius:50%;background:radial-gradient(circle,var(--c,var(--teal)),transparent 68%);transition:transform 1.4s;}
+.inkrow:hover i{transform:scale(1.4) rotate(40deg);}
+.inkrow h3{font-family:'Bodoni Moda',serif;font-weight:400;font-size:1.45rem;line-height:1.2;}
+.inkrow p{color:var(--mute);font-size:.93rem;}
+
+.deep{background:linear-gradient(#e8ecec,var(--navy) 22%,#0b2239 78%,#e8ecec);color:var(--mist);min-height:95vh;display:grid;place-items:center;overflow:hidden;}
+/* a slow whirlpool (the figure-in-water pin): spiral arms of ink, torn by turbulence, turning very slowly */
+.deep .whirl{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;
+  -webkit-mask-image:linear-gradient(transparent 4%,#000 28%,#000 72%,transparent 96%);mask-image:linear-gradient(transparent 4%,#000 28%,#000 72%,transparent 96%);}
+.deep .whirl svg{width:min(125vmin,1150px);overflow:visible;filter:url(#bloom) blur(8px);opacity:.62;animation:turn 150s linear infinite reverse;}
+.deep blockquote{position:relative;text-shadow:0 2px 24px #0b2239;max-width:20em;text-align:center;font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(1.6rem,3.1vw,2.6rem);line-height:1.35;}
+.deep cite{display:block;margin-top:1.4rem;font-family:'Nunito Sans',sans-serif;font-style:normal;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;opacity:.75;}
+
+.prices{max-width:1000px;margin:3rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;}
+.price{position:relative;padding:3rem 2.6rem;text-align:center;isolation:isolate;}
+.price::before{content:'';position:absolute;inset:0;z-index:-1;filter:url(#bloom);opacity:.35;border-radius:50%;background:radial-gradient(closest-side,var(--c),transparent);}
+.price h3{font-family:'Bodoni Moda',serif;font-weight:400;font-size:1.7rem;}
+.amt{font-family:'Bodoni Moda',serif;font-size:3.8rem;line-height:1.1;margin:.3rem 0;}
+.price p{color:var(--mute);margin:0 auto 1.4rem;max-width:20em;}
+@media (max-width:900px){
+  .two,.prices,.inks{grid-template-columns:1fr;}
+  .links{display:none;}
+  .pool{width:min(70vw,340px);}
+}
+</style>
+</head>
+<body data-concept="8">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- ink bloom: dye shapes pushed around by turbulence so their edges feather like ink in water -->
+  <filter id="bloom" x="-30%" y="-30%" width="160%" height="160%">
+    <feTurbulence type="fractalNoise" baseFrequency=".012" numOctaves="4" seed="8"/>
+    <feDisplacementMap in="SourceGraphic" scale="90" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+<header class="nav">
+  <a class="logo" href="#">Craniosacral Therapy London</a>
+  <nav class="links"><a href="#">Waterloo</a><a href="#">Low Cost CST</a><a href="#">Journal</a><a href="#">FAQ</a></nav>
+  <a class="drop" href="#">Book</a>
+</header>
+
+<section class="hero" id="hero">
+  <canvas class="fluid" id="fluid" aria-hidden="true"></canvas>
+  <div class="words">
+    <span class="eyebrow">London · Bethnal Green &amp; Waterloo</span>
+    <h1>Craniosacral therapy <em>&amp; fascial unwinding</em> in London</h1>
+  </div>
+  <figure class="pool" id="pool">
+    <img src="/.netlify/images?url=/photos/craniosacral-therapy-session-london.jpg&amp;w=900&amp;q=80" alt="Phoenix cradling a client's head during a craniosacral therapy session" style="object-position:38% 50%" onerror="this.onerror=null;this.src='/photos/craniosacral-therapy-session-london.jpg'">
+  </figure>
+  <div class="words">
+    <p class="lede">Gentle, restorative sessions with Phoenix, CSTA registered. Your body is mostly water; here it's given time to settle and flow again.</p>
+    <div class="ctas"><a class="drop" href="#">Book a session</a><a class="drop clear" href="#">Low cost clinic</a></div>
+    <p class="hint">Stir the water — then watch the tide return</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="two">
+    <figure class="bloomed" data-rv>
+      <img src="/.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=1000&amp;q=80" alt="Fascial unwinding: Phoenix gently lifting a client's arm" loading="lazy" style="object-position:55% 50%" onerror="this.onerror=null;this.src='/photos/fascia-unwinding-session-london.jpg'">
+    </figure>
+    <div data-rv style="--d:.1s">
+      <span class="eyebrow">About the practice</span>
+      <h2>Letting the body <em>find its flow</em></h2>
+      <p>Craniosacral therapy is a gentle yet powerful hands-on approach that supports the body's natural ability to release tension, restore balance, and heal. It helps shift the nervous system into a parasympathetic state, where rest, recovery and repair happen.</p>
+      <p>Using light touch and deep presence, I create a safe space for your system to unwind and return to flow.</p>
+      <a class="drop" href="#" style="margin-top:1rem">Book a session</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:2rem">
+  <div style="text-align:center" data-rv><span class="eyebrow">Who this is for</span><h2>What people <em>bring</em></h2></div>
+  <div class="inks">
+    <div class="inkrow" data-rv><i></i><div><h3>Migraines &amp; headaches</h3><p>Gentle attention to the cranial bones and membranes.</p></div></div>
+    <div class="inkrow" data-rv style="--d:.08s"><i style="--c:#cf5a2c"></i><div><h3>Anxiety &amp; stress</h3><p>Time for the nervous system to come out of high alert.</p></div></div>
+    <div class="inkrow" data-rv><i style="--c:#10304f"></i><div><h3>Burnout &amp; fatigue</h3><p>Unhurried space to rest properly.</p></div></div>
+    <div class="inkrow" data-rv style="--d:.08s"><i style="--c:#efb49a"></i><div><h3>Jaw tension</h3><p>Quiet work where tension is held unnoticed.</p></div></div>
+    <div class="inkrow" data-rv><i style="--c:#cf5a2c"></i><div><h3>Trauma &amp; PTSD</h3><p>Slowly, at your pace, as your system settles.</p></div></div>
+    <div class="inkrow" data-rv style="--d:.08s"><i></i><div><h3>Insomnia</h3><p>Helping an overactive system wind down.</p></div></div>
+  </div>
+</section>
+
+<section class="sec deep">
+  <div class="whirl" aria-hidden="true"><svg id="whirl" viewBox="-520 -520 1040 1040"></svg></div>
+  <blockquote data-rv>“I felt so held that the tension I brought in had almost completely gone. I left feeling calmer and more present than I have in months.”<cite>Geebs</cite></blockquote>
+</section>
+
+<section class="sec">
+  <div style="text-align:center" data-rv><span class="eyebrow">Session rates</span><h2>Same care, <em>two ways to come</em></h2></div>
+  <div class="prices">
+    <div class="price" data-rv style="--c:#2f6f8a"><span class="eyebrow">Waterloo, SE1</span><h3>Individual session</h3><div class="amt">£80</div><p>60 minutes at Breathe London Wellbeing, ten minutes from Waterloo station.</p><a class="drop" href="#">Book this</a></div>
+    <div class="price" data-rv style="--c:#cf5a2c;--d:.1s"><span class="eyebrow">Bethnal Green, E2</span><h3>Low cost clinic</h3><div class="amt">£30–60</div><p>The same 60 minutes on a sliding scale. You pick your fee; no proof needed.</p><a class="drop rust" href="#">Learn more</a></div>
+  </div>
+</section>
+<p class="cx-foot">Concept preview · Fluid Body · inspired by the whirlpool figure, blue-and-rust ink silhouettes and marbled brain pins</p>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+  "use strict";
+  // whirlpool arms behind the quote: logarithmic spirals in the ink colours
+  (function () {
+    var svg = document.getElementById("whirl"), r = C.rng(5), cols = ["#2f6f8a", "#9fc3cf", "#cf5a2c", "#2f6f8a", "#efb49a", "#1d4f73"], out = "";
+    for (var k = 0; k < 18; k++) {
+      var a0 = k / 18 * 6.2832 + r() * 0.2, d = "";
+      for (var th = 0.4; th < 9.2; th += 0.07) { var rr = 16 * Math.exp(0.375 * th); d += (d ? "L" : "M") + (rr * Math.cos(th + a0)).toFixed(1) + " " + (rr * Math.sin(th + a0)).toFixed(1); }
+      out += "<path d='" + d + "' fill='none' stroke='" + cols[k % cols.length] + "' stroke-opacity='" + (0.45 + r() * 0.4).toFixed(2) + "' stroke-width='" + (8 + r() * 26).toFixed(1) + "' stroke-linecap='round'/>";
+    }
+    svg.innerHTML = out;
+  })();
+
+  // ---- stable fluids (Stam), GPU version: velocity, curl, divergence,
+  // pressure and ink dye in half-float textures. Ink is stored as how much
+  // red / green / blue it absorbs, so colours mix like real pigment ----
+  var hero = document.getElementById("hero"), cv = document.getElementById("fluid"), pool = document.getElementById("pool");
+  var gl = cv.getContext("webgl2", { alpha: false, antialias: false, depth: false, stencil: false, preserveDrawingBuffer: false });
+  if (!gl || !gl.getExtension("EXT_color_buffer_float")) { hero.classList.add("nogl"); return; }
+
+  var VS = "#version 300 es\nin vec2 aP;uniform vec2 uTx;out vec2 vU,vL,vR,vT,vB;void main(){vU=aP*.5+.5;vL=vU-vec2(uTx.x,0.);vR=vU+vec2(uTx.x,0.);vT=vU+vec2(0.,uTx.y);vB=vU-vec2(0.,uTx.y);gl_Position=vec4(aP,0.,1.);}";
+  var HEAD = "#version 300 es\nprecision highp float;precision highp sampler2D;in vec2 vU,vL,vR,vT,vB;out vec4 o;\n";
+  var FS = {
+    splat: "uniform sampler2D uS;uniform float uAsp,uRad;uniform vec3 uC;uniform vec2 uPt;void main(){vec2 p=vU-uPt;p.x*=uAsp;o=vec4(texture(uS,vU).xyz+exp(-dot(p,p)/uRad)*uC,1.);}",
+    radial: "uniform sampler2D uS;uniform float uAsp,uRad,uF;uniform vec2 uPt;void main(){vec2 p=vU-uPt;p.x*=uAsp;float r=length(p);vec2 d=p/(r+1e-4);d.x/=uAsp;float w=exp(-pow(r-uRad*.9,2.)/(uRad*uRad*.18));o=vec4(texture(uS,vU).xy+d*uF*w,0.,1.);}",
+    advect: "uniform sampler2D uV,uS;uniform vec2 uVtx;uniform float uDt,uDiss;void main(){vec2 c=vU-uDt*texture(uV,vU).xy*uVtx;o=texture(uS,c)/(1.+uDiss*uDt);}",
+    curl: "uniform sampler2D uV;void main(){float L=texture(uV,vL).y,R=texture(uV,vR).y,T=texture(uV,vT).x,B=texture(uV,vB).x;o=vec4(.5*(R-L-T+B),0.,0.,1.);}",
+    vort: "uniform sampler2D uV,uC;uniform float uK,uDt;void main(){float L=texture(uC,vL).x,R=texture(uC,vR).x,T=texture(uC,vT).x,B=texture(uC,vB).x,C=texture(uC,vU).x;vec2 f=.5*vec2(abs(T)-abs(B),abs(R)-abs(L));f/=length(f)+1e-4;f*=uK*C;f.y*=-1.;o=vec4(clamp(texture(uV,vU).xy+f*uDt,-1000.,1000.),0.,1.);}",
+    div: "uniform sampler2D uV;void main(){vec2 C=texture(uV,vU).xy;float L=texture(uV,vL).x,R=texture(uV,vR).x,T=texture(uV,vT).y,B=texture(uV,vB).y;if(vL.x<0.)L=-C.x;if(vR.x>1.)R=-C.x;if(vT.y>1.)T=-C.y;if(vB.y<0.)B=-C.y;o=vec4(.5*(R-L+T-B),0.,0.,1.);}",
+    fade: "uniform sampler2D uS;uniform float uK;void main(){o=uK*texture(uS,vU);}",
+    press: "uniform sampler2D uP,uD;void main(){float L=texture(uP,vL).x,R=texture(uP,vR).x,T=texture(uP,vT).x,B=texture(uP,vB).x;o=vec4((L+R+B+T-texture(uD,vU).x)*.25,0.,0.,1.);}",
+    grad: "uniform sampler2D uP,uV;void main(){float L=texture(uP,vL).x,R=texture(uP,vR).x,T=texture(uP,vT).x,B=texture(uP,vB).x;o=vec4(texture(uV,vU).xy-vec2(R-L,T-B),0.,1.);}",
+    show: "uniform sampler2D uS;uniform float uT;float h(vec2 p){return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453);}" +
+      "void main(){vec3 a=texture(uS,vU).rgb;float e=length(vec2(dFdx(a.g),dFdy(a.g)))*6.;vec3 c=exp(-a*1.15-e*vec3(.3,.25,.2));c+=(h(gl_FragCoord.xy+uT)-.5)*.025;o=vec4(c,1.);}"
+  };
+  function sh(t, s) { var o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o)); return o; }
+  var vs = sh(gl.VERTEX_SHADER, VS), P = {};
+  try {
+    Object.keys(FS).forEach(function (k) {
+      var p = gl.createProgram(); gl.attachShader(p, vs); gl.attachShader(p, sh(gl.FRAGMENT_SHADER, HEAD + FS[k])); gl.bindAttribLocation(p, 0, "aP"); gl.linkProgram(p);
+      var u = {}, n = gl.getProgramParameter(p, gl.ACTIVE_UNIFORMS);
+      for (var i = 0; i < n; i++) { var nm = gl.getActiveUniform(p, i).name; u[nm] = gl.getUniformLocation(p, nm); }
+      P[k] = { p: p, u: u };
+    });
+  } catch (e) { hero.classList.add("nogl"); return; }
+  gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer()); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+
+  function target(w, h) {
+    var t = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, t);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA16F, w, h, 0, gl.RGBA, gl.HALF_FLOAT, null);
+    var f = gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER, f); gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, t, 0);
+    gl.viewport(0, 0, w, h); gl.clearColor(0, 0, 0, 1); gl.clear(gl.COLOR_BUFFER_BIT);
+    return { t: t, f: f, w: w, h: h };
+  }
+  function twin(w, h) { var a = target(w, h), b = target(w, h); return { get r() { return a; }, get w() { return b; }, swap: function () { var t = a; a = b; b = t; } }; }
+  var vel, dye, prs, dv, crl, SW, SH, DW, DH, asp = 1;
+  function size() {
+    var dpr = Math.min(devicePixelRatio || 1, 1.5);
+    cv.width = Math.round(cv.clientWidth * dpr); cv.height = Math.round(cv.clientHeight * dpr); asp = cv.width / cv.height;
+    var s = C.small ? 96 : 128, d = C.small ? 384 : 640;
+    if (asp > 1) { SW = Math.round(s * asp); SH = s; DW = Math.round(d * asp); DH = d; } else { SW = s; SH = Math.round(s / asp); DW = d; DH = Math.round(d / asp); }
+    vel = twin(SW, SH); dye = twin(DW, DH); prs = twin(SW, SH); dv = target(SW, SH); crl = target(SW, SH);
+  }
+  function run(k, dst, set) {
+    var p = P[k]; gl.useProgram(p.p);
+    var w = dst ? dst.w : cv.width, h = dst ? dst.h : cv.height;
+    if (p.u.uTx) gl.uniform2f(p.u.uTx, 1 / (set.tw || w), 1 / (set.th || h));
+    var unit = 0;
+    Object.keys(set).forEach(function (n) {
+      var v = set[n], loc = p.u[n]; if (!loc) return;
+      if (v && v.t) { gl.activeTexture(gl.TEXTURE0 + unit); gl.bindTexture(gl.TEXTURE_2D, v.t); gl.uniform1i(loc, unit++); }
+      else if (typeof v === "number") gl.uniform1f(loc, v);
+      else if (v.length === 2) gl.uniform2f(loc, v[0], v[1]); else gl.uniform3f(loc, v[0], v[1], v[2]);
+    });
+    gl.bindFramebuffer(gl.FRAMEBUFFER, dst ? dst.f : null); gl.viewport(0, 0, w, h);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  }
+  // blue ink absorbs red, rust absorbs blue, a little peach now and then
+  var INKS = [[0.95, 0.6, 0.18], [0.12, 0.62, 1.0], [0.8, 0.35, 0.3], [0.05, 0.28, 0.45]], ink = 0;
+  function splat(x, y, dx, dy, col, rad) {
+    run("splat", vel.w, { uS: vel.r, uAsp: asp, uRad: (rad || 0.0022), uC: [dx, dy, 0], uPt: [x, y], tw: SW, th: SH }); vel.swap();
+    run("splat", dye.w, { uS: dye.r, uAsp: asp, uRad: (rad || 0.0022) * 1.4, uC: col, uPt: [x, y], tw: DW, th: DH }); dye.swap();
+  }
+  function tide(f) {
+    var b = pool.getBoundingClientRect(), hb = cv.getBoundingClientRect();
+    var x = (b.left + b.width / 2 - hb.left) / hb.width, y = 1 - (b.top + b.height / 2 - hb.top) / hb.height, r = b.width / 2 / hb.height;
+    run("radial", vel.w, { uS: vel.r, uAsp: asp, uRad: r, uF: f, uPt: [x, y], tw: SW, th: SH }); vel.swap();
+    return [x, y, r];
+  }
+  function step(dt) {
+    run("curl", crl, { uV: vel.r, tw: SW, th: SH });
+    run("vort", vel.w, { uV: vel.r, uC: crl, uK: 18, uDt: dt, tw: SW, th: SH }); vel.swap();
+    run("div", dv, { uV: vel.r, tw: SW, th: SH });
+    run("fade", prs.w, { uS: prs.r, uK: 0.8, tw: SW, th: SH }); prs.swap();
+    for (var i = 0; i < 20; i++) { run("press", prs.w, { uP: prs.r, uD: dv, tw: SW, th: SH }); prs.swap(); }
+    run("grad", vel.w, { uP: prs.r, uV: vel.r, tw: SW, th: SH }); vel.swap();
+    run("advect", vel.w, { uV: vel.r, uS: vel.r, uVtx: [1 / SW, 1 / SH], uDt: dt, uDiss: 0.2, tw: SW, th: SH }); vel.swap();
+    run("advect", dye.w, { uV: vel.r, uS: dye.r, uVtx: [1 / SW, 1 / SH], uDt: dt, uDiss: 0.22, tw: DW, th: DH }); dye.swap();
+  }
+
+  // pointer: stir with the hand, colour alternating slowly between inks
+  var lx = -1, ly = -1, moved = 0, trav = 0;
+  hero.addEventListener("pointermove", function (e) {
+    var b = cv.getBoundingClientRect(), x = (e.clientX - b.left) / b.width, y = 1 - (e.clientY - b.top) / b.height;
+    if (lx >= 0) {
+      var dx = (x - lx) * SW * 60, dy = (y - ly) * SH * 60;
+      trav += Math.hypot(x - lx, y - ly); if (trav > 0.5) { trav = 0; ink = (ink + 1) % 3; }
+      var c = INKS[ink], k = Math.min(1, Math.hypot(x - lx, y - ly) * 30) * 0.22;
+      splat(x, y, dx, dy, [c[0] * k, c[1] * k, c[2] * k]);
+      moved = 1;
+    }
+    lx = x; ly = y;
+  }, { passive: true });
+  hero.addEventListener("pointerleave", function () { lx = ly = -1; });
+
+  // a few drops of ink at the start, placed round the pool so it isn't empty
+  function seedInk() {
+    var q = tide(0), r = C.rng(8);
+    for (var i = 0; i < 9; i++) {
+      var a = i / 9 * 6.283 + r(), rr = q[2] * (1.05 + r() * 0.4), x = q[0] + Math.cos(a) * rr / asp, y = q[1] + Math.sin(a) * rr, c = INKS[i % 4], k = 0.5 + r() * 0.4;
+      splat(x, y, -Math.sin(a) * 260, Math.cos(a) * 260, [c[0] * k, c[1] * k, c[2] * k], 0.004);
+    }
+  }
+  size(); seedInk();
+  C.onResize(cv, function () { size(); seedInk(); });
+
+  var last = performance.now(), t0 = last, nextDrop = last + 2500;
+  function frame(now) {
+    var dt = Math.min(0.02, (now - last) / 1000); last = now;
+    // the tide: swell outward for four seconds, draw back for four
+    var ph = ((now - t0) / 8000) % 1;
+    tide((ph < 0.5 ? 1 : -0.8) * Math.sin(ph * Math.PI * 2 % Math.PI) * 30);
+    if (now > nextDrop) { // an occasional drop at the pool's edge keeps the water alive
+      var q = tide(0), a = Math.random() * 6.283, c = INKS[Math.floor(Math.random() * 4)];
+      splat(q[0] + Math.cos(a) * q[2] * 1.1 / asp, q[1] + Math.sin(a) * q[2] * 1.1, -Math.sin(a) * 200, Math.cos(a) * 200, [c[0] * 0.4, c[1] * 0.4, c[2] * 0.4], 0.003);
+      nextDrop = now + 2600 + Math.random() * 1500;
+    }
+    step(dt);
+    run("show", null, { uS: dye.r, uT: now % 1000 });
+  }
+  var lp = C.loop(frame);
+  if (C.reduce) { for (var i = 0; i < 90; i++) step(0.016); run("show", null, { uS: dye.r, uT: 0 }); }
+  else frame(performance.now());
+  C.whileVisible(hero, function () { last = performance.now(); lp.start(); }, lp.stop);
+})();
+</script>
+</body>
+</html>

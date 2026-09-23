@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept 5 · Aura</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Mulish:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Concept 5 — Aura.
+   The quietest direction: soft blurred colour auras (the chakra-aura and
+   warm gradient pins), faint roots growing along the edges, lots of air.
+   The hero is itself a breathing space — the aura breathes, and you can
+   breathe with it. Photos have feathered edges and colour bleeding into them. */
+:root{--cream:#fbf5ee;--ink:#3d3334;--mute:#8a7b78;--apricot:#f7c9a3;--blush:#efb3b8;--lilac:#cdbde6;--butter:#f6e3a7;--sage:#c3d3bd;}
+body{background:var(--cream);color:var(--ink);font-family:'Mulish',sans-serif;font-weight:300;font-size:17px;line-height:1.8;}
+.gd{font-family:'Gilda Display',Georgia,serif;font-weight:400;}
+.nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:1.6rem 6vw;}
+.logo{font-family:'Gilda Display',serif;font-size:1.15rem;text-decoration:none;letter-spacing:.02em;}
+.links{display:flex;gap:1.8rem;font-size:.86rem;letter-spacing:.06em;}
+.links a{text-decoration:none;color:var(--mute);}
+.soft{display:inline-block;padding:.95rem 1.9rem;border-radius:999px;text-decoration:none;color:var(--ink);font-weight:400;letter-spacing:.04em;font-size:.92rem;border:0;cursor:pointer;font-family:inherit;
+  background:radial-gradient(160% 220% at 20% 20%,#fff4ea,var(--apricot) 55%,var(--blush));box-shadow:0 12px 30px -12px rgba(220,140,120,.6);transition:transform .5s,box-shadow .5s;}
+.soft:hover{transform:translateY(-2px);box-shadow:0 18px 40px -14px rgba(220,140,120,.7);}
+.soft.quiet{background:rgba(255,255,255,.6);box-shadow:none;}
+
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:4vw;padding:7rem 6vw 5rem;overflow:hidden;}
+.aura{position:relative;justify-self:center;width:min(560px,90vw);aspect-ratio:1;--s:1;}
+.aura i{position:absolute;inset:0;border-radius:50%;filter:blur(38px);transform:scale(var(--s));transition:transform var(--dur,1.2s) cubic-bezier(.45,.05,.55,.95);}
+.aura i:nth-child(1){background:radial-gradient(circle at 45% 40%,var(--butter),transparent 62%);animation:drift 17s ease-in-out infinite;}
+.aura i:nth-child(2){inset:8%;background:radial-gradient(circle at 60% 55%,var(--blush),transparent 60%);animation:drift 21s ease-in-out infinite reverse;}
+.aura i:nth-child(3){inset:14%;background:radial-gradient(circle at 40% 65%,var(--lilac),transparent 60%);animation:drift 25s ease-in-out infinite;}
+.aura i:nth-child(4){inset:26%;background:radial-gradient(circle,#fff6ec,var(--apricot) 55%,transparent 72%);filter:blur(22px);}
+@keyframes drift{0%,100%{translate:0 0;}33%{translate:3% -4%;}66%{translate:-4% 3%;}}
+.aura.idle{animation:breathe 10s ease-in-out infinite;}
+@keyframes breathe{0%,100%{scale:.9;}40%{scale:1.04;}}
+.aura-word{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-family:'Gilda Display',serif;font-size:clamp(1.5rem,2.6vw,2.2rem);color:var(--ink);}
+.aura-word small{display:block;font-family:'Mulish',sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);}
+.eyebrow{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);}
+h1{font-family:'Gilda Display',serif;font-weight:400;font-size:clamp(2.6rem,5.2vw,4.9rem);line-height:1.08;margin:1rem 0 1.4rem;}
+h1 em{font-style:normal;background:linear-gradient(100deg,#d98a6e,#c77e9a 60%,#9a86c9);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.lede{max-width:28em;color:var(--mute);margin-bottom:2.2rem;}
+.ctas{display:flex;gap:.9rem;flex-wrap:wrap;}
+.roots{position:absolute;left:0;right:0;bottom:0;height:34vh;pointer-events:none;z-index:0;}
+.roots path{fill:none;stroke:rgba(160,128,118,.2);stroke-linecap:round;stroke-dasharray:1 2;stroke-dashoffset:1.01;transition:stroke-dashoffset 4s cubic-bezier(.3,.6,.2,1);}
+.roots.on path{stroke-dashoffset:0;}
+.follow{position:fixed;left:0;top:0;width:340px;height:340px;margin:-170px 0 0 -170px;border-radius:50%;pointer-events:none;z-index:0;opacity:0;transition:opacity .8s;
+  background:radial-gradient(circle,rgba(247,201,163,.45),rgba(205,189,230,.25) 45%,transparent 70%);filter:blur(10px);}
+
+.sec{position:relative;padding:9rem 6vw;}
+h2{font-family:'Gilda Display',serif;font-weight:400;font-size:clamp(2.2rem,4.2vw,3.6rem);line-height:1.1;margin:1rem 0 1.4rem;}
+h2 em{font-style:normal;color:#c77e9a;}
+.two{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center;}
+.two p{color:var(--mute);margin-bottom:1rem;}
+.glow{position:relative;aspect-ratio:4/5;}
+.glow::before{content:'';position:absolute;inset:-14%;z-index:-1;border-radius:50%;filter:blur(40px);background:radial-gradient(circle at 40% 40%,var(--apricot),var(--blush) 45%,var(--lilac) 70%,transparent 75%);opacity:.8;}
+.glow img{width:100%;height:100%;object-fit:cover;-webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);}
+
+.quiet-list{max-width:900px;margin:3rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:1.6rem 4rem;}
+.q{display:flex;gap:1.2rem;align-items:flex-start;}
+.q::before{content:'';flex:none;width:34px;height:34px;border-radius:50%;margin-top:.3rem;filter:blur(3px);background:radial-gradient(circle,var(--c,#f7c9a3),transparent 70%);}
+.q h3{font-family:'Gilda Display',serif;font-weight:400;font-size:1.35rem;line-height:1.2;}
+.q p{color:var(--mute);font-size:.92rem;}
+
+.quote{max-width:900px;margin:0 auto;text-align:center;position:relative;}
+.quote::before{content:'';position:absolute;left:50%;top:50%;width:70%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:-1;border-radius:50%;filter:blur(60px);opacity:.55;background:radial-gradient(circle,var(--lilac),var(--blush) 50%,transparent 70%);}
+.quote blockquote{font-family:'Gilda Display',serif;font-size:clamp(1.6rem,3vw,2.5rem);line-height:1.35;}
+.quote cite{display:block;margin-top:1.4rem;font-style:normal;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);}
+
+.prices{max-width:980px;margin:3rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;}
+.price{position:relative;padding:3rem 2.6rem;border-radius:40px;background:rgba(255,255,255,.55);overflow:hidden;isolation:isolate;}
+.price::before{content:'';position:absolute;right:-30%;top:-40%;width:90%;aspect-ratio:1;border-radius:50%;z-index:-1;filter:blur(40px);opacity:.7;background:radial-gradient(circle,var(--c),transparent 70%);}
+.price .eyebrow{font-size:.7rem;}
+.price h3{font-family:'Gilda Display',serif;font-weight:400;font-size:1.7rem;margin-top:.4rem;}
+.amt{font-family:'Gilda Display',serif;font-size:3.4rem;line-height:1.1;margin:.4rem 0;}
+.price p{color:var(--mute);font-size:.93rem;margin-bottom:1.4rem;}
+@media (max-width:900px){
+  .hero,.two,.prices,.quiet-list{grid-template-columns:1fr;}
+  .aura{order:-1;width:min(360px,80vw);}
+  .links{display:none;}
+  .follow{display:none;}
+}
+</style>
+</head>
+<body data-concept="5">
+<div class="follow" id="follow" aria-hidden="true"></div>
+<header class="nav">
+  <a class="logo" href="#">Craniosacral Therapy London</a>
+  <nav class="links"><a href="#">Waterloo</a><a href="#">Low Cost CST</a><a href="#">Journal</a><a href="#">FAQ</a></nav>
+  <a class="soft" href="#">Book</a>
+</header>
+
+<section class="hero" id="hero">
+  <svg class="roots" id="roots" viewBox="0 0 1440 300" preserveAspectRatio="none" aria-hidden="true"></svg>
+  <div style="position:relative;z-index:1">
+    <span class="eyebrow" data-rv>London · Bethnal Green &amp; Waterloo</span>
+    <h1 data-rv style="--d:.1s">Craniosacral therapy <em>&amp; fascial unwinding</em> in London</h1>
+    <p class="lede" data-rv style="--d:.2s">Gentle, restorative sessions with Phoenix, CSTA registered. Before anything else, take a breath with the light.</p>
+    <div class="ctas" data-rv style="--d:.3s">
+      <button class="soft" id="breathBtn" type="button" aria-pressed="false">Breathe with me</button>
+      <a class="soft quiet" href="#">Book a session</a>
+    </div>
+  </div>
+  <div class="aura idle" id="aura" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <p class="aura-word" id="auraWord" role="status" aria-live="polite" style="position:absolute;pointer-events:none"></p>
+</section>
+
+<section class="sec">
+  <div class="two">
+    <figure class="glow" data-rv>
+      <img src="/.netlify/images?url=/photos/craniosacral_therapy_london_.jpg&amp;w=1000&amp;q=80" alt="Craniosacral therapy session in London" loading="lazy" style="object-position:45% 50%" onerror="this.onerror=null;this.src='/photos/craniosacral_therapy_london_.jpg'">
+    </figure>
+    <div data-rv style="--d:.1s">
+      <span class="eyebrow">About the practice</span>
+      <h2>A quiet hour for your <em>whole system</em></h2>
+      <p>Craniosacral therapy is a gentle yet powerful hands-on approach that supports the body's natural ability to release tension, restore balance, and heal. It helps shift the nervous system into a parasympathetic state, where rest, recovery and repair happen.</p>
+      <p>Using light touch and deep presence, I create a safe space for your system to unwind and return to flow.</p>
+      <a class="soft" href="#" style="margin-top:1rem">Book a session</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:2rem">
+  <div style="text-align:center" data-rv><span class="eyebrow">Who this is for</span><h2>What people <em>bring</em></h2></div>
+  <div class="quiet-list">
+    <div class="q" data-rv style="--c:#f7c9a3"><div><h3>Migraines &amp; headaches</h3><p>Gentle attention to the cranial bones and membranes.</p></div></div>
+    <div class="q" data-rv style="--c:#efb3b8"><div><h3>Anxiety &amp; stress</h3><p>Time for the nervous system to come out of high alert.</p></div></div>
+    <div class="q" data-rv style="--c:#cdbde6"><div><h3>Burnout &amp; fatigue</h3><p>Unhurried space to rest properly.</p></div></div>
+    <div class="q" data-rv style="--c:#f6e3a7"><div><h3>Jaw tension</h3><p>Quiet work where tension is held unnoticed.</p></div></div>
+    <div class="q" data-rv style="--c:#c3d3bd"><div><h3>Trauma &amp; PTSD</h3><p>Slowly, at your pace, as your system settles.</p></div></div>
+    <div class="q" data-rv style="--c:#f7c9a3"><div><h3>Insomnia</h3><p>Helping an overactive system wind down.</p></div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="quote" data-rv>
+    <blockquote>“I felt so held that the tension I brought in had almost completely gone. I left feeling calmer and more present than I have in months.”</blockquote>
+    <cite>Geebs</cite>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:2rem">
+  <div style="text-align:center" data-rv><span class="eyebrow">Session rates</span><h2>Same care, <em>two ways to come</em></h2></div>
+  <div class="prices">
+    <div class="price" data-rv style="--c:#f7c9a3"><span class="eyebrow">Waterloo, SE1</span><h3>Individual session</h3><div class="amt">£80</div><p>60 minutes at Breathe London Wellbeing, ten minutes from Waterloo station.</p><a class="soft" href="#">Book this</a></div>
+    <div class="price" data-rv style="--c:#c3d3bd;--d:.1s"><span class="eyebrow">Bethnal Green, E2</span><h3>Low cost clinic</h3><div class="amt">£30–60</div><p>The same 60 minutes on a sliding scale. You pick your fee; no proof needed.</p><a class="soft quiet" href="#">Learn more</a></div>
+  </div>
+</section>
+<p class="cx-foot">Concept preview · Aura · inspired by the chakra aura, warm gradient and sun pins</p>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+  "use strict";
+  // faint roots grow up from the bottom of the hero, drawn once like ink
+  var svg = document.getElementById("roots"), NS = "http://www.w3.org/2000/svg", r = C.rng(21), paths = [];
+  function branch(x, y, a, len, w, depth) {
+    var d = "M" + x.toFixed(1) + " " + y.toFixed(1), px = x, py = y;
+    for (var s = 0; s < len; s++) { a += (r() - 0.5) * 0.25; px += Math.cos(a) * 6; py += Math.sin(a) * 6; d += "L" + px.toFixed(1) + " " + py.toFixed(1);
+      if (depth < 3 && r() < 0.06) branch(px, py, a + (r() < 0.5 ? -0.6 : 0.6), len * 0.55, w * 0.7, depth + 1); }
+    paths.push([d, w]);
+  }
+  for (var i = 0; i < 16; i++) branch(r() * 1440, 305, -Math.PI / 2 + (r() - 0.5) * 0.8, 22 + r() * 18, 1.4, 0);
+  paths.forEach(function (p, k) { var e = document.createElementNS(NS, "path"); e.setAttribute("d", p[0]); e.setAttribute("stroke-width", p[1]); e.setAttribute("pathLength", "1"); e.style.transitionDelay = (k * 0.03).toFixed(2) + "s"; svg.appendChild(e); });
+  C.once(svg, function () { svg.classList.add("on"); });
+
+  // a soft light follows the pointer
+  var f = document.getElementById("follow"), fx = 0, fy = 0, tx = 0, ty = 0;
+  addEventListener("pointermove", function (e) { tx = e.clientX; ty = e.clientY; f.style.opacity = 1; }, { passive: true });
+  var fl = C.loop(function () { fx += (tx - fx) * 0.08; fy += (ty - fy) * 0.08; f.style.transform = "translate(" + fx.toFixed(1) + "px," + fy.toFixed(1) + "px)"; });
+  fl.start();
+
+  // breathe with the aura: in 4, out 6, six rounds
+  var aura = document.getElementById("aura"), word = document.getElementById("auraWord"), btn = document.getElementById("breathBtn"), timer = 0, running = false;
+  function place() { var hb = document.getElementById("hero").getBoundingClientRect(), ab = aura.getBoundingClientRect(); word.style.left = (ab.left - hb.left) + "px"; word.style.top = (ab.top - hb.top) + "px"; word.style.width = ab.width + "px"; word.style.height = ab.height + "px"; }
+  place(); addEventListener("resize", place);
+  function setS(s, dur) { Array.prototype.forEach.call(aura.children, function (el) { el.style.setProperty("--s", s); el.style.setProperty("--dur", dur + "s"); }); }
+  function run(k) {
+    if (k >= 6) { stop("Welcome back"); return; }
+    word.innerHTML = "Breathe in<small>" + (k + 1) + " of 6</small>"; setS(1.18, 4);
+    timer = setTimeout(function () { word.innerHTML = "Breathe out<small>" + (k + 1) + " of 6</small>"; setS(0.82, 6); timer = setTimeout(function () { run(k + 1); }, 6000); }, 4000);
+  }
+  function stop(msg) { running = false; clearTimeout(timer); aura.classList.add("idle"); setS(1, 1.2); word.textContent = msg || ""; btn.textContent = "Breathe with me"; btn.setAttribute("aria-pressed", "false"); }
+  btn.addEventListener("click", function () {
+    if (running) { stop(); return; }
+    running = true; aura.classList.remove("idle"); btn.textContent = "Stop"; btn.setAttribute("aria-pressed", "true"); setS(0.85, 1.2);
+    word.textContent = "Settle in"; timer = setTimeout(function () { run(0); }, 1400);
+  });
+})();
+</script>
+</body>
+</html>

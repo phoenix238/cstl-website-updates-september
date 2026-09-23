@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept 10 · Spine of Light</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Concept 10 — Spine of Light.
+   From the halo pins on board two: the rainbow ring round a red sun, the
+   column of glowing centres down the body, the orange sun on violet, the
+   brain scan's inner fire. A column of seven soft lights runs down the side
+   of the page, from the crown to the sacrum, the length craniosacral therapy
+   works along. As you scroll, a light travels down it and the page's colour
+   warms from violet to red. Breathe along the spine and the light rises as
+   you breathe in and sinks as you breathe out. Hover near a light and it ripples. */
+:root{--night:#1f1729;--plum:#33263f;--cream:#f6ecdf;--mute:#bfb0b4;--gold:#f2c36b;--rose:#e58a86;--rail:clamp(56px,9vw,150px);}
+body{background:var(--night);color:var(--cream);font-family:'Manrope',sans-serif;font-weight:300;font-size:17px;line-height:1.8;}
+body::after{content:'';position:fixed;inset:0;z-index:900;pointer-events:none;opacity:.14;mix-blend-mode:overlay;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.6 -.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+/* the dusk behind everything, and a big soft glow that takes the colour of the lit centre */
+.sky{position:fixed;inset:0;z-index:-2;background:linear-gradient(#1c1526,#33263f 38%,#4b3a4f 72%,#5e4a47);}
+.sun{position:fixed;left:var(--rail);top:0;width:120vmax;height:120vmax;margin:-60vmax 0 0 -60vmax;z-index:-1;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle,var(--glow,#b58cff) 0,transparent 55%);opacity:.26;filter:blur(30px);will-change:transform;}
+.spine{position:fixed;left:0;top:0;width:100%;height:100%;z-index:1;pointer-events:none;}
+.label{position:fixed;left:calc(var(--rail) + 84px);top:0;z-index:2;font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--cream);opacity:.8;pointer-events:none;white-space:nowrap;transition:opacity .6s;}
+
+.nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:1.6rem 5vw 1.6rem calc(var(--rail) + 170px);}
+.logo{font-family:'Italiana',serif;font-size:1.3rem;text-decoration:none;letter-spacing:.03em;}
+.links{display:flex;gap:1.8rem;font-size:.84rem;letter-spacing:.06em;}
+.links a{text-decoration:none;color:var(--mute);}
+.lit{display:inline-block;padding:.9rem 1.9rem;border-radius:999px;text-decoration:none;color:#2a1c24;font-weight:500;font-size:.9rem;letter-spacing:.04em;border:0;cursor:pointer;font-family:inherit;
+  background:radial-gradient(130% 200% at 30% 20%,#fff4e2,var(--gold) 50%,var(--rose));box-shadow:0 0 36px -6px rgba(242,195,107,.55);transition:box-shadow .6s,transform .6s;}
+.lit:hover{box-shadow:0 0 56px 0 rgba(242,195,107,.6);transform:translateY(-2px);}
+.lit.dim{background:rgba(246,236,223,.08);color:var(--cream);box-shadow:inset 0 0 0 1px rgba(246,236,223,.25);}
+
+main{position:relative;z-index:3;padding-left:calc(var(--rail) + 170px);padding-right:5vw;}
+.hero{min-height:100svh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:4vw;padding:7rem 0 5rem;}
+.eyebrow{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mute);}
+h1{font-family:'Italiana',serif;font-weight:400;font-size:clamp(2.8rem,5.6vw,5.4rem);line-height:1.04;margin:1rem 0 1.4rem;}
+h1 em{font-style:normal;background:linear-gradient(90deg,#c9a6ff,#f2c36b 55%,#f08a7a);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.lede{max-width:29em;color:var(--mute);margin-bottom:2.2rem;}
+.ctas{display:flex;gap:.9rem;flex-wrap:wrap;}
+/* photos sit inside a soft chromatic ring, like the rainbow halo pin */
+.ring{position:relative;justify-self:center;width:min(420px,80vw);aspect-ratio:1;}
+.ring::before{content:'';position:absolute;inset:-9%;border-radius:50%;filter:blur(5px);
+  background:radial-gradient(circle,transparent 60%,rgba(255,110,110,.55) 63%,rgba(255,214,120,.5) 65.5%,rgba(130,225,170,.45) 68%,rgba(130,150,255,.5) 70.5%,rgba(190,140,255,.35) 73%,transparent 76%);animation:hum 9s ease-in-out infinite;}
+.ring::after{content:'';position:absolute;inset:-22%;z-index:-1;border-radius:50%;background:radial-gradient(circle,rgba(242,195,107,.35),transparent 62%);filter:blur(20px);}
+@keyframes hum{50%{transform:scale(1.03);opacity:.8;}}
+.ring img{width:100%;height:100%;object-fit:cover;border-radius:50%;
+  -webkit-mask-image:radial-gradient(circle,#000 58%,transparent 71%);mask-image:radial-gradient(circle,#000 58%,transparent 71%);}
+
+.sec{padding:8rem 0;max-width:1100px;}
+h2{font-family:'Italiana',serif;font-weight:400;font-size:clamp(2.3rem,4.4vw,3.8rem);line-height:1.08;margin:1rem 0 1.4rem;}
+h2 em{font-style:normal;color:var(--gold);}
+.two{display:grid;grid-template-columns:.9fr 1.1fr;gap:6vw;align-items:center;}
+.two p{color:var(--mute);margin-bottom:1rem;}
+
+.breath{text-align:left;}
+.breath .state{font-family:'Italiana',serif;font-size:clamp(2.4rem,5vw,4.4rem);line-height:1.1;min-height:1.2em;margin:1.2rem 0 1.6rem;color:var(--gold);transition:color 1.2s;}
+.breath .state small{display:block;font-family:'Manrope',sans-serif;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);}
+
+.centres{display:grid;grid-template-columns:1fr 1fr;gap:2rem 4rem;margin-top:3rem;}
+.centre{display:flex;gap:1.2rem;align-items:flex-start;}
+.centre::before{content:'';flex:none;width:30px;height:30px;margin-top:.35rem;border-radius:50%;background:radial-gradient(circle,#fff 0,var(--c) 30%,transparent 70%);box-shadow:0 0 24px var(--c);}
+.centre h3{font-family:'Italiana',serif;font-weight:400;font-size:1.6rem;line-height:1.2;}
+.centre p{color:var(--mute);font-size:.93rem;}
+
+.quote{min-height:70vh;display:grid;place-items:center;text-align:center;}
+.quote blockquote{font-family:'Italiana',serif;font-size:clamp(1.8rem,3.4vw,2.9rem);line-height:1.3;max-width:19em;}
+.quote cite{display:block;margin-top:1.4rem;font-family:'Manrope',sans-serif;font-style:normal;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);}
+
+.prices{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem;}
+.price{position:relative;padding:3rem 2.6rem;border-radius:40px;background:rgba(246,236,223,.05);box-shadow:inset 0 0 0 1px rgba(246,236,223,.1);overflow:hidden;isolation:isolate;}
+.price::before{content:'';position:absolute;right:-25%;top:-35%;width:80%;aspect-ratio:1;border-radius:50%;z-index:-1;filter:blur(30px);opacity:.5;background:radial-gradient(circle,var(--c),transparent 65%);}
+.price h3{font-family:'Italiana',serif;font-weight:400;font-size:1.8rem;}
+.amt{font-family:'Italiana',serif;font-size:3.8rem;line-height:1.1;margin:.3rem 0;}
+.price p{color:var(--mute);margin-bottom:1.4rem;}
+.cx-foot{position:relative;z-index:3;}
+@media (max-width:900px){
+  :root{--rail:22px;}
+  .nav{padding-left:60px;}
+  main{padding-left:60px;padding-right:22px;}
+  .hero,.two,.prices,.centres{grid-template-columns:1fr;}
+  .ring{order:-1;width:min(300px,72vw);}
+  .hero{padding-top:6rem;}
+  .links{display:none;}
+  .label{display:none;}
+}
+</style>
+</head>
+<body data-concept="10">
+<div class="sky" aria-hidden="true"></div>
+<div class="sun" id="sun" aria-hidden="true"></div>
+<canvas class="spine" id="spine" aria-hidden="true"></canvas>
+<span class="label" id="label" aria-hidden="true">Crown</span>
+<header class="nav">
+  <a class="logo" href="#">Craniosacral Therapy London</a>
+  <nav class="links"><a href="#">Waterloo</a><a href="#">Low Cost CST</a><a href="#">Journal</a><a href="#">FAQ</a></nav>
+  <a class="lit" href="#">Book</a>
+</header>
+
+<main>
+  <section class="hero">
+    <div>
+      <span class="eyebrow" data-rv>London · Bethnal Green &amp; Waterloo</span>
+      <h1 data-rv style="--d:.1s">Craniosacral therapy <em>&amp; fascial unwinding</em> in London</h1>
+      <p class="lede" data-rv style="--d:.2s">Gentle, restorative sessions with Phoenix, CSTA registered. From the crown of the head to the base of the spine, light touch and time for your whole system to settle.</p>
+      <div class="ctas" data-rv style="--d:.3s"><a class="lit" href="#">Book a session</a><a class="lit dim" href="#breathe">Breathe along the spine</a></div>
+    </div>
+    <figure class="ring" data-rv style="--d:.2s">
+      <img src="/.netlify/images?url=/photos/craniosacral-therapy-london.jpg&amp;w=900&amp;q=80" alt="Phoenix with a hand resting on a client's chest during a craniosacral therapy session" style="object-position:62% 50%" onerror="this.onerror=null;this.src='/photos/craniosacral-therapy-london.jpg'">
+    </figure>
+  </section>
+
+  <section class="sec">
+    <div class="two">
+      <figure class="ring" data-rv style="width:min(380px,76vw)">
+        <img src="/.netlify/images?url=/photos/craniosacral_therapy_london_.jpg&amp;w=900&amp;q=80" alt="Phoenix's hands cradling a client's head" loading="lazy" style="object-position:48% 40%" onerror="this.onerror=null;this.src='/photos/craniosacral_therapy_london_.jpg'">
+      </figure>
+      <div data-rv style="--d:.1s">
+        <span class="eyebrow">About the practice</span>
+        <h2>From cranium <em>to sacrum</em></h2>
+        <p>Craniosacral therapy is a gentle yet powerful hands-on approach that supports the body's natural ability to release tension, restore balance, and heal. It helps shift the nervous system into a parasympathetic state, where rest, recovery and repair happen.</p>
+        <p>Using light touch and deep presence, I create a safe space for your system to unwind and return to flow.</p>
+        <a class="lit" href="#" style="margin-top:1rem">Book a session</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec breath" id="breathe">
+    <span class="eyebrow" data-rv>A minute for yourself</span>
+    <h2 data-rv>Breathe <em>along the spine</em></h2>
+    <p style="color:var(--mute);max-width:32em" data-rv>Watch the light on the left. Breathe in for four as it rises to the crown, out for six as it sinks to the sacrum. Six rounds, about a minute.</p>
+    <p class="state" id="state" role="status" aria-live="polite"></p>
+    <button class="lit" id="breathBtn" type="button" aria-pressed="false" data-rv>Begin</button>
+  </section>
+
+  <section class="sec">
+    <span class="eyebrow" data-rv>Who this is for</span><h2 data-rv>What people <em>bring</em></h2>
+    <div class="centres">
+      <div class="centre" data-rv style="--c:#b58cff"><div><h3>Migraines &amp; headaches</h3><p>Gentle attention to the cranial bones and membranes.</p></div></div>
+      <div class="centre" data-rv style="--c:#7f8cff"><div><h3>Anxiety &amp; stress</h3><p>Time for the nervous system to come out of high alert.</p></div></div>
+      <div class="centre" data-rv style="--c:#6fc3e0"><div><h3>Jaw tension</h3><p>Quiet work where tension is held unnoticed.</p></div></div>
+      <div class="centre" data-rv style="--c:#8fd6a0"><div><h3>Burnout &amp; fatigue</h3><p>Unhurried space to rest properly.</p></div></div>
+      <div class="centre" data-rv style="--c:#ffd36b"><div><h3>Trauma &amp; PTSD</h3><p>Slowly, at your pace, as your system settles.</p></div></div>
+      <div class="centre" data-rv style="--c:#ff9a5c"><div><h3>Insomnia</h3><p>Helping an overactive system wind down.</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec quote">
+    <blockquote data-rv>“I felt so held that the tension I brought in had almost completely gone. I left feeling calmer and more present than I have in months.”<cite>Geebs</cite></blockquote>
+  </section>
+
+  <section class="sec">
+    <span class="eyebrow" data-rv>Session rates</span><h2 data-rv>Same care, <em>two ways to come</em></h2>
+    <div class="prices">
+      <div class="price" data-rv style="--c:#ff9a5c"><span class="eyebrow">Waterloo, SE1</span><h3>Individual session</h3><div class="amt">£80</div><p>60 minutes at Breathe London Wellbeing, ten minutes from Waterloo station.</p><a class="lit" href="#">Book this</a></div>
+      <div class="price" data-rv style="--c:#ff5f6d;--d:.1s"><span class="eyebrow">Bethnal Green, E2</span><h3>Low cost clinic</h3><div class="amt">£30<span style="font-family:Manrope,sans-serif;font-weight:300">–</span>60</div><p>The same 60 minutes on a sliding scale. You pick your fee; no proof needed.</p><a class="lit dim" href="#">Learn more</a></div>
+    </div>
+  </section>
+</main>
+<p class="cx-foot">Concept preview · Spine of Light · inspired by the rainbow halo, chakra column, sun-on-violet and brain-scan pins</p>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+  "use strict";
+  var cv = document.getElementById("spine"), sun = document.getElementById("sun"), label = document.getElementById("label");
+  var NAMES = ["Crown", "Cranial base", "Throat", "Heart", "Diaphragm", "Pelvic floor", "Sacrum"];
+  var COLS = [[181, 140, 255], [127, 140, 255], [111, 195, 224], [143, 214, 160], [255, 211, 107], [255, 154, 92], [255, 95, 109]];
+  var ctx, W, H, rail, top, span, R0, ripple = [0, 0, 0, 0, 0, 0, 0], mx = -1e4, my = -1e4;
+  function size() {
+    var f = C.fitCanvas(cv, 1.5); ctx = f.ctx; W = f.w; H = f.h;
+    rail = W > 900 ? Math.min(150, Math.max(56, W * 0.09)) : 22;   // matches --rail in the CSS
+    top = H * 0.12; span = H * 0.76; R0 = W > 900 ? 22 : 9;
+  }
+  size(); addEventListener("resize", size);
+  addEventListener("pointermove", function (e) { mx = e.clientX; my = e.clientY; }, { passive: true });
+
+  // where the light is: follows scroll, unless the breathing guide is leading
+  var pos = 0, target = 0, guide = null;
+  function scrollPos() { var max = document.documentElement.scrollHeight - innerHeight; return max > 0 ? Math.min(1, scrollY / max) * 6 : 0; }
+  function mix(a, b, t) { return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t]; }
+  function colAt(p) { var i = Math.min(5, Math.floor(p)); return mix(COLS[i], COLS[i + 1], p - i); }
+  function rgba(c, a) { return "rgba(" + (c[0] | 0) + "," + (c[1] | 0) + "," + (c[2] | 0) + "," + a.toFixed(3) + ")"; }
+  var lastLabel = -1;
+
+  function draw(now) {
+    var t = now / 1000;
+    target = guide ? guide(now) : scrollPos();
+    pos += (target - pos) * (guide ? 0.12 : 0.08);
+    ctx.clearRect(0, 0, W, H);
+    // the spine itself: a faint wavering line and small vertebrae
+    ctx.globalCompositeOperation = "source-over";
+    ctx.beginPath();
+    for (var y = top - 30; y <= top + span + 30; y += 6) { var x = rail + Math.sin(y * 0.012 + t * 0.6) * 2.5; if (y === top - 30) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+    ctx.strokeStyle = "rgba(246,236,223,.16)"; ctx.lineWidth = 1.2; ctx.stroke();
+    for (var v = 0; v < 26; v++) { var vy = top + span * v / 25; ctx.fillStyle = "rgba(246,236,223,.12)"; ctx.beginPath(); ctx.ellipse(rail, vy, R0 * 0.35, R0 * 0.12, 0, 0, 6.2832); ctx.fill(); }
+    ctx.globalCompositeOperation = "lighter";
+    for (var i = 0; i < 7; i++) {
+      var cy = top + span * i / 6, c = COLS[i], a = Math.exp(-Math.pow(i - pos, 2) / 0.45);
+      var dm = Math.hypot(mx - rail, my - cy); if (dm < 110) ripple[i] = Math.min(1, ripple[i] + 0.06); ripple[i] *= 0.975;
+      var breathe = 1 + Math.sin(t * 0.9 + i) * 0.04, rr = R0 * (1 + a * 0.9) * breathe;
+      var g = ctx.createRadialGradient(rail, cy, 0, rail, cy, rr * 3.2);
+      g.addColorStop(0, rgba(c, 0.55 + a * 0.4)); g.addColorStop(0.25, rgba(c, 0.22 + a * 0.3)); g.addColorStop(1, rgba(c, 0));
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(rail, cy, rr * 3.2, 0, 6.2832); ctx.fill();
+      // the chromatic ring: three offset rings in red, green and blue
+      var ringR = rr * (1.5 + a * 0.3 + ripple[i] * 0.8 * ((t * 1.3 + i) % 1)), ra = 0.18 + a * 0.35 + ripple[i] * 0.25;
+      ctx.lineWidth = 1.6 + a;
+      ctx.strokeStyle = "rgba(255,80,80," + ra.toFixed(3) + ")"; ctx.beginPath(); ctx.arc(rail - 1.2, cy, ringR, 0, 6.2832); ctx.stroke();
+      ctx.strokeStyle = "rgba(80,255,140," + (ra * 0.8).toFixed(3) + ")"; ctx.beginPath(); ctx.arc(rail, cy + 0.8, ringR + 1.2, 0, 6.2832); ctx.stroke();
+      ctx.strokeStyle = "rgba(90,120,255," + ra.toFixed(3) + ")"; ctx.beginPath(); ctx.arc(rail + 1.2, cy, ringR + 2.4, 0, 6.2832); ctx.stroke();
+    }
+    // the travelling light
+    var ly = top + span * pos / 6, lc = colAt(pos), lg = ctx.createRadialGradient(rail, ly, 0, rail, ly, R0 * 2.4);
+    lg.addColorStop(0, "rgba(255,250,240,.95)"); lg.addColorStop(0.3, rgba(lc, 0.6)); lg.addColorStop(1, rgba(lc, 0));
+    ctx.fillStyle = lg; ctx.beginPath(); ctx.arc(rail, ly, R0 * 2.4, 0, 6.2832); ctx.fill();
+    ctx.globalCompositeOperation = "source-over";
+    // the big glow behind the page follows the light and takes its colour
+    sun.style.transform = "translateY(" + ly.toFixed(1) + "px)"; sun.style.setProperty("--glow", rgba(lc, 1));
+    var li = Math.round(pos); if (li !== lastLabel) { lastLabel = li; label.textContent = NAMES[li]; }
+    label.style.transform = "translateY(" + (top + span * li / 6 - 9).toFixed(1) + "px)";
+  }
+  var lp = C.loop(draw); lp.start(); draw(performance.now());
+  if (C.reduce) addEventListener("scroll", function () { draw(performance.now()); }, { passive: true });
+
+  // breathe along the spine: in 4 (light rises to the crown), out 6 (sinks to the sacrum), six rounds
+  var btn = document.getElementById("breathBtn"), state = document.getElementById("state"), timer = 0;
+  function ease(x) { return 0.5 - Math.cos(Math.PI * Math.min(1, Math.max(0, x))) / 2; }
+  function stop(msg) { guide = null; clearTimeout(timer); btn.textContent = "Begin"; btn.setAttribute("aria-pressed", "false"); state.innerHTML = msg || ""; }
+  btn.addEventListener("click", function () {
+    if (guide) { stop(); return; }
+    btn.textContent = "Stop"; btn.setAttribute("aria-pressed", "true");
+    var t0 = performance.now() + 1500, round = -1;
+    state.innerHTML = "Settle in<small>the light moves to the base of the spine</small>";
+    guide = function (now) {
+      var e = (now - t0) / 1000; if (e < 0) return 6;
+      var k = Math.floor(e / 10), ph = e - k * 10;
+      if (k >= 6) { stop("Welcome back<small>six breaths, about a minute</small>"); return scrollPos(); }
+      if (k !== round || (ph >= 4) !== (state.dataset.out === "1")) {
+        round = k; state.dataset.out = ph >= 4 ? "1" : "0";
+        state.innerHTML = (ph < 4 ? "Breathe in" : "Breathe out") + "<small>" + (k + 1) + " of 6</small>";
+      }
+      return ph < 4 ? 6 - 6 * ease(ph / 4) : 6 * ease((ph - 4) / 6);
+    };
+  });
+})();
+</script>
+</body>
+</html>
