@@ -9,7 +9,8 @@ Read this before designing anything new for the site.
 - **Soft and approachable over busy.** Several concepts had good ideas but too much going on (1, 3, 7) or interactions that were too hectic (8).
 - **Hand-made feel.** Painterly and organic. No hard, modern or futuristic lines around images. Images should blend into the background.
 - **Softer colour.** The first board's feedback was "softer, more painterly, not bold". Concept 2's colour scheme is the favourite so far.
-- **Micro to macro is the big idea.** Wanted: a homepage journey from outer space → Earth → plant → cells → atoms → back out to space.
+- **Micro to macro is the big idea**, but as its own standalone page later, not the homepage. The journey: outer space → Earth → plant → cells → atoms → back out to space. The first attempt (11) had the right idea but poor execution.
+- **Pattern:** the big, animated hero ideas (6, 8, 11) get "love the concept, hate the execution". The quiet, small, soft details (bubbles, hand-drawn lines, the breathing water, the quote whirlpool) are what gets liked.
 
 ## Concept by concept
 
@@ -25,6 +26,7 @@ Read this before designing anything new for the site.
 | 8 | Fluid Body | Loves the concept | The whirlpool animation behind the quote | The hero fluid is too hectic; the ink around photos feels tacky; the rates section is only OK |
 | 9 | Nerve Garden | No | — | All of it |
 | 10 | Spine of Light | No, too spiritual | — | — |
+| 11 | Every Scale | Loves the concept, execution terrible | The space → Earth → cells → atoms → space journey, as a standalone page later | This execution |
 
 Note: the feedback said "Five … love the concept, hate the execution" after already covering Five (Aura). It most likely meant Six (Body Heat), and is recorded that way here.
 
