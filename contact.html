@@ -74,7 +74,7 @@ em{font-style:italic;color:var(--clay);}
 
 /* BOOKING PANEL */
 .book-panel{background:var(--cream);border:1px solid var(--bord);border-radius:var(--radius);padding:.9rem;max-width:860px;margin:0 auto;}
-.book-frame{display:block;width:100%;height:680px;border:0;border-radius:var(--radius);background:var(--cream);}
+.book-frame{display:block;width:100%;height:760px;border:0;border-radius:var(--radius);background:var(--cream);}
 .book-footer{margin:1.1rem .6rem .3rem;font-size:.82rem;color:var(--light);line-height:1.7;padding-top:1.1rem;border-top:1px solid var(--bord);}
 
 /* LOCATION STRIP */
@@ -135,6 +135,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
       <li><a href='/'>Home</a></li>
       <li><a href='/waterloo'>Waterloo</a></li>
       <li><a href='/community-clinic'>Low Cost CST</a></li>
+      <li><a href='/clean-language'>Clean Language</a></li>
       <li><a href='/journal'>Journal</a></li>
       <li><a href='/faq'>FAQ</a></li>
       <li><a class='nav-book active' href='/contact'>Contact / Book</a></li>
@@ -157,7 +158,11 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
     <!-- Booking panel -->
     <div class="fi">
       <div class="book-panel">
-        <iframe class="book-frame" src="https://cstlfalcrum.vercel.app/book" title="Booking page, book a craniosacral therapy session" loading="eager"></iframe>
+        <iframe class="book-frame" id="bookFrame" src="https://cstlfalcrum.vercel.app/book" title="Booking page, book a craniosacral therapy session" loading="eager"></iframe>
+        <!-- Arriving from the Clean Language page (/contact?session=clean) opens the
+             booking page with the 90-minute session already chosen. Everyone else
+             lands on the standard 60-minute session. -->
+        <script>if(new URLSearchParams(location.search).get('session')==='clean'){document.getElementById('bookFrame').src='https://cstlfalcrum.vercel.app/book?type=clean';}</script>
         <p class="book-footer">If you'd rather not book online, just send an email or WhatsApp message and we'll find something that works.</p>
       </div>
     </div>
@@ -213,11 +218,11 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
   <div class="loc-strip-in">
     <div class="loc-item">
       <h3>Waterloo</h3>
-      <p>Breathe London Wellbeing<br>34 Colombo St, London SE1 8DP<br>10 minutes from Waterloo station<br><br>Individual sessions &middot; £80 &middot; 60 minutes</p>
+      <p>Breathe London Wellbeing<br>34 Colombo St, London SE1 8DP<br>10 minutes from Waterloo station<br><br>Individual sessions &middot; £80 &middot; 60 minutes<br><a href="/clean-language">Clean Language + CST</a> &middot; £120 &middot; 90 minutes</p>
     </div>
     <div class="loc-item">
       <h3>Bethnal Green</h3>
-      <p>Low Cost Community Clinic<br>279 Cambridge Heath Rd, London E2 0EL<br>Near Bethnal Green station<br><br>Sliding scale &middot; £30&ndash;60 &middot; 60 minutes</p>
+      <p>Low Cost Community Clinic<br>279 Cambridge Heath Rd, London E2 0EL<br>Near Bethnal Green station<br><br>Sliding scale &middot; £30&ndash;60 &middot; 60 minutes<br><a href="/clean-language">Clean Language + CST</a> &middot; £45&ndash;75 &middot; 90 minutes</p>
     </div>
   </div>
 </div>
@@ -231,6 +236,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
     <a href='/'>Home</a>
     <a href='/waterloo'>Waterloo</a>
     <a href='/community-clinic'>Low Cost CST</a>
+    <a href='/clean-language'>Clean Language</a>
     <a href='/faq'>FAQ</a>
     <a href='/contact'>Contact / Book</a>
     <a href="https://www.instagram.com/phoenixtanner/" target="_blank" rel="noopener">Instagram</a>

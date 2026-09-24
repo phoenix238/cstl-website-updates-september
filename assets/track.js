@@ -92,7 +92,7 @@
       if (e.origin !== BOOKING_ORIGIN) return;
       if (e.source !== bookFrame.contentWindow) return;
       if (e.data && e.data.type === "cstl:booking_confirmed") {
-        send("booking_confirmed", { clinic: e.data.clinic || "", page_path: here });
+        send("booking_confirmed", { clinic: e.data.clinic || "", session_type: e.data.sessionType || "cst", page_path: here });
       }
     });
   }
