@@ -34,7 +34,7 @@
     {"@type":"Person","name":"Phoenix Tanner","jobTitle":"Craniosacral Therapist","description":"CSTA-registered craniosacral therapist trained at the College of Cranio-Sacral Therapy (CCST), London.","url":"https://craniosacraltherapylondon.com","sameAs":["https://www.instagram.com/phoenixtanner/"]},
     {"@type":"FAQPage","mainEntity":[
       {"@type":"Question","name":"What is craniosacral therapy?","acceptedAnswer":{"@type":"Answer","text":"Craniosacral therapy is a gentle hands-on therapy using very light touch to support the body's natural ability to heal and self-regulate. It works with the subtle rhythms of the craniosacral system to release restrictions and restore balance."}},
-      {"@type":"Question","name":"Why do people come to craniosacral therapy?","acceptedAnswer":{"@type":"Answer","text":"People often come to craniosacral therapy to relax and to ease the tension that comes with stress, burnout, busy lives, or recovering after birth. Craniosacral therapy is a complementary therapy. It does not diagnose, treat or cure medical conditions and is not a substitute for medical care."}},
+      {"@type":"Question","name":"What does craniosacral therapy help with?","acceptedAnswer":{"@type":"Answer","text":"People often come to craniosacral therapy for migraines, anxiety, jaw tension (TMJ), insomnia, burnout, chronic pain, nervous system dysregulation, trauma, PTSD, and post-natal recovery."}},
       {"@type":"Question","name":"How much does craniosacral therapy cost in London?","acceptedAnswer":{"@type":"Answer","text":"Individual sessions at our Waterloo location cost £80. Our Bethnal Green community clinic offers low cost craniosacral therapy on a sliding scale from £30 to £60."}},
       {"@type":"Question","name":"What is fascial unwinding?","acceptedAnswer":{"@type":"Answer","text":"Fascial unwinding is a gentle technique where the therapist supports part of the body and follows its natural movement, releasing stored tension patterns held in the connective tissue."}},
       {"@type":"Question","name":"Is craniosacral therapy safe?","acceptedAnswer":{"@type":"Answer","text":"Yes. CST is extremely gentle with no manipulation or pressure, safe for all ages including pregnant women and babies. Phoenix Tanner is CSTA-registered."}},
@@ -151,8 +151,8 @@ img.r{border-radius:var(--radius);}
 /* TESTIMONIALS */
 .testimonials{background:var(--deep);padding:5rem 8vw;}
 .testimonials-in{max-width:1100px;margin:0 auto;}
-.test-grid{columns:3;column-gap:1.5rem;margin-top:3rem;}
-.test-card{break-inside:avoid;margin-bottom:1.5rem;background:rgba(250,248,244,.05);border:1px solid rgba(250,248,244,.08);border-radius:var(--radius);padding:2.2rem 2rem 2rem;}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.test-card{background:rgba(250,248,244,.05);border:1px solid rgba(250,248,244,.08);border-radius:var(--radius);padding:2.2rem 2rem 2rem;}
 .test-quote{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;line-height:1.65;color:rgba(250,248,244,.88);margin-bottom:1.5rem;padding-top:1.8rem;position:relative;}
 .test-quote::before{content:'\201C';font-size:3.5rem;color:var(--clay);line-height:1;position:absolute;top:0;left:0;}
 .test-name{font-size:.73rem;letter-spacing:.12em;text-transform:uppercase;color:var(--clay);}
@@ -279,7 +279,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
   .h-intro-in,.h-how-in,.h-about-in,.fascial-in,.h-session-in,.quote-band-in{grid-template-columns:1fr;gap:3rem;}
   .p-grid,.loc-grid{grid-template-columns:1fr;}
   .cond-grid{grid-template-columns:repeat(2,1fr);}
-  .test-grid{columns:2;}
+  .test-grid{grid-template-columns:1fr 1fr;}
   .blog-grid{grid-template-columns:1fr 1fr;}
   .img-duo{display:none;}
   .h-how-in img{display:none;}
@@ -294,8 +294,8 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
   .nav-immersive .nav-links.open a.nav-book{color:#fff!important;}
   .nav-burger{display:flex;}
   .cond-grid{grid-template-columns:1fr 1fr;}
-  .test-grid{columns:1;}
-  .blog-grid{grid-template-columns:1fr;}
+  .test-grid,.blog-grid{grid-template-columns:1fr;}
+  .test-card:nth-child(n+4){display:none;}
   .h-intro,.h-how,.h-about,.fascial,.h-session,.h-pricing,.h-bookcta,.h-loc,.quote-band,.conditions,.testimonials,.faq-section,.blog-section{padding:3.5rem 5vw;}
 }
 </style>
@@ -359,7 +359,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
       <p class="bt">Craniosacral therapy is a gentle yet powerful hands-on approach that supports the body's natural ability to release tension, restore balance, and heal. It helps shift the nervous system into a parasympathetic state, where rest, recovery and repair happen. Using light touch and deep presence, I create a safe space for your system to unwind and return to flow.</p>
       <hr class="div">
       <h3 class="sub">How can craniosacral therapy help you?</h3>
-      <p class="bt">People often come when they feel stuck, physically, emotionally or both. Whether it's stress, burnout, held tension, or a general sense of disconnection, many clients find this work helps them feel more like themselves again.</p>
+      <p class="bt">People often come when they feel stuck, physically, emotionally or both. Whether you're dealing with pain, stress, anxiety, burnout, or a general sense of disconnection, this work helps bring you back to yourself. Common concerns include migraines, jaw tension, insomnia, fatigue, trauma, and nervous system dysregulation.</p>
       <br><a class='btn btn-o' href='/contact'>Book a Session</a>
     </div>
     <div class="fi"><img class="r" src="/.netlify/images?url=/photos/craniosacral-therapy-bethnal-green-london.jpg&amp;w=1200&amp;q=80" srcset="/.netlify/images?url=/photos/craniosacral-therapy-bethnal-green-london.jpg&amp;w=600&amp;q=80 1x, /.netlify/images?url=/photos/craniosacral-therapy-bethnal-green-london.jpg&amp;w=1200&amp;q=80 2x" alt="Craniosacral therapy session London" width="600" height="800" loading="lazy" onerror="this.onerror=null;this.removeAttribute('srcset');this.src='/photos/craniosacral-therapy-bethnal-green-london.jpg'"></div>
@@ -372,20 +372,19 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
       <span class="eyebrow">Who This Is For</span>
       <h2 class="dsp" id="cond-h">Why people come to craniosacral therapy in London</h2>
       <div class="rule rule-c"></div>
-      <p class="bt" style="margin:0 auto 0;text-align:center">People come to craniosacral therapy for all kinds of reasons. These are some of the things clients most often mention.</p>
+      <p class="bt" style="margin:0 auto 0;text-align:center">People come to craniosacral therapy for all kinds of reasons — physical, emotional, and neurological. These are some of the most common.</p>
     </div>
     <div class="cond-grid fi">
-      <article class="cond-card"><span class="cond-dash"></span><h4>Head, Neck &amp; Jaw Tension</h4><p>Gentle attention around the head, neck and jaw, where a great deal of tension tends to be held unnoticed.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Feeling Stressed or On Edge</h4><p>Time for the nervous system to come out of high alert. Many people describe feeling calmer and more settled afterwards.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Burnout &amp; Exhaustion</h4><p>Unhurried space to rest properly, for anyone who has been running on empty for a long while.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Finding It Hard to Switch Off</h4><p>A quiet hour to slow down, for when your mind and body struggle to wind down at the end of the day.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Carrying Difficult Experiences</h4><p>Working slowly and at your pace, with care and consent. A gentle complement to, not a replacement for, psychological support.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Long-Held Physical Tension</h4><p>Gentle contact with the body's connective tissue, giving long-held patterns room to soften in their own time.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>After Birth</h4><p>Gentle, nourishing time for yourself after birth, space to rest and reconnect with your body.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Feeling Stuck in Fight-or-Flight</h4><p>When the body stays braced and busy, CST offers unhurried time to settle and a felt sense of safety.</p></article>
-      <article class="cond-card"><span class="cond-dash"></span><h4>Simply Wanting to Feel Grounded</h4><p>Many people come with no specific concern at all, as regular self-care and time to land back in themselves.</p></article>
+      <article class="cond-card"><span class="cond-dash"></span><h4>Migraines &amp; Headaches</h4><p>Gentle attention to the cranial bones and membranes, easing tension that often sits behind recurring headaches.</p></article>
+      <article class="cond-card"><span class="cond-dash"></span><h4>Anxiety &amp; Stress</h4><p>Time for the nervous system to come out of high alert. Many people describe feeling calmer and more settled afterwards.</p></article>
+      <article class="cond-card"><span class="cond-dash"></span><h4>Burnout &amp; Fatigue</h4><p>Unhurried space to rest properly, for anyone who has been running on empty for a long while.</p></article>
+      <article class="cond-card"><span class="cond-dash"></span><h4>Jaw Tension (TMJ)</h4><p>Quiet work around the temporal bones and jaw, where a great deal of tension tends to be held unnoticed.</p></article>
+      <article class="cond-card"><span class="cond-dash"></span><h4>Trauma &amp; PTSD</h4><p>Working slowly and at your pace, supporting the nervous system as it finds its own way to settle.</p></article>
+      <article class="cond-card"><span class="cond-dash"></span><h4>Insomnia</h4><p>Helping an overactive nervous system wind down, which for many people makes sleep come a little more easily.</p></article>
+      <article class="cond-card"><span class="cond-dash"></span><h4>Chronic Pain</h4><p>Gentle contact with the body's connective tissue, giving long-held patterns room to soften in their own time.</p></article>
+      <article class="cond-card"><span class="cond-dash"></span><h4>Post-Natal Recovery</h4><p>Gentle, nourishing support after birth — space to restore and reconnect with your body.</p></article>
+      <article class="cond-card"><span class="cond-dash"></span><h4>Nervous System Dysregulation</h4><p>When the body stays stuck in fight-or-flight or freeze, CST offers a way back towards rhythm and a felt sense of safety.</p></article>
     </div>
-    <p class="bt" style="margin:2rem auto 0;text-align:center;max-width:680px;font-size:.85rem">Craniosacral therapy is a complementary therapy. It does not diagnose, treat or cure medical conditions and is not a substitute for care from your GP or other health professionals. If you have a medical or mental health condition, please keep working with them alongside any sessions.</p>
     <div style="text-align:center;margin-top:3rem" class="fi"><a class='btn btn-o' href='/contact'>Book Here, from £30</a></div>
   </div>
 </section>
@@ -484,6 +483,10 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
         <div class="test-name">Alfie L. · Google review</div>
       </article>
       <article class="test-card">
+        <p class="test-quote">The environment feels safe, supportive, and non-judgmental. I felt immediately open to release, move, and feel. A gifted healer, listener, and grounding force. His dance background shines through. I highly recommend his practice.</p>
+        <div class="test-name">Gabby</div>
+      </article>
+      <article class="test-card">
         <p class="test-quote">Phoenix is an amazing practitioner. I had never tried cranio before, and so during my first session I asked many a question, which Phoenix had all the answers to. Now I've had a couple, and every session he's creating a safe, welcoming and warm space. Which feels needed in the world. I look forward to the next!</p>
         <div class="test-name">Nora Lina V. · Google review</div>
       </article>
@@ -492,28 +495,12 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
         <div class="test-name">Cydney E. · Google review</div>
       </article>
       <article class="test-card">
-        <p class="test-quote">Felt super warm and welcome. Never really heard of this but a friend recommended Phoenix, genuinely felt so safe and cared for. Def gonna be back soon. Thanks again.</p>
-        <div class="test-name">Max W. · Google review</div>
-      </article>
-      <article class="test-card">
-        <p class="test-quote">Phoenix emanates such a kind, safe and relaxing energy to be around, he has healing hands and an intuitive heart, I would highly recommend getting a session with him</p>
-        <div class="test-name">Raani J. · Google review</div>
-      </article>
-      <article class="test-card">
-        <p class="test-quote">Phoenix is an amazing professional Craniosacral therapist. I felt safe and comfortable, would definitely recommend!</p>
-        <div class="test-name">Elise L. · Google review</div>
-      </article>
-      <article class="test-card">
-        <p class="test-quote">The environment feels safe, supportive, and non-judgmental. I felt immediately open to release, move, and feel. A gifted healer, listener, and grounding force. His dance background shines through. I highly recommend his practice.</p>
-        <div class="test-name">Gabby</div>
-      </article>
-      <article class="test-card">
-        <p class="test-quote">I felt so held that the tension I brought in had almost completely gone. I'm new to this kind of treatment, but I made discoveries about myself and left feeling calmer and more present than I have in months.</p>
-        <div class="test-name">Geebs</div>
-      </article>
-      <article class="test-card">
         <p class="test-quote">From arrival to leaving, I was held with deep warmth and care. Cranio Sacral with Phoenix tapped into an ancient body knowledge through softness and intuitive listening. My body and mind could rest, and the subconscious had space. Sharing before and after revealed where I was holding and releasing and how long I'd been carrying unconscious weight. Phoenix brings warmth, intuition, and deep physical understanding. A magical and deeply relaxing experience.</p>
         <div class="test-name">Phoebe</div>
+      </article>
+      <article class="test-card">
+        <p class="test-quote">Felt super warm and welcome. Never really heard of this but a friend recommended Phoenix, genuinely felt so safe and cared for. Def gonna be back soon. Thanks again.</p>
+        <div class="test-name">Max W. · Google review</div>
       </article>
     </div>
   </div>
