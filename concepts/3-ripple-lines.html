@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept 3 · Ripple Lines</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Concept 3 — Ripple Lines.
+   Hand-drawn contour lines, like a map of the body's landscape or rings on
+   water (the contour-body, op-art ripple, water ripple and cymatics pins).
+   Touch the page and a ripple travels through the lines; the lines wrap
+   around each photo as if it sat on a hill. */
+:root{--bone:#f3eee7;--graphite:#3e3a36;--mute:#7d746c;--blush:#cf8f7a;--blue:#8fa7b9;}
+body{background:var(--bone);color:var(--graphite);font-family:'Work Sans',sans-serif;font-weight:300;font-size:17px;line-height:1.75;}
+.is{font-family:'Instrument Serif',Georgia,serif;font-weight:400;}
+.hand{font-family:'Reenie Beanie',cursive;font-size:1.6rem;line-height:1.1;color:var(--blush);}
+.nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:1.6rem 6vw;}
+.logo{font-family:'Instrument Serif',serif;font-size:1.35rem;text-decoration:none;}
+.links{display:flex;gap:1.8rem;font-size:.88rem;}
+.links a{text-decoration:none;color:var(--mute);}
+.btn{display:inline-block;padding:.85rem 1.6rem;border-radius:999px;border:1px solid var(--graphite);text-decoration:none;font-size:.92rem;transition:background .4s,color .4s;background:none;color:var(--graphite);font-family:inherit;cursor:pointer;}
+.btn:hover,.btn.fill{background:var(--graphite);color:var(--bone);}
+.btn.fill:hover{background:var(--blush);border-color:var(--blush);}
+
+.lines{position:absolute;inset:0;z-index:0;}
+.lines canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.hero{position:relative;min-height:100svh;overflow:hidden;cursor:pointer;}
+.hero-copy{position:absolute;left:6vw;bottom:11vh;z-index:2;max-width:46rem;}
+h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(3rem,7.2vw,6.8rem);line-height:.98;letter-spacing:-.01em;margin:.4rem 0 1.4rem;}
+h1 em{color:var(--blush);}
+.hero p{max-width:28em;color:var(--mute);margin-bottom:1.8rem;}
+.ctas{display:flex;gap:.8rem;flex-wrap:wrap;}
+.hero-photo{position:absolute;z-index:1;right:7vw;top:14vh;width:min(36vw,500px);aspect-ratio:1/1.1;}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:45% 50%;}
+.note-a{position:absolute;z-index:2;right:calc(7vw + min(36vw,500px) - 40px);top:11vh;transform:rotate(-6deg);}
+.tap{position:absolute;right:6vw;bottom:5vh;z-index:2;}
+
+.sec{position:relative;padding:8rem 6vw;}
+h2{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(2.4rem,4.6vw,4rem);line-height:1.05;margin-bottom:1.4rem;}
+h2 em{color:var(--blush);}
+.two{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center;}
+.two p{color:var(--mute);margin-bottom:1rem;}
+.oval{aspect-ratio:4/5;}
+.oval img{width:100%;height:100%;object-fit:cover;}
+
+.list{max-width:1100px;margin:3rem auto 0;columns:2;column-gap:5rem;}
+.item{break-inside:avoid;display:grid;grid-template-columns:3rem 1fr;gap:.2rem 1rem;margin-bottom:2.2rem;}
+.item .hand{font-size:1.9rem;}
+.item h3{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.7rem;line-height:1.1;}
+.item p{grid-column:2;color:var(--mute);font-size:.94rem;}
+
+.breathe{position:relative;min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#eee7de;}
+.breathe-in{position:relative;z-index:2;max-width:36rem;padding:0 6vw;}
+.breathe-word{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(2.4rem,5vw,4rem);min-height:1.3em;color:var(--graphite);}
+.breathe p{color:var(--mute);margin:1rem 0 1.6rem;}
+
+.prices{max-width:1000px;margin:3rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
+.price h3{font-family:'Instrument Serif',serif;font-weight:400;font-size:1.9rem;}
+.amt{font-family:'Instrument Serif',serif;font-size:4rem;line-height:1;margin:.4rem 0 .8rem;}
+.price p{color:var(--mute);font-size:.94rem;margin-bottom:1.4rem;}
+@media (max-width:900px){
+  .links{display:none;}
+  .hero{min-height:auto;padding:6rem 6vw 4rem;}
+  .hero-photo{position:relative;right:auto;top:auto;width:78vw;margin:0 auto 2rem;}
+  .hero-copy{position:relative;left:auto;bottom:auto;}
+  .note-a,.tap{display:none;}
+  .two,.prices{grid-template-columns:1fr;}
+  .list{columns:1;}
+}
+</style>
+</head>
+<body data-concept="3">
+<header class="nav">
+  <a class="logo" href="#">Craniosacral Therapy London</a>
+  <nav class="links"><a href="#">Waterloo</a><a href="#">Low Cost CST</a><a href="#">Journal</a><a href="#">FAQ</a></nav>
+  <a class="btn" href="#">Book</a>
+</header>
+
+<section class="hero" id="hero">
+  <div class="lines" id="heroLines" aria-hidden="true"></div>
+  <span class="hand note-a" aria-hidden="true">light touch,<br>deep rest ↘</span>
+  <figure class="hero-photo" data-paint="seed:8;r:44;wob:.08;blur:3.4;tear:7">
+    <img src="/.netlify/images?url=/photos/craniosacral_therapy_london_.jpg&amp;w=1000&amp;q=80" alt="Craniosacral therapy session in London" onerror="this.onerror=null;this.src='/photos/craniosacral_therapy_london_.jpg'">
+  </figure>
+  <div class="hero-copy">
+    <span class="hand" data-rv>London · Bethnal Green &amp; Waterloo</span>
+    <h1 data-rv style="--d:.1s">Craniosacral therapy <em>&amp; fascial unwinding</em> in London</h1>
+    <p data-rv style="--d:.2s">Gentle, restorative sessions with Phoenix, CSTA registered. The body has its own quiet rhythms; this work listens to them.</p>
+    <div class="ctas" data-rv style="--d:.3s"><a class="btn fill" href="#">Book a session</a><a class="btn" href="#">WhatsApp</a></div>
+  </div>
+  <span class="hand tap" aria-hidden="true">touch the water ~</span>
+</section>
+
+<section class="sec">
+  <div class="two">
+    <figure class="oval" data-paint="seed:18;r:44;wob:.1;blur:3.4;tear:8" data-rv>
+      <img src="/.netlify/images?url=/photos/gentle-bodywork-london.jpg&amp;w=900&amp;q=80" alt="Gentle craniosacral bodywork London" loading="lazy" onerror="this.onerror=null;this.src='/photos/gentle-bodywork-london.jpg'">
+    </figure>
+    <div data-rv>
+      <span class="hand">about the practice</span>
+      <h2>Listening to the <em>subtle rhythms</em> of the body</h2>
+      <p>Every session is guided by what your body needs in the moment. Using a touch no heavier than the weight of a coin, I listen to the subtle rhythms that express your body's health and its places of restriction.</p>
+      <p>It helps shift the nervous system into a parasympathetic state, where rest, recovery and repair happen.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:2rem">
+  <div style="max-width:1100px;margin:0 auto" data-rv>
+    <span class="hand">who this is for</span>
+    <h2>What people <em>bring</em></h2>
+  </div>
+  <div class="list">
+    <div class="item" data-rv><span class="hand">i</span><h3>Migraines &amp; headaches</h3><p>Gentle attention to the cranial bones and membranes.</p></div>
+    <div class="item" data-rv><span class="hand">ii</span><h3>Anxiety &amp; stress</h3><p>Time for the nervous system to come out of high alert.</p></div>
+    <div class="item" data-rv><span class="hand">iii</span><h3>Burnout &amp; fatigue</h3><p>Unhurried space to rest properly.</p></div>
+    <div class="item" data-rv><span class="hand">iv</span><h3>Jaw tension</h3><p>Quiet work where tension is held unnoticed.</p></div>
+    <div class="item" data-rv><span class="hand">v</span><h3>Trauma &amp; PTSD</h3><p>Slowly, at your pace, as your system settles.</p></div>
+    <div class="item" data-rv><span class="hand">vi</span><h3>Insomnia</h3><p>Helping an overactive system wind down.</p></div>
+  </div>
+</section>
+
+<section class="breathe" id="breathe">
+  <div class="lines" id="breathLines" aria-hidden="true"></div>
+  <div class="breathe-in">
+    <span class="hand">a moment for you</span>
+    <h2>Breathe with <em>the water</em></h2>
+    <p class="breathe-word" id="breathWord" role="status" aria-live="polite"></p>
+    <p>Follow the rings as they open and settle: in for four, out for six, six times.</p>
+    <button class="btn fill" id="breathBtn" type="button" aria-pressed="false">Begin</button>
+  </div>
+</section>
+
+<section class="sec">
+  <div style="text-align:center" data-rv><span class="hand">session rates</span><h2>Same care, <em>two ways to come</em></h2></div>
+  <div class="prices">
+    <div class="price" data-rv><span class="hand">Waterloo, SE1</span><h3>Individual session</h3><div class="amt">£80</div><p>60 minutes at Breathe London Wellbeing, ten minutes from Waterloo station.</p><a class="btn fill" href="#">Book this</a></div>
+    <div class="price" data-rv style="--d:.1s"><span class="hand">Bethnal Green, E2</span><h3>Low cost clinic</h3><div class="amt">£30–60</div><p>The same 60 minutes on a sliding scale. You pick your fee; no proof needed.</p><a class="btn" href="#">Learn more</a></div>
+  </div>
+</section>
+<p class="cx-foot">Concept preview · Ripple Lines · inspired by the contour body, op-art ripple, water ripple and cymatics pins</p>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // contour lines of a slow noise field, found with marching squares and drawn
+  // like pencil: a little wobble, every fourth line a touch heavier
+  function contours(host, opts) {
+    var cv = document.createElement("canvas"); host.appendChild(cv);
+    var S, G = C.small ? 14 : 11, cols, rows, F, ripples = [], t = 0, hills = opts.hills || function () { return []; }, H = [];
+    function fit() { S = C.fitCanvas(cv, 1.5); cols = Math.ceil(S.w / G) + 2; rows = Math.ceil(S.h / G) + 2; F = new Float32Array(cols * rows); H = hills(S); }
+    function field() {
+      var now = performance.now();
+      for (var j = 0; j < rows; j++) for (var i = 0; i < cols; i++) {
+        var x = i * G, y = j * G, v = C.n3(x * 0.0021, y * 0.0021, t * 0.0009) * 0.75 + C.n2(x * 0.006 + 40, y * 0.006) * 0.12;
+        for (var h = 0; h < H.length; h++) { var dx = (x - H[h][0]) / H[h][2], dy = (y - H[h][1]) / H[h][2]; v += H[h][3] * Math.exp(-(dx * dx + dy * dy)); }
+        for (var k = 0; k < ripples.length; k++) {
+          var q = ripples[k], age = (now - q.t0) / 1000, d = Math.hypot(x - q.x, y - q.y), front = age * 170;
+          var env = Math.exp(-age / 2.6) * Math.exp(-Math.pow((d - front) / 60, 2));
+          v += q.a * env * Math.sin((d - front) * 0.09);
+        }
+        if (opts.extra) v += opts.extra(x, y, S);
+        F[j * cols + i] = v;
+      }
+      ripples = ripples.filter(function (q) { return now - q.t0 < 9000; });
+    }
+    function draw() {
+      var ctx = S.ctx; ctx.clearRect(0, 0, S.w, S.h);
+      var levels = opts.levels || 22;
+      for (var L = 0; L < levels; L++) {
+        var iso = -1.1 + (2.2 * L) / levels, heavy = L % 4 === 0;
+        ctx.beginPath();
+        for (var j = 0; j < rows - 1; j++) for (var i = 0; i < cols - 1; i++) {
+          var a = F[j * cols + i], b = F[j * cols + i + 1], c = F[(j + 1) * cols + i + 1], d = F[(j + 1) * cols + i];
+          var idx = (a > iso ? 8 : 0) | (b > iso ? 4 : 0) | (c > iso ? 2 : 0) | (d > iso ? 1 : 0);
+          if (idx === 0 || idx === 15) continue;
+          var x = i * G, y = j * G;
+          var top = [x + G * (iso - a) / (b - a), y], right = [x + G, y + G * (iso - b) / (c - b)], bot = [x + G * (iso - d) / (c - d), y + G], left = [x, y + G * (iso - a) / (d - a)];
+          var segs = SEG[idx];
+          for (var s = 0; s < segs.length; s += 2) {
+            var p = [top, right, bot, left][segs[s]], q2 = [top, right, bot, left][segs[s + 1]];
+            ctx.moveTo(p[0], p[1]); ctx.lineTo(q2[0], q2[1]);
+          }
+        }
+        var tone = L / levels;
+        ctx.strokeStyle = tone > 0.62 ? "rgba(207,143,122," + (heavy ? 0.6 : 0.36) + ")" : tone < 0.3 ? "rgba(143,167,185," + (heavy ? 0.55 : 0.32) + ")" : "rgba(62,58,54," + (heavy ? 0.42 : 0.2) + ")";
+        ctx.lineWidth = heavy ? 1.3 : 0.8;
+        ctx.stroke();
+      }
+    }
+    var SEG = [[], [3, 2], [2, 1], [3, 1], [0, 1], [3, 0, 2, 1], [0, 2], [3, 0], [3, 0], [0, 2], [3, 2, 0, 1], [0, 1], [3, 1], [2, 1], [3, 2], []];
+    fit(); field(); draw();
+    C.onResize(host, function () { fit(); field(); draw(); });
+    var last = 0;
+    var lp = C.loop(function (now) { if (now - last < 40) return; last = now; t += 1; field(); draw(); });
+    C.whileVisible(host, lp.start, lp.stop);
+    var api = {
+      ripple: function (x, y, a) { ripples.push({ x: x, y: y, a: a, t0: performance.now() }); if (ripples.length > 14) ripples.shift(); if (C.reduce) { field(); draw(); } },
+      host: host
+    };
+    return api;
+  }
+
+  // hero: the photo sits on a hill, so the lines wrap around it
+  var heroEl = document.getElementById("hero"), photo = heroEl.querySelector(".hero-photo");
+  var hero = contours(document.getElementById("heroLines"), {
+    hills: function () {
+      var hb = heroEl.getBoundingClientRect(), pb = photo.getBoundingClientRect();
+      return [[pb.left - hb.left + pb.width / 2, pb.top - hb.top + pb.height / 2, pb.width * 0.62, 1.1]];
+    }
+  });
+  var lastMove = 0;
+  heroEl.addEventListener("pointermove", function (e) {
+    var now = performance.now(); if (now - lastMove < 260) return; lastMove = now;
+    var b = heroEl.getBoundingClientRect(); hero.ripple(e.clientX - b.left, e.clientY - b.top, 0.12);
+  }, { passive: true });
+  heroEl.addEventListener("pointerdown", function (e) {
+    if (e.target.closest("a,button")) return;
+    var b = heroEl.getBoundingClientRect(); hero.ripple(e.clientX - b.left, e.clientY - b.top, 0.45);
+  });
+  setTimeout(function () { var b = heroEl.getBoundingClientRect(); hero.ripple(b.width * 0.3, b.height * 0.4, 0.4); }, 900);
+
+  // breathing: the rings open with the in-breath and settle with the out-breath
+  var lvl = 0, running = false, t0 = 0, word = document.getElementById("breathWord"), btn = document.getElementById("breathBtn"), lastWord = "";
+  var breath = contours(document.getElementById("breathLines"), {
+    levels: 26,
+    extra: function (x, y, S) {
+      var d = Math.hypot(x - S.w / 2, y - S.h / 2) / Math.min(S.w, S.h);
+      return 0.55 * Math.cos(d * (15 - lvl * 6)) * Math.exp(-d * 1.4);
+    }
+  });
+  function tick() {
+    if (!running) return;
+    var el = (performance.now() - t0) / 1000, cyc = 10, round = Math.floor(el / cyc), p = el - round * cyc;
+    if (round >= 6) { running = false; word.textContent = "Welcome back"; btn.textContent = "Begin"; btn.setAttribute("aria-pressed", "false"); lvl = 0; return; }
+    var w;
+    if (p < 4) { lvl = 0.5 - 0.5 * Math.cos(Math.PI * p / 4); w = "Breathe in"; } else { lvl = 0.5 + 0.5 * Math.cos(Math.PI * (p - 4) / 6); w = "Breathe out"; }
+    if (w !== lastWord) { lastWord = w; word.textContent = w; }
+    requestAnimationFrame(tick);
+  }
+  btn.addEventListener("click", function () {
+    if (running) { running = false; lvl = 0; word.textContent = ""; btn.textContent = "Begin"; btn.setAttribute("aria-pressed", "false"); return; }
+    running = true; t0 = performance.now(); lastWord = ""; btn.textContent = "Stop"; btn.setAttribute("aria-pressed", "true"); tick();
+  });
+})();
+</script>
+</body>
+</html>

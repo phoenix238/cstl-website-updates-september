@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Concept 2 · Marbled Watercolour</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Karla:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* Concept 2 — Marbled Watercolour.
+   Soft pastel marbling, like pigment floating on water (the acrylic-pour and
+   ink pins). Drag through it and the colours comb and swirl behind you.
+   Photos float in painted pools; everything is curves, nothing is ruled. */
+:root{--cream:#f8f2ea;--plum:#3f3040;--mute:#7a6a78;--peach:#f2b8a0;--apricot:#f6cf9f;--lilac:#c9b6e4;--sea:#a9d3c9;--sky:#9fb4d8;--rose:#e8a9b8;}
+body{background:var(--cream);color:var(--plum);font-family:'Karla',sans-serif;font-weight:300;font-size:17px;line-height:1.75;}
+h1,h2,h3,.ys{font-family:'Young Serif',Georgia,serif;font-weight:400;}
+.nav{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 6vw;}
+.logo{font-family:'Young Serif',serif;font-size:1.1rem;text-decoration:none;}
+.links{display:flex;gap:1.6rem;font-size:.92rem;}
+.links a{text-decoration:none;color:var(--plum);opacity:.75;}
+.pill{display:inline-block;padding:.95rem 1.9rem;border-radius:999px 820px 900px 760px/780px 900px 800px 999px;background:var(--plum);color:var(--cream);text-decoration:none;font-weight:500;letter-spacing:.02em;transition:border-radius .8s,transform .5s;}
+.pill:hover{border-radius:760px 999px 780px 900px/999px 800px 900px 780px;transform:translateY(-2px);}
+.pill.soft{background:rgba(255,255,255,.7);color:var(--plum);}
+
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 6vw 12rem;overflow:hidden;}
+.marble{position:absolute;inset:0;z-index:-1;background:linear-gradient(160deg,#f6d9c8,#e3d6ee 40%,#cfe6df 70%,#f4e0c4);}
+.marble canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.pool{position:relative;isolation:isolate;padding:4.5rem 5.5rem;max-width:880px;}
+.pool::before{content:'';position:absolute;inset:0;z-index:-1;background:rgba(248,242,234,.86);-webkit-mask-image:var(--paint);mask-image:var(--paint);-webkit-mask-size:100% 100%;mask-size:100% 100%;}
+.eyebrow{font-style:italic;color:var(--mute);}
+h1{font-size:clamp(2.6rem,5.8vw,5.2rem);line-height:1.05;margin:.7rem 0 1.2rem;}
+h1 span{color:#b26b86;}
+.lede{max-width:32em;margin:0 auto 2rem;color:var(--mute);font-size:1.08rem;}
+.ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.drag{position:absolute;bottom:9rem;left:0;right:0;font-style:italic;color:var(--plum);opacity:.55;font-size:.9rem;}
+
+.float{position:relative;z-index:2;margin:-9rem auto 0;width:min(560px,86vw);aspect-ratio:5/4;}
+.float img{width:100%;height:100%;object-fit:cover;object-position:45% 45%;}
+
+.wave{display:block;width:100%;height:90px;}
+.sec{padding:7rem 6vw;}
+.two{max-width:1150px;margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:6vw;align-items:center;}
+h2{font-size:clamp(2.1rem,4vw,3.4rem);line-height:1.1;margin-bottom:1.4rem;}
+h2 span{color:#b26b86;}
+.two p{color:var(--mute);margin-bottom:1rem;}
+.halo{position:relative;aspect-ratio:4/5;}
+.halo::before{content:'';position:absolute;inset:-12%;z-index:-1;filter:blur(30px);opacity:.8;
+  background:radial-gradient(40% 40% at 30% 30%,var(--peach),transparent 70%),radial-gradient(40% 40% at 70% 60%,var(--lilac),transparent 70%),radial-gradient(40% 40% at 40% 80%,var(--sea),transparent 70%);}
+.halo img{width:100%;height:100%;object-fit:cover;}
+
+.lilac{background:#efe6f3;}
+.pebbles{max-width:1100px;margin:3rem auto 0;display:flex;flex-wrap:wrap;gap:1.4rem;justify-content:center;}
+.pebble{padding:2rem 2.2rem;max-width:320px;flex:1 1 260px;animation:morph 14s ease-in-out infinite;transition:transform .6s;}
+.pebble:hover{transform:translateY(-6px) rotate(-1deg);}
+.pebble h3{font-size:1.35rem;margin-bottom:.3rem;}
+.pebble p{font-size:.93rem;color:var(--mute);}
+.pebble:nth-child(6n+1){background:#f6d3c4;}
+.pebble:nth-child(6n+2){background:#f5e0bf;animation-delay:-3s;}
+.pebble:nth-child(6n+3){background:#dccdf0;animation-delay:-6s;}
+.pebble:nth-child(6n+4){background:#cde6df;animation-delay:-9s;}
+.pebble:nth-child(6n+5){background:#d3ddf0;animation-delay:-2s;}
+.pebble:nth-child(6n+6){background:#f2d2db;animation-delay:-11s;}
+@keyframes morph{0%,100%{border-radius:58% 42% 55% 45%/48% 58% 42% 52%;}33%{border-radius:45% 55% 42% 58%/58% 44% 56% 42%;}66%{border-radius:52% 48% 60% 40%/42% 52% 48% 58%;}}
+
+.closing{position:relative;overflow:hidden;padding:9rem 6vw;text-align:center;}
+.prices{max-width:1000px;margin:3rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:2rem;}
+.price{position:relative;isolation:isolate;padding:3.2rem 2.6rem;text-align:left;}
+.price::before{content:'';position:absolute;inset:0;z-index:-1;background:rgba(248,242,234,.9);-webkit-mask-image:var(--paint);mask-image:var(--paint);-webkit-mask-size:100% 100%;mask-size:100% 100%;}
+.price small{font-style:italic;color:var(--mute);}
+.price h3{font-size:1.6rem;}
+.amt{font-family:'Young Serif',serif;font-size:3.2rem;line-height:1.15;margin:.4rem 0;}
+.price p{color:var(--mute);font-size:.94rem;margin-bottom:1.4rem;}
+@media (max-width:900px){.two,.prices{grid-template-columns:1fr;}.links{display:none;}.pool{padding:3.2rem 2rem;}}
+</style>
+</head>
+<body data-concept="2">
+<header class="nav">
+  <a class="logo" href="#">Craniosacral Therapy London</a>
+  <nav class="links"><a href="#">Waterloo</a><a href="#">Low Cost CST</a><a href="#">Journal</a><a href="#">FAQ</a></nav>
+  <a class="pill" href="#">Book</a>
+</header>
+
+<section class="hero" id="hero">
+  <div class="marble" data-marble aria-hidden="true"></div>
+  <div class="pool" data-paintvar="seed:6;r:46;wob:.1;blur:3;tear:8" data-rv>
+    <span class="eyebrow">London · Bethnal Green &amp; Waterloo</span>
+    <h1>Craniosacral therapy <span>&amp; fascial unwinding</span> in London</h1>
+    <p class="lede">Gentle, restorative sessions with Phoenix, CSTA registered. Light touch, and space for your whole system to soften and flow.</p>
+    <div class="ctas"><a class="pill" href="#">Book a session</a><a class="pill soft" href="#">WhatsApp</a></div>
+  </div>
+  <p class="drag" aria-hidden="true">drag through the colours</p>
+</section>
+<figure class="float" data-paint="seed:14;r:44;wob:.12;blur:3.2;tear:10" data-rv>
+  <img src="/.netlify/images?url=/photos/craniosacral_therapy_london_.jpg&amp;w=1100&amp;q=80" alt="Craniosacral therapy session in London" onerror="this.onerror=null;this.src='/photos/craniosacral_therapy_london_.jpg'">
+</figure>
+
+<section class="sec">
+  <div class="two">
+    <div data-rv>
+      <span class="eyebrow">About the practice</span>
+      <h2>Let everything <span>soften and flow</span></h2>
+      <p>Craniosacral therapy is a gentle yet powerful hands-on approach that supports the body's natural ability to release tension, restore balance, and heal. It helps shift the nervous system into a parasympathetic state, where rest, recovery and repair happen.</p>
+      <p>Using light touch and deep presence, I create a safe space for your system to unwind and return to flow.</p>
+    </div>
+    <figure class="halo" data-rv style="--d:.1s"><img data-paint="seed:23;r:43;wob:.14;blur:3.4;tear:10" src="/.netlify/images?url=/photos/fascia-unwinding-session-london.jpg&amp;w=900&amp;q=80" alt="Fascial unwinding session London" loading="lazy" onerror="this.onerror=null;this.src='/photos/fascia-unwinding-session-london.jpg'"></figure>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path fill="#efe6f3" d="M0 50 C 240 10 420 90 720 55 S 1200 10 1440 45 L1440 90 L0 90Z"/></svg>
+<section class="sec lilac">
+  <div style="text-align:center" data-rv>
+    <span class="eyebrow">Who this is for</span>
+    <h2>What people <span>bring</span></h2>
+  </div>
+  <div class="pebbles">
+    <div class="pebble" data-rv><h3>Migraines &amp; headaches</h3><p>Gentle attention to the cranial bones and membranes.</p></div>
+    <div class="pebble" data-rv><h3>Anxiety &amp; stress</h3><p>Time for the nervous system to come out of high alert.</p></div>
+    <div class="pebble" data-rv><h3>Burnout &amp; fatigue</h3><p>Unhurried space to rest properly.</p></div>
+    <div class="pebble" data-rv><h3>Jaw tension</h3><p>Quiet work where tension is held unnoticed.</p></div>
+    <div class="pebble" data-rv><h3>Trauma &amp; PTSD</h3><p>Slowly, at your pace, as your system settles.</p></div>
+    <div class="pebble" data-rv><h3>Insomnia</h3><p>Helping an overactive system wind down.</p></div>
+  </div>
+</section>
+<svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="background:#efe6f3"><path fill="#f8f2ea" d="M0 40 C 300 80 520 5 820 40 S 1260 80 1440 35 L1440 90 L0 90Z"/></svg>
+
+<section class="closing">
+  <div class="marble" data-marble aria-hidden="true"></div>
+  <span class="eyebrow" data-rv>Session rates</span>
+  <h2 data-rv>Same care, <span>two ways to come</span></h2>
+  <div class="prices">
+    <div class="price" data-paintvar="seed:31;r:46;wob:.08;blur:2.6;tear:8" data-rv>
+      <small>Waterloo, SE1</small><h3>Individual session</h3><div class="amt">£80</div>
+      <p>60 minutes at Breathe London Wellbeing, ten minutes from Waterloo station.</p>
+      <a class="pill" href="#">Book this</a>
+    </div>
+    <div class="price" data-paintvar="seed:37;r:46;wob:.08;blur:2.6;tear:8" data-rv style="--d:.1s">
+      <small>Bethnal Green, E2</small><h3>Low cost clinic</h3><div class="amt">£30–60</div>
+      <p>The same 60 minutes on a sliding scale. You pick your fee; no proof needed.</p>
+      <a class="pill" href="#">Learn more</a>
+    </div>
+  </div>
+</section>
+<p class="cx-foot">Concept preview · Marbled Watercolour · inspired by the acrylic pour, marbled ink and watercolour brain pins</p>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+  "use strict";
+  Array.prototype.forEach.call(document.querySelectorAll("[data-paintvar]"), function (el, i) {
+    var o = {}; el.getAttribute("data-paintvar").split(";").forEach(function (kv) { var p = kv.split(":"); if (p[1]) o[p[0]] = +p[1]; });
+    el.style.setProperty("--paint", C.paintMask(o.seed || i, o));
+  });
+
+  // pigment floating on water: layered warps make soft bands of colour, and
+  // the last few pointer positions comb and swirl them
+  var FS = [
+    "precision highp float;",
+    "uniform vec2 uR; uniform float uT; uniform vec3 uP[12]; uniform float uSeed;",
+    "float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }",
+    "float n(vec2 p){ vec2 i = floor(p), f = fract(p); vec2 u = f * f * (3. - 2. * f);",
+    "  return mix(mix(h(i), h(i + vec2(1., 0.)), u.x), mix(h(i + vec2(0., 1.)), h(i + vec2(1., 1.)), u.x), u.y); }",
+    "float fbm(vec2 p){ float s = 0., a = .5; for (int i = 0; i < 4; i++){ s += a * n(p); p = p * 2.03 + 11.7; a *= .5; } return s; }",
+    "vec3 pal(float k){ float m = mod(k, 6.);",
+    "  vec3 c = vec3(.949, .722, .627);",
+    "  if (m >= 1.) c = vec3(.965, .812, .624); if (m >= 2.) c = vec3(.788, .714, .894); if (m >= 3.) c = vec3(.663, .827, .788);",
+    "  if (m >= 4.) c = vec3(.624, .706, .847); if (m >= 5.) c = vec3(.91, .663, .722);",
+    "  return mix(c, vec3(.973, .949, .918), .18); }",
+    "void main(){",
+    "  float k = min(uR.x, uR.y); vec2 p = (gl_FragCoord.xy - .5 * uR) / k; float t = uT * .018;",
+    "  for (int i = 0; i < 12; i++) { vec2 c = (uP[i].xy * uR - .5 * uR) / k; vec2 d = p - c; float s = uP[i].z * exp(-dot(d, d) * 14.); p += vec2(-d.y, d.x) * s * 1.8 + d * s * .15; }",
+    "  vec2 q = p + uSeed;",
+    "  q.x += .32 * sin(q.y * 2.1 + t * 3. + fbm(q * 1.3 + t) * 2.);",
+    "  q.y += .28 * sin(q.x * 1.6 - t * 2. + fbm(q * 1.1 - t) * 2.5);",
+    "  q += .5 * vec2(fbm(q * 1.5 + vec2(t, 0.)), fbm(q * 1.5 + vec2(3.1, -t)));",
+    "  float band = (q.y * 1.5 + q.x * .55 + fbm(q * 2.2) * .9) * 2.3;",
+    "  float id = floor(band), fr = fract(band);",
+    "  vec3 col = mix(pal(id), pal(id + 1.), smoothstep(.5, .96, fr));",
+    "  float edge = smoothstep(0., .05, fr) * (1. - smoothstep(.05, .22, fr));",
+    "  col = mix(col, col * .84, edge * .55);",
+    "  col = mix(col, vec3(.973, .949, .918), smoothstep(.35, .75, h(vec2(id, 3.7))) * .5);",
+    "  col += (n(gl_FragCoord.xy * .6) - .5) * .02;",
+    "  gl_FragColor = vec4(col, 1.);",
+    "}"
+  ].join("\n");
+
+  function marble(host, seed) {
+    var cv = document.createElement("canvas"), gl = cv.getContext("webgl", { antialias: false, alpha: false });
+    if (!gl) return;
+    function sh(t, s) { var o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o); if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o)); return o; }
+    var pr = gl.createProgram();
+    try { gl.attachShader(pr, sh(gl.VERTEX_SHADER, "attribute vec2 a; void main(){ gl_Position = vec4(a, 0., 1.); }")); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, FS)); }
+    catch (e) { return; }
+    gl.linkProgram(pr); gl.useProgram(pr);
+    host.appendChild(cv);
+    var b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(pr, "a"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var uR = gl.getUniformLocation(pr, "uR"), uT = gl.getUniformLocation(pr, "uT"), uP = gl.getUniformLocation(pr, "uP"), uS = gl.getUniformLocation(pr, "uSeed");
+    var pts = new Float32Array(36), head = 0, scale = C.small ? 0.5 : 0.6, t0 = performance.now(), last = 0;
+    function size() { cv.width = Math.round(host.clientWidth * scale); cv.height = Math.round(host.clientHeight * scale); gl.viewport(0, 0, cv.width, cv.height); }
+    function draw(now) {
+      for (var i = 0; i < 12; i++) pts[i * 3 + 2] *= 0.965;
+      gl.uniform2f(uR, cv.width, cv.height); gl.uniform1f(uT, (now - t0) / 1000); gl.uniform3fv(uP, pts); gl.uniform1f(uS, seed);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    }
+    size(); draw(t0);
+    C.onResize(host, function () { size(); draw(performance.now()); });
+    var lp = C.loop(function (now) { if (now - last < 30) return; last = now; draw(now); });
+    C.whileVisible(host, lp.start, lp.stop);
+    var lx = null, ly = null;
+    host.parentNode.addEventListener("pointermove", function (e) {
+      var bb = host.getBoundingClientRect(), x = (e.clientX - bb.left) / bb.width, y = 1 - (e.clientY - bb.top) / bb.height;
+      if (lx !== null && Math.hypot(x - lx, y - ly) < 0.02) return;
+      var dir = lx === null ? 1 : Math.sign((x - lx) || 1);
+      lx = x; ly = y;
+      pts[head * 3] = x; pts[head * 3 + 1] = y; pts[head * 3 + 2] = 0.9 * dir;
+      head = (head + 1) % 12;
+    }, { passive: true });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-marble]"), function (el, i) { try { marble(el, i * 4.7); } catch (e) {} });
+})();
+</script>
+</body>
+</html>
