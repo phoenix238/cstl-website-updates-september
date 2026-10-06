@@ -80,6 +80,9 @@ em{font-style:italic;color:var(--clay);}
 .book-panel{background:var(--cream);border:1px solid var(--bord);border-radius:var(--radius);padding:.6rem;max-width:1100px;margin:0 auto;}
 /* Sized to the screen so the whole picker fits without scrolling inside the frame. */
 .book-frame{display:block;width:100%;height:clamp(600px,calc(100svh - 150px),860px);border:0;border-radius:var(--radius);background:var(--cream);}
+/* Once the booking app reports its height (script below), the frame grows to fit it exactly
+   and the page scrolls instead of the frame. The heights above are only the fallback. */
+.book-frame.fitted{min-height:0;}
 .book-footer{margin:1.1rem .6rem .3rem;font-size:.82rem;color:var(--light);line-height:1.7;padding-top:1.1rem;border-top:1px solid var(--bord);}
 
 /* LOCATION STRIP */
@@ -161,7 +164,7 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
     <!-- Booking panel: no fade-in, so it's visible the moment the page opens -->
     <div>
       <div class="book-panel">
-        <iframe class="book-frame" src="https://cstlfalcrum.vercel.app/book?embed=1" title="Booking page, book a craniosacral therapy session" loading="eager"></iframe>
+        <iframe class="book-frame" id="bookFrame" scrolling="no" src="https://cstlfalcrum.vercel.app/book?embed=1" title="Booking page, book a craniosacral therapy session" loading="eager"></iframe>
         <p class="book-footer">If you'd rather not book online, just send an email or WhatsApp message and we'll find something that works.</p>
       </div>
     </div>
@@ -266,6 +269,33 @@ burger.addEventListener('click',()=>{const o=links.classList.toggle('open');burg
 links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');burger.classList.remove('open');}));
 const io=new IntersectionObserver(e=>{e.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('v'),i*70);io.unobserve(en.target);}});},{threshold:0.08});
 document.querySelectorAll('.fi').forEach(el=>io.observe(el));
+// Booking frame: size it to the app's content so it never scrolls inside, and
+// tell the app which slice of it is on screen so its pop-up form opens in view.
+(function(){
+  const f=document.getElementById('bookFrame');if(!f)return;
+  const origin=new URL(f.src).origin;
+  const sendViewport=()=>{
+    if(!f.contentWindow)return;
+    const nav=document.querySelector('nav'),navB=nav?Math.max(0,nav.getBoundingClientRect().bottom):0;
+    const r=f.getBoundingClientRect(),top=Math.max(0,navB-r.top),bottom=Math.min(r.height,innerHeight-r.top);
+    f.contentWindow.postMessage({type:'cstl-book:viewport',top:top,height:Math.max(0,bottom-top)},origin);
+  };
+  addEventListener('message',e=>{
+    if(e.source!==f.contentWindow||e.origin!==origin||!e.data)return;
+    const d=e.data;
+    if(d.type==='cstl-book:height'&&typeof d.height==='number'&&d.height>0){
+      f.style.height=Math.ceil(d.height)+'px';f.classList.add('fitted');sendViewport();
+    }else if(d.type==='cstl-book:ready'){sendViewport();}
+    else if(d.type==='cstl-book:top'){
+      // Put the frame's top just under the menu bar, so its pop-up form has the whole screen.
+      const nav=document.querySelector('nav'),navH=nav?nav.getBoundingClientRect().height:0;
+      const y=Math.max(0,f.getBoundingClientRect().top+scrollY-navH-8);
+      if(Math.abs(y-scrollY)>24)scrollTo({top:y,behavior:'smooth'});
+    }
+  });
+  let raf=0;const queue=()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;sendViewport();});};
+  addEventListener('scroll',queue,{passive:true});addEventListener('resize',queue);
+})();
 </script>
 <script defer src="/assets/consent.js"></script>
 <script defer src="/assets/track.js"></script>
