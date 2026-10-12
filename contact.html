@@ -164,7 +164,29 @@ footer{background:var(--deep);color:rgba(250,248,244,.55);padding:4rem 8vw 2.5re
     <!-- Booking panel: no fade-in, so it's visible the moment the page opens -->
     <div>
       <div class="book-panel">
-        <iframe class="book-frame" id="bookFrame" scrolling="no" src="https://cstlfalcrum.vercel.app/book?embed=1" title="Booking page, book a craniosacral therapy session" loading="eager"></iframe>
+        <iframe class="book-frame" id="bookFrame" scrolling="no" title="Booking page, book a craniosacral therapy session" loading="eager"></iframe>
+        <script>
+        // Hands the link's utm_ tags (source, medium, campaign, content) to the
+        // booking app so each booking records which campaign it came from. Read
+        // from this page's own address only; nothing is stored in the browser and
+        // nothing is sent to Meta or Google. The src is set here, once, rather than
+        // in the HTML, so tagged visitors don't load the app twice.
+        (function(){
+          var u="https://cstlfalcrum.vercel.app/book?embed=1";
+          try{
+            var p=new URLSearchParams(location.search);
+            ["utm_source","utm_medium","utm_campaign","utm_content"].forEach(function(k){
+              var v=(p.get(k)||"").trim().slice(0,80);
+              if(v)u+="&"+k+"="+encodeURIComponent(v);
+            });
+          }catch(e){}
+          document.getElementById("bookFrame").src=u;
+        })();
+        </script>
+        <noscript>
+          <style>#bookFrame{display:none}</style>
+          <iframe class="book-frame" scrolling="no" src="https://cstlfalcrum.vercel.app/book?embed=1" title="Booking page, book a craniosacral therapy session"></iframe>
+        </noscript>
         <p class="book-footer">If you'd rather not book online, just send an email or WhatsApp message and we'll find something that works.</p>
       </div>
     </div>
