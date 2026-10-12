@@ -111,7 +111,7 @@
     el.setAttribute("role", "region");
     el.setAttribute("aria-label", "Cookie consent");
     var message = META_PIXEL_ID
-      ? "This site uses cookies from Google Analytics and Meta (Instagram) to see how many people visit, which pages are useful, and whether Instagram ads are reaching the right people. Nothing is sold. Declining won’t affect anything else on the site."
+      ? "This site uses Google Analytics and Meta (Instagram) cookies to see which pages and ads work. Nothing is sold. Declining won’t affect anything else."
       : "This site uses a couple of analytics cookies to see how many people visit and which pages are useful — nothing is sold or shared with anyone else. Declining won’t affect anything else on the site.";
     el.innerHTML =
       "<p>" + message + ' <a href="/privacy">Privacy policy</a>.</p>' +

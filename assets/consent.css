@@ -58,7 +58,8 @@
 .consent-accept:hover{background:var(--terra);}
 
 @media(max-width:600px){
-  .consent-banner{justify-content:flex-start;padding:1rem;}
+  .consent-banner{justify-content:flex-start;padding:.7rem 1rem;gap:.55rem;}
+  .consent-banner p{flex-basis:100%;font-size:.76rem;line-height:1.45;}
   .consent-actions{width:100%;}
-  .consent-actions button{flex:1;}
+  .consent-actions button{flex:1;padding:.5rem .8rem;font-size:.72rem;}
 }
